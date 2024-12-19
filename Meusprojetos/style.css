@@ -1,0 +1,267 @@
+@charset "UTF-8";
+
+
+body{
+    background-color: black;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+/*configuraçoes global*/
+
+:root{
+    --corpreta:#0D0D0D;
+    --corceciliano:#0DF205;
+    --corazulvibrante:#0511F2;
+    --corroxoclaro:#7A49BF;
+    --corroxovibrante:#8B3DD9;
+    --fonth1:Arial, Helvetica, sans-serif;
+    --fontp:'Times New Roman', Times, serif;
+    --fonth2:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/*cabeçalho da pagina*/
+
+header {
+    width: 100%;
+    height: 150px;
+    background-color:black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    font-family:Arial, Helvetica, sans-serif;
+    
+    
+}
+
+ .esquerda,.centro, .direita {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    
+}
+
+.esquerda img {
+    width: 50%;
+    height: 150px;
+    object-fit: cover;  /* Preenche a área sem deformar */
+    
+}
+
+header h1{
+    color: white;
+    text-align: center;
+    max-width: 800px;
+    min-width:240px ;
+    
+
+}
+
+
+
+header .centro :hover{color: #0511F2;
+text-shadow: 1px 1px 2px red;
+animation-duration: 1s;
+}
+
+
+
+
+header ul {
+    color: white;
+    display: flex;
+    list-style: none;
+    
+    
+}
+
+header li {
+    
+    background-color:white;
+    padding: 20px;
+    color:var(--corpreta);
+    box-shadow:2px 2px 2px var(--corazulvibrante);
+    margin: 7px;
+    border-radius: 10px;
+    animation-duration: 1s;
+    font-weight: bolder;
+
+    
+}
+
+
+/*Efeitos*/
+
+
+header  ul :hover{
+    color:white;
+    transition-duration: .3s;
+    background-color:black;
+    box-shadow: -2px -2px 2px  var(--corazulvibrante);
+
+}
+
+nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background-color: #0511F2;
+    box-sizing: border-box;
+    box-shadow: 0px 5px 3px black;
+    max-width: 100%;
+    min-width:240px ;
+}
+
+nav a {
+    color:white;
+    border: 2px solid black;
+    text-decoration: none;
+    background-color: black;
+    padding:15px ;
+    
+    
+}
+
+
+nav  :hover{
+    border: 2px solid blue;
+    color: blue;}
+    
+aside h2:hover{
+    background-image: linear-gradient(to right,rgb(0, 0, 0) 50%,white);
+    color:white;
+    transition-duration: 2s;
+}
+
+
+
+
+    footer:hover {
+        background-image: linear-gradient(to right,black 10%,white);
+        color: red;
+        text-shadow: 2px 2px 5px black;
+        transition-duration: 1s;
+    }
+
+
+
+
+
+
+
+/* estrutura*/
+
+main{max-width: 800px;
+    min-width: 100px;
+    padding: 20px;
+    margin: auto;
+    background-color: white;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    margin-bottom: 20px;
+}
+
+
+
+/*videos e imagens altura e flexbilidade*/
+
+iframe{width: 100%;}
+article img{max-width: 800px;min-width:240px;width: 100%;}
+.logodroid {width: 100%;
+    max-width: 320px;
+    display:block;
+    margin: auto;
+    height: auto;
+}    
+
+
+/*<h1> <p> <h2>*/
+
+h2{
+    font-family: var(--fonth2);
+    background-color: var(--corroxoclaro);
+    font-weight: bolder;
+    
+}
+
+p{
+    text-indent: 20px;
+    padding: 10px;
+    font-family: var(--fontp);}
+    
+    article h1 {font-family: var(--fonth2);
+        background-color: var(--corroxoclaro);
+        font-weight: bolder;  }
+        
+        
+
+  
+/*lista*/
+
+
+aside ul {
+    display: block;
+    list-style-position:inside;
+    columns: 2;
+    padding: 10px;
+    list-style:none;
+}
+ 
+/*caixa da lista*/
+
+aside{
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color:rgb(161, 145, 248);
+    padding: 10px;
+}
+aside h2 {
+    background-color: #0511F2;
+    margin-right: -10px;
+    margin-left: -10px;
+    margin-top: -10px;
+    padding: 5px;
+}
+
+/*video*/
+
+.video{
+    background-color: var(--corceciliano);
+    margin-left: -20px;
+    margin-right: -20px;
+    justify-content: space-around;
+    display: flex;
+    padding: 30px;
+    min-width: 300px;
+    align-items: center;
+    max-width: 800px;
+}
+
+
+
+
+
+
+
+
+
+/*rodape do site*/
+footer{
+    background-color:blue;
+    text-align: center;
+    color: white;
+}
+
+
+   
