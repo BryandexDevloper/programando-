@@ -12,14 +12,16 @@ console.log()
 console.log()
 console.log('Digite o numero da operação')
 console.log("[1] Calculadora Avançada")
-console.log('[2] Sair')
+console.log('[2] Previsão de chuva')
+console.log("[3] Sair")
 escolha = parseInt(prompt())
 
 if (escolha == 1){
     Calculadora_avancacada()
 }else if (escolha == 2){
-    continuar = 'nao'
-
+    Formula_Tetens()
+}else if (escolha == 3){
+    continuar = "nao"
 }
 
 
@@ -139,6 +141,95 @@ menu()
 
 
 }
+
+
+
+
+function Formula_Tetens(){
+
+const a = 7.5
+const b = 237.3
+let T ;
+let Pressao;
+let probabilidade_chuva = ''
+
+
+T = parseInt(prompt("Digite a sua temperatura: "))
+Pressao =parseInt(prompt("Digite a umidade relativa (UR %): "))
+
+const expressao_inicial=(furm_a,temperatura)=>{
+
+    let res = furm_a * temperatura
+    return res
+
+}
+
+const adicao_constante_B=(furm_b,temperatura)=>{
+    let soma = furm_b + temperatura
+    return soma
+}
+
+const Calculo_Razao=(num1,num2)=>{
+    let divisao = num1 / num2
+    return divisao
+}
+
+
+const Potencia=(num1)=>{
+    let res = 10**num1
+    return res
+}
+
+const hPa = (num1)=>{
+    let res = 6.11 * num1
+
+    return res
+}
+
+
+const PressaoAR = (num1,num2)=>{
+    let res = (num1 / 100)*num2
+    return res
+}
+
+const pop = (num1,num2)=>{
+  let res = (num1 / num2)*100
+  return res
+}
+
+
+
+let resultado1 = expressao_inicial (a,T);
+let resultado2 = adicao_constante_B(b ,T )
+let resultado3 = Calculo_Razao(resultado1,resultado2)
+let resultado4 = Potencia(resultado3)
+let resultado5 = hPa(resultado4)
+let resultado6 = PressaoAR(Pressao,resultado5)
+let calculo_final = pop(resultado6,resultado5)
+
+
+if(calculo_final >= 0 && calculo_final  <= 20){
+        probabilidade_chuva = ' Sem probabilidade de chuva. '
+}else if(calculo_final >= 21 && calculo_final <= 40){
+        probabilidade_chuva = ' Pouca chance de chuva .'
+}else if(calculo_final >= 41 && calculo_final <= 60){
+        probabilidade_chuva = ' Chance moderada de chuva. ' 
+}else if(calculo_final >= 61 && calculo_final <= 80){
+        probabilidade_chuva = ' Alta chance de chuva.'
+}else if (calculo_final >= 81&& calculo_final <= 100){
+        probabilidade_chuva = ' Chuva praticamente garantida.'
+} 
+
+console.log(calculo_final.toFixed(2) + '% - ' + probabilidade_chuva);
+
+
+
+menu()
+
+}
+
+
+
 menu();
 
 
