@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de compras</title>
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+        .container-informacoes{
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+        }
+        .container-produtos{
+            display: flex;
+            flex-direction: column;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container-informacoes">
+        <div class="container-produtos">
+            <label for="nome">Nome do produto</label>
+            <input type="text" name="nome" id="nome">
+
+            <label for="Valor">Valor</label>
+            <input type="text" name="Valor" id="valor">
+
+            <button id="enviar">Enviar produto</button>
+            <div class="containerAddProdutos"></div>
+        </div>
+    </div>
+    <script src="ex06.js"></script>
+</body>
+</html>
