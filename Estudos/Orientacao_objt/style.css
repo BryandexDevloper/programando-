@@ -1,0 +1,34 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+
+header{
+    width: 100%;
+    height: 150px;
+    background-color: yellow;
+    
+}
+
+
+main{
+    border: 1px solid;
+    width: 100%;
+    max-width: 1200px;
+    height: 500px;
+    margin: auto;
+}
+
+
+
+.container_informacoes{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    gap: 20px;
+}

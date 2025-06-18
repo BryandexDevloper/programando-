@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de compras shoppe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="menu">
+            <div style="display: flex;width: 100%; max-width: 1200px; justify-content: space-between; align-items: center;">
+                <div class="container-opcoes-do-nav">
+                    <p class="opcoes-links">Central do vendedor |</p>
+                    <p class="opcoes-links">Vender na shoppe |</p>
+                    <p id="baixe-app" class="opcoes-links">Baixe o app | <div class="qrcode"><img src="https://cdn.vectorstock.com/i/1000v/14/78/sample-qr-code-vector-711478.jpg" alt=""></div></p>
+                    <p class="opcoes-links">Siga-nos no </p>
+                </div>
+                <div class="container-menu-nav">
+                    <div style="display: flex; gap: 10px;">
+                        <p id="notificacoes" class="opcoes-links">Notificações <div class="container-notificacoes">
+                            
+                        </div></p>
+                        <p class="opcoes-links">Ajuda</p>
+                        <p id="linguagem"class="opcoes-links">Portugues(BR) <div class="container-lingua"></div></p>
+                        
+                    </div>
+                    <div class="container-perfil">
+                        <div class="foto"></div>
+                        <p id="conta" class="opcoes-lins">Adrianbryan <div class="container-conta"></div></p>
+                    </div>
+                </div>
+            </div>
+            
+        </nav>
+        <div class="menu-pesquisa">
+                <div class="container-menu-pesquisa"><div class="container-logo-titulo"><div class="container-foto"></div><p class="texto-cor-laranja">| Carrinho de Compras</p></div>
+                
+                <div class="container-barra-pesquisa">
+                    <input type="text" name="pesquisa" id="pesquisa">
+                    <div class="botao-pesquisar"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="conteudo">
+            <div class="container-select-todos-produtos">
+                <div class="input-texto"><input type="checkbox" name="confirmar" id="confirmar-principal"><p class="texto-pequeno-preto">Produtos</p></div>
+                <div class="informacoes-carrinho"><p class="texto-pequeno-cinza">Preço unitario</p>
+                <p class="texto-pequeno-cinza">Quantidade</p>
+                <p class="texto-pequeno-cinza">Preço total</p>
+                <p class="texto-pequeno-cinza">Ações</p>
+                </div>
+            </div>
+            <div class="container-select-todos-loja">
+                <div class="container-produtos-loja"><input type="checkbox" name="confirmar" class="confirmar"><p style="padding: 2px; background-color: red; color: white; font-size: 12px;">Lojas oficiais</p><p><strong>Netshoes</strong></p></div>
+                <hr>
+                <div class="container-produto1">
+                    <input type="checkbox" name="confirmar" class="confirmar">
+                    <div class="imagem-produto"><img src="https://down-br.img.susercontent.com/file/sg-11134201-7rdx2-m1eewwzl3cce4b@resize_w80_nl.webp" alt=""></div>
+                    <p class="texto-pequeno-preto">Vídeo Game Ps5 Console Slim Di<br>gital Playstation</p>
+                    <p class="texto-pequeno-cinza">Variações: <br> brancopreto/bivolt</p>
+                    <p class="texto-pequeno-cinza" style="margin-left: 50px;"><s>R$8.160,25</s><p>R$3.389,00</p></p>
+                    <div class="container-adicionar-mais">
+                        <div class="menos"><p style="color: grey;" class="menos">-</p></div>
+                        <div class="valor"></div>
+                        <div class="mais"><p style="color: grey;" class="mais">+</p></div>
+                    </div>
+                    <p style="color: orangered; font-size: 16px;" id="preco-produto">R$3.389,00</p>
+                    <div class="container-excluir-produto">
+                        <p id="Excluir" class="texto-pequeno-preto">Excluir</p>
+                        <p style="color: orangered; font-size: 16px;">Encontrar itens<br>similares</p>
+                    </div>
+                </div>
+                <div class="container-produto1">
+                    <input type="checkbox" name="confirmar" class="confirmar">
+                    <div class="imagem-produto"><img src="https://down-br.img.susercontent.com/file/sg-11134201-7rdx2-m1eewwzl3cce4b@resize_w80_nl.webp" alt=""></div>
+                    <p class="texto-pequeno-preto">Vídeo Game Ps5 Console Slim Di<br>gital Playstation</p>
+                    <p class="texto-pequeno-cinza">Variações: <br> brancopreto/bivolt</p>
+                    <p class="texto-pequeno-cinza" style="margin-left: 50px;"><s>R$8.160,25</s><p>R$3.389,00</p></p>
+                    <div class="container-adicionar-mais">
+                        <div class="menos"><p style="color: grey;" class="menos">-</p></div>
+                        <div class="valor"></div>
+                        <div class="mais"><p style="color: grey;" class="mais">+</p></div>
+                    </div>
+                    <p style="color: orangered; font-size: 16px;"id="preco-produto">R$3.389,00</p>
+                    <div class="container-excluir-produto">
+                        <p id="Excluir" class="texto-pequeno-preto">Excluir</p>
+                        <p style="color: orangered; font-size: 16px;" >Encontrar itens<br>similares</p>
+                    </div>
+                </div>
+                <div class="container-produto1">
+                    <input type="checkbox" name="confirmar" class="confirmar">
+                    <div class="imagem-produto"><img src="https://down-br.img.susercontent.com/file/sg-11134201-7rdx2-m1eewwzl3cce4b@resize_w80_nl.webp" alt=""></div>
+                    <p class="texto-pequeno-preto">Vídeo Game Ps5 Console Slim Di<br>gital Playstation</p>
+                    <p class="texto-pequeno-cinza">Variações: <br> brancopreto/bivolt</p>
+                    <p class="texto-pequeno-cinza" style="margin-left: 50px;"><s>R$8.160,25</s><p>R$3.389,00</p></p>
+                    <div class="container-adicionar-mais">
+                        <div class="menos"><p style="color: grey;" class="menos">-</p></div>
+                        <div class="valor"></div>
+                        <div class="mais"><p style="color: grey;" class="mais">+</p></div>
+                    </div>
+                    <p style="color: orangered; font-size: 16px;" id="preco-produto">R$3.389,00</p>
+                    <div class="container-excluir-produto">
+                        <p id="Excluir" class="texto-pequeno-preto">Excluir</p>
+                        <p style="color: orangered; font-size: 16px;">Encontrar itens<br>similares</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="funcionalidades.js"></script>
+</body>
+</html>

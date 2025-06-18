@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+    <script>
+
+
+        const paragrafo = document.createElement("p")
+        const botao_add = document.createElement("button")
+        const botao_remove = document.createElement("button")
+        let contador = 0
+
+
+
+// document.body.appendChild(paragrafo)
+
+
+botao_add.setAttribute("id","btn1")
+botao_remove.setAttribute("id","btn2")
+botao_add.style.width="100px"
+botao_add.style.height="100px"
+botao_remove.style.width="100px"
+botao_remove.style.height="100px"
+
+botao_add.innerHTML="adicionar"
+botao_remove.innerHTML="remover"
+
+botao_add.addEventListener("click",()=>{
+   contador++
+
+paragrafo.innerHTML=contador
+})
+
+botao_remove.addEventListener("click",()=>{
+    contador--
+    paragrafo.innerHTML=contador
+
+})
+document.body.appendChild(botao_remove)
+document.body.appendChild(botao_add)
+document.body.appendChild(paragrafo)
+
+
+    </script>
+</body>
+
+
+</html>

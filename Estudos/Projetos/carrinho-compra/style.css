@@ -1,0 +1,307 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header{
+    width: 100%;
+    height: 100px;
+}
+
+body{
+    background-color: #fef6f5;
+}
+nav.menu{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: orangered;
+}
+
+.container-opcoes-do-nav{
+    display: flex;
+    gap: 10px;
+    position: relative;
+}
+
+.container-menu-nav{
+    display: flex;
+    gap: 20px;
+    position: relative;
+}
+
+.foto{
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+    background-color: green;
+}
+.container-perfil{
+    display: flex;
+    gap: 5px;
+}
+
+.opcoes-links{
+    font-size: 13px;
+    color: white;
+}
+
+.qrcode{
+    width: 150px;
+    height: 200px;
+    background-color: black;
+    position:absolute;
+    right:25px;
+    top: 29px;
+    display: none;
+    
+}
+
+.qrcode img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.container-notificacoes{
+    width: 300px;
+    background-color:black;
+    height: 300px;
+    position: absolute;
+    right: 350px;
+    top: 29px;
+    display: none;
+}
+
+.container-lingua{
+    width: 130px;
+    height: 100px;
+    display: none;
+    background-color: red;
+    position: absolute;
+    top: 29px;
+    left: 90px;
+}
+
+.container-conta{
+    width: 120px;
+    height: 50px;
+    background-color: orangered;
+    position: absolute;
+    top: 29px;
+    display: none;
+}
+
+.menu-pesquisa{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+
+.container-menu-pesquisa{
+    background-color: white;
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container-logo-titulo{
+   
+    height: 100px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+}
+
+.container-foto{
+    width: 100px;
+    height: 50px;
+    background-color: orangered;
+}
+
+
+.container-logo-titulo > p {
+    width: 200px;
+    color: orangered;
+    font-size: 20px;
+}
+
+.container-barra-pesquisa{
+    width: 50%;
+    border: 1px solid ;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.botao-pesquisar{
+    width: 100px;
+    height: 100%;
+    background-color: orangered;
+}
+
+#pesquisa{
+    width: 100%;
+    height: 100%;
+    padding: 0px 10px 0px 10px;
+    font-size: 20px;
+}
+
+main{
+    width: 100%;
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.conteudo{
+    width: 100%;
+    max-width: 1200px;
+   
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+.container-select-todos-produtos{
+    width: 100%;
+height: 60px;
+display: flex;
+background-color: white;
+padding: 10px 20px 10px 20px;
+align-items: center;
+justify-content: space-between;
+
+}
+
+.input-texto{
+
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+
+
+.confirmar{
+    width: 25px;
+    height: 25px;
+}
+
+#confirmar-principal{
+    width: 25px;
+    height: 25px;
+}
+.texto-pequeno-preto{
+    font-size: 14px;
+    color: black;
+}
+
+.texto-pequeno-cinza{
+    font-size: 14px;
+    color: rgb(146, 146, 146);
+}
+
+
+.informacoes-carrinho{
+    display: flex;
+    gap: 60px;
+    padding: 0px 60px 0px 0px;
+    
+}
+
+.container-produtos-carrinho{
+     width: 100%;
+height: 60px;
+display: flex;
+background-color: white;
+padding: 10px 20px 10px 20px;
+align-items: center;
+justify-content: space-between;
+}
+
+
+.container-select-todos-loja{
+width: 100%;
+
+display: flex;
+background-color: white;
+padding: 10px 20px 10px 20px;
+flex-direction: column;
+gap: 20px;
+
+}
+
+.container-produtos-loja{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    gap:10px
+}
+
+.container-produto1{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.imagem-produto{
+    width: 80px;
+    height: 80px;
+   
+}
+
+.imagem-produto img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.container-adicionar-mais{
+    width: 100px;
+    height: 30px;
+    border: 1px solid grey;
+    display:flex;
+    margin-right: 20px;
+    
+    
+}
+
+.menos,.mais,.valor{
+    width:33,33px;
+    border:1px solid grey;
+    height: 100%;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.container-excluir-produto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    text-align: center;
+}
+
+#Excluir{
+    cursor: pointer;
+}

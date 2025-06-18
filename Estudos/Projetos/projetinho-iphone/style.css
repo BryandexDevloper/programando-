@@ -1,0 +1,314 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header{
+    width: 100%;
+    
+    background-color: #fafafc;
+    display: flex;
+   flex-direction: column;
+}
+
+.menu{
+      width: 100%;
+    padding-top: 20px;
+    background-color: #fafafc;
+    display: flex;
+    padding-left:10px ;
+    padding-right: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.opc{
+    width: 50%;
+    display: flex;
+    color: #6e6e73;
+    font-size: 12px;
+    font-weight: 600;
+    
+    justify-content: space-around;
+}
+
+.opc > p:hover{
+    color: black;
+    
+}
+
+.img{
+    width: 20px;
+    height: 20px;
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.interacao-menu{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.categoria > h3{
+    font-size: 25px;
+    font-weight: 500;
+    
+}
+
+.categoria{
+    width: 100%;
+   
+    
+}
+
+.container-ver-todos{
+    width: 100%;
+    padding: 20px 100px 20px 100px;
+    border-bottom: 1px solid #86868b;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fafafc;
+    
+}
+
+#ver-todos-nav{
+    color: #6e6e73;
+    font-size: 12px;
+    
+}
+
+
+#ver-todos-nav:hover{
+    color: black;
+    font-size: 12px;
+    
+}
+
+main{
+position: relative;
+display: flex;
+justify-content: center;
+}
+.container-menu-comprar{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    font-size: 25px;
+    
+}
+
+.container-comprar{
+    width: 100%;
+    padding-left: 450px;
+    padding-top: 50px;
+   padding-bottom: 20px;
+   display:none;
+ 
+}
+
+.container-conteudo-cel{
+    width: 100%;
+   gap: 40px;
+    
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.info-cel{
+  
+    display: flex;
+    flex-direction: column;
+}
+
+.container-select{
+    width: 300px;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid #6e6e73;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 10px;
+    margin-top: 20px;
+    position: relative;
+
+}
+
+.container-opcoes-select{
+     width: 300px;
+    border-radius: 10px;
+    border: 1px solid #6e6e73;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    top: 5px;
+    position: relative;
+    gap: 10px;
+    display: none;
+    z-index: 10000000000;
+}
+.container-opcoes-select > p{
+    width: 100%;
+    font-size: 17px;
+    padding-left: 13px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.container-opcoes-select > p:hover{
+    background-color: #6e6e73;
+    color: white;
+   
+}
+
+
+.container-cores-iphone{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 50px;
+    width: 270px;
+   
+}
+
+
+.box {
+      width: 34px; /* 30px + 2px padding de cada lado */
+      height: 34px;
+      padding: 2px; /* espaço branco */
+      
+      box-sizing: border-box;
+      border-radius: 50px;
+      
+    }
+
+
+    .color {
+      width: 100%;
+      height: 100%;
+      border-radius: 50px;
+      
+    }
+
+     .c1  { background-color: #ff9999; }
+    .c2  { background-color: #ffcc99; }
+    .c3  { background-color: #ffff99; }
+    .c4  { background-color: #ccff99; }
+    .c5  { background-color: #99ff99; }
+    .c6  { background-color: #99ffcc; }
+    .c7  { background-color: #99ffff; }
+    .c8  { background-color: #99ccff; }
+    .c9  { background-color: #9999ff; }
+    .c10 { background-color: #cc99ff; }
+    .c11 { background-color: #ff99ff; }
+    .c12 { background-color: #ff99cc; }
+
+    .box1 { background-color: #ff9999; }
+    .box2 { background-color: #ffcc99; }
+    .box3 { background-color: #ffff99; }
+    .box4 { background-color: #ccff99; }
+    .box5 { background-color: #99ff99; }
+    .box6 { background-color: #99ffcc; }
+    .box7 { background-color: #99ffff; }
+    .box8 { background-color: #99ccff; }
+    .box9 { background-color: #9999ff; }
+    .box10 { background-color: #cc99ff; }
+    .box11 { background-color: #ff99ff; }
+    .box12 { background-color: #ff99cc; }
+
+
+    .texto-preto{
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+
+    .textoazul-pequeno{
+        font-size: 13px;
+        font-weight: 700;
+        color: rgb(0, 89, 255);
+    }
+
+    .btn-comprar-aul{
+        width: 100%;
+        height: 50px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color:  rgb(0, 89, 255);
+        color: white;
+        font-weight: 700;
+       
+
+    }
+
+
+
+    .container-column{
+        display: flex;
+        flex-direction: column;
+        margin-top: 40px;
+    }
+
+
+    .caminhao-texto{
+        display: flex;
+        margin-bottom: 40px;
+        gap: 10px;
+    }
+
+
+    .iphone-galeria{
+        width: 400px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container-img-grande{
+        width: 571px;
+        height: 571px;
+       
+    }
+
+    .container-img-grande img{
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .container-galeria-iphone{
+        display: flex;
+        width: 571px;
+        height: 60px;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .foto-iphone img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .foto-iphone{
+        padding-bottom: 10px;
+    }

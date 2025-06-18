@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        main{
+            display: flex;
+            width: 100%;
+            gap: 50px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #caixa1,#caixa2{
+            width: 350px;
+            height: 600px;
+            border: 5px solid black;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 20px;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .curso{
+            width: 100%;
+            height: 50px;
+            border: 3px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+        }
+
+        #botao{
+            width: 100px;
+            height: 50px;
+            background-color: blue;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+        }
+
+
+        .selecionado{
+            border: 3px solid pink;
+            background-color: antiquewhite;
+            width: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+        }
+        
+    </style>
+</head>
+<body>
+    <main>
+        <div id="caixa1">
+            <div id="c1" class="curso">HTML</div>
+            <div id="c2"class="curso">CSS</div>
+            <div id="c3"class="curso">JAVASCRIPT</div>
+            <div id="c4"class="curso">PHP</div>
+            <div id="c5"class="curso">REACT</div>
+            <div id="c6"class="curso">MYSQL</div> 
+        </div>
+        <div id="botao">Copiar -></div>
+        <div id="caixa2"></div>
+    </main>
+    <script src="stopPropagation.js" defer></script>
+</body>
+</html>

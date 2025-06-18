@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        *{
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        .container-imgs{
+            width: 100%;
+            height: 310px;
+            border:1px solid;
+            position: relative;
+            overflow: hidden;
+            
+        }
+
+
+        .slide img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide{
+             width: 100%;
+            height: 100%;
+            background-color: red;
+            display: none;
+        }
+
+        .mostrar{
+            display: block;
+            
+            
+        }
+
+        .butoes{
+            width: 100%;
+            height: 150px;
+            position: absolute;
+            font-size: 20px;
+            top: 100px;
+            padding: 0px 10px 0px 10px;
+            display: flex;
+            flex-direction: column;
+           
+        }
+
+        #proximo,#anterior{
+            background-color: white;
+            border-radius: 100%;
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 10px;
+            
+        }
+
+        .container-butoes{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            
+        }
+
+        .container-radio{
+           margin-top: 120px;
+           width: 100%;
+           display: flex;
+           justify-content: center;
+           gap: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    
+<div class="container-imgs">
+    <div class="slide slide1"><img src="https://http2.mlstatic.com/D_NQ_627045-MLA82787677787_022025-OO.webp" alt=""></div>
+    <div class="slide slide2"><img src="https://http2.mlstatic.com/D_NQ_980365-MLA85287037041_052025-OO.webp" alt=""></div>
+    <div class="slide slide3"><img src="https://http2.mlstatic.com/D_NQ_876533-MLA85250047283_052025-OO.webp" alt=""></div>
+    <div class="slide slide4"><img src="https://http2.mlstatic.com/D_NQ_829265-MLA84985112742_052025-OO.webp" alt=""></div>
+</div>
+<div class="butoes">
+    
+    <div class="container-butoes">
+        <div id="anterior"><</div>
+        <div id="proximo">></div>
+    </div>
+
+    <div class="container-radio">
+        <input type="radio" name="radio" id="radio">
+        <input type="radio" name="radio" id="radio">
+        <input type="radio" name="radio" id="radio">
+        <input type="radio" name="radio" id="radio">
+    </div>
+</div>
+
+
+<script>
+
+const slide = document.querySelectorAll(".slide")
+let slide_atual = 0
+let radioi = 0
+const proximo = document.querySelector("#proximo")
+const anterior = document.querySelector("#anterior")
+const radio = document.querySelectorAll("#radio")
+
+slide[slide_atual].classList.add("mostrar")
+radio[radioi].checked =true
+
+
+proximo.addEventListener("click",()=>{
+    slide[slide_atual].classList.remove("mostrar")
+    slide_atual++
+    radioi++
+    if(slide_atual >= slide.length){
+        slide_atual = 0
+        radioi = 0
+    }
+    slide[slide_atual].classList.add("mostrar")
+    radio[radioi].checked = true
+})
+
+
+anterior.addEventListener("click",()=>{
+    slide[slide_atual].classList.remove("mostrar")
+    slide_atual--
+    radioi--
+    if(slide_atual < 0){
+        slide_atual = slide.length -1
+        radioi = slide.length -1
+    }
+    slide[slide_atual].classList.add("mostrar")
+    radio[radioi].checked =true
+})
+
+
+</script>
+
+</body>
+</html>

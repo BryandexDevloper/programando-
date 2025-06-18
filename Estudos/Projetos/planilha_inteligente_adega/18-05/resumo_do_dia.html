@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planilha de Vendas - Cervejas</title>
+    <style>
+        table { border-collapse: collapse; width: 90%; margin: 20px auto; }
+        th, td { border: 2px solid black; text-align: center; padding: 8px; }
+        input[type="number"], input[type="text"] { width: 100px; text-align: center; }
+        #total { font-weight: bold; text-align: center; }
+        #imprimir { margin: 20px auto; display: block; }
+    </style>
+</head>
+<body>
+
+    <h2 style="text-align: center;">Registro de Vendas</h2>
+
+    <div style="text-align: center;">
+        <input type="text" id="produto" placeholder="Nome do Produto">
+        <input type="number" id="custo" placeholder="Valor de Custo">
+        <input type="number" id="venda" placeholder="Valor de Venda">
+        <input type="number" id="quantidade" placeholder="Quantidade Vendida">
+        <button onclick="adicionarProduto()">Adicionar</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Preço de Custo</th>
+                <th>Preço de Venda</th>
+                <th>Quantidade Vendida</th>
+                <th>Custo Total</th>
+                <th>Lucro</th>
+            </tr>
+        </thead>
+        <tbody id="tabela-produtos"></tbody>
+        <tfoot>
+            <tr id="total">
+                <td colspan="3">TOTAL</td>
+                <td id="total-quantidade">0</td>
+                <td id="total-custo">R$ 0.00</td>
+                <td id="total-lucro">R$ 0.00</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <button id="imprimir" onclick="imprimirRelatorio()">Imprimir Relatório</button>
+
+    <script>
+        const produtos = [];
+    
+        function adicionarProduto() {
+            const produto = document.getElementById("produto").value;
+            const custo = parseFloat(document.getElementById("custo").value) || 0;
+            const venda = parseFloat(document.getElementById("venda").value) || 0;
+            const quantidade = parseInt(document.getElementById("quantidade").value) || 0;
+    
+            if (produto === "") return alert("Digite o nome do produto");
+    
+            const custoTotal = custo * quantidade;
+            const lucro = (venda - custo) * quantidade;
+    
+            produtos.push({
+                nome: produto,
+                custo,
+                venda,
+                quantidade,
+                custoTotal,
+                lucro
+            });
+    
+            produtos.sort((a, b) => a.nome.localeCompare(b.nome));
+    
+            atualizarTabela();
+        }
+    
+        function atualizarTabela() {
+            let totalQuantidade = 0;
+            let totalCusto = 0;
+            let totalLucro = 0;
+            const corpoTabela = document.getElementById("tabela-produtos");
+            corpoTabela.innerHTML = "";
+    
+            produtos.forEach(prod => {
+                corpoTabela.innerHTML += `
+                    <tr>
+                        <td>${prod.nome}</td>
+                        <td>R$ ${prod.custo.toFixed(2)}</td>
+                        <td>R$ ${prod.venda.toFixed(2)}</td>
+                        <td>${prod.quantidade}</td>
+                        <td>R$ ${prod.custoTotal.toFixed(2)}</td>
+                        <td>R$ ${prod.lucro.toFixed(2)}</td>
+                    </tr>
+                `;
+                totalQuantidade += prod.quantidade;
+                totalCusto += prod.custoTotal;
+                totalLucro += prod.lucro;
+            });
+    
+            document.getElementById("total-quantidade").innerText = totalQuantidade;
+            document.getElementById("total-custo").innerText = `R$ ${totalCusto.toFixed(2)}`;
+            document.getElementById("total-lucro").innerText = `R$ ${totalLucro.toFixed(2)}`;
+        }
+    
+        function imprimirRelatorio() {
+            window.print();
+        }
+    </script>
+    
+
+</body>
+</html>

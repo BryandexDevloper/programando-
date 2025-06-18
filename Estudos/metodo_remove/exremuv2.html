@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .caixa2{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    
+<div class="caixa2">
+
+</div>
+
+
+<script>
+    const caixa2 = document.querySelector(".caixa2")
+    const cursos = ['html','css','java','pyton']
+
+    cursos.map((res,ind)=>{
+       const elementos = document.createElement("div")
+       elementos.innerHTML=res
+       elementos.style.display="flex"
+       elementos.style.gap='10px'
+       elementos.setAttribute("id","elementos"+ind)
+       const input = document.createElement("input")
+       input.type= "radio"
+       input.setAttribute("id","radio"+ind)
+       input.name="radio"
+       caixa2.appendChild(elementos)
+       elementos.appendChild(input)
+
+
+       const botao = document.createElement("button")
+       botao.setAttribute("id","botao")
+       botao.innerHTML="Apagar"
+       elementos.appendChild(botao)
+       
+      
+    })
+
+
+    const botao = [...document.querySelectorAll("#botao")]
+    const input = document.querySelectorAll("input[type=radio]")
+    botao.forEach((res)=>{
+       
+
+        res.addEventListener("click",()=>{
+            input.forEach((percor)=>{
+                if(percor.checked == true){
+                    percor.parentElement.remove()
+                }
+            })
+        })
+
+
+    })
+
+        
+
+
+//input[type=radio]
+        
+</script>
+</body>
+</html>

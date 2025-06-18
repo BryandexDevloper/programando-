@@ -1,0 +1,114 @@
+*{
+    box-sizing: border-box;
+}
+
+main{
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 50px auto;
+}
+
+.container-opcoes-anuncios{
+    width: 100%;
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+
+.container-opcoes2{
+    width: 20%;
+    
+   
+    padding: 10px;
+}
+
+.container-check-fretegratis{
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+.container-descontos{
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+
+.container-descontos h4{
+    margin-bottom: 5px;
+}
+
+
+.container-descontos p{
+   color: grey;
+   font-size: 15px;
+
+}
+
+.container-produtos-existentes{
+    width: 80%;
+    
+   
+    display: flex;
+    flex-direction: column;
+}
+
+.container-produtos-existentes img{
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.texto-pequeno-cinzaa{
+    font-size: 13px;
+    color: grey;
+}
+
+.texto-medio-preto{
+    font-size: 20px;
+   
+}
+
+.texto-verde-medio{
+    font-size: 17px;
+    color: green;
+}
+
+.texto-medio-grosso{
+    font-size: 12px;
+    color: green;
+    font-weight: 900;
+}
+
+
+.texto-verde-fundo-medio{
+    font-size: 13px;
+    background-color: rgba(39, 216, 39, 0.281);
+    display: flex;
+    width: 200px;
+    border-radius:3px;
+    padding: 2px;
+    color: green;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.container-descontos{
+    cursor: pointer;
+}
