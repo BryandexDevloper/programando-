@@ -385,6 +385,31 @@ frete_para_chevron.innerHTML=`<svg viewBox="0 0 24 24" width="16" height="16" fi
 `
 div1.appendChild(frete_para_chevron)
 
+
+      const container_estados = document.createElement("div")
+      container_estados.classList.add("container_estados")
+      div2.appendChild(container_estados)
+
+frete_para_chevron.addEventListener("mouseover",()=>{
+  
+     container_estados.style.display="flex"
+
+
+     const estado = document.createElement("div")
+     estado.classList.add("estado")
+     container_estados.appendChild(estado)
+
+})
+
+
+container_estados.addEventListener("mouseleave",()=>{
+    
+      container_estados.style.display="none"
+
+})
+
+
+
 const container_quantidade = document.createElement("div")
 container_quantidade.classList.add("container_quantidade")
 pagina_produto_container_informacoes.appendChild(container_quantidade)
@@ -428,7 +453,18 @@ pagina_produto_container_informacoes.appendChild(container_quantidade)
   container_botoes.appendChild(btn_colocar_carrinho)
   container_botoes.appendChild(btn_comprar)
 
-///////////////////////////parei aqui !!!!!!!!!!!!!!!!!!!!//////////////////////////////////////////
+
+
+      btn_colocar_carrinho.addEventListener("click",()=>{
+        alert("Produto adicionado ao carrinho")
+      })
+////////////////////////////////////Aqui chama a funçao carrinho de compras//////////////////////////////////////////////////////////////////
+      btn_comprar.addEventListener("click",()=>{
+        if(valor == 0 ){
+          alert("Voce nao tem creditos sulficientes para comprar responda as perguntas para adquirir creditos")
+        }
+      })
+
   } 
 
 

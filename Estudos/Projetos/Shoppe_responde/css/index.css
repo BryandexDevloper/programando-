@@ -783,6 +783,7 @@ display: flex;
 .div1,.div2{
     display: flex;
     gap: 10px;
+    position: relative;
 }
 
 
@@ -860,6 +861,20 @@ display: flex;
 
 .btn_comprar:hover{
      background-color: #f4501ec6;
+}
+
+.container_estados{
+    width: 200px;
+    height: 500px;
+    border: 1px solid;
+    background-color: black;
+    display: none;
+}
+
+.estado{
+    width: 100%;
+    height: 20px;
+    border: 2px solid red;
 }
 
 @media(max-width:768px){
