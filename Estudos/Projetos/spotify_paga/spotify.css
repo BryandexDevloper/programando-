@@ -1,0 +1,252 @@
+*{
+    margin: 0;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+header{
+    width: 100%;
+    height: 56px;
+    max-width: auto;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 10000000000000000;
+}
+
+.container-logo{
+    width: 87px;
+    height: 100%;
+    border-radius: 50px;
+}
+
+.container-logo img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.container-opecoes{
+    display: flex;
+    width: auto;
+    gap: 20px;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24;
+  color: white;
+  cursor: pointer;
+}
+
+
+.container_menu_hamburguer{
+    display: flex;
+    height: 100%;
+    width: 30px;
+    gap: 5px;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+}
+
+
+
+.linha_branca{
+    width: 100%;
+    height: 3px ;
+    background-color: white;
+    border-radius: 4px;
+   
+}
+
+#valor_ganho{
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+}
+body{
+    background-color: black;
+    
+}
+
+main{
+    width: 100%;
+    max-width: auto;
+    height: auto;
+}
+ .container_backgroud {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      overflow: hidden;
+     
+    }
+
+    .container_backgroud::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("assets/spoify_background.webp");
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      filter: blur(5px);
+      z-index: 0;
+    }
+
+    /* Conteúdo por cima do fundo (se quiser colocar depois) */
+    .container_backgroud_conteudo {
+      position: relative;
+      z-index: 1;
+      color: white;
+      padding: 20px;
+    }
+
+    .container_texto{
+        width: 100%;
+      
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .container_texto h1{
+        text-align: center;
+        padding: 7px;
+        font-size: 30px;
+        background-color: #1DB954;
+        width: 500px;
+        align-self: center;
+        border-radius: 8px;
+        border:  3px solid #B3B3B3;
+    }
+        .container_texto p{
+        
+        font-size: 20px;
+        font-weight: bold;
+
+    }
+
+    .container_atrair{
+        background-color: #1DB954;
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        text-align: left;
+        padding: 10px;
+        border-radius: 8px;
+        border:  3px solid #B3B3B3;
+        align-self: center;
+    }
+
+    .container_texto h3{
+
+        font-size: 26px;
+        width: 700px;
+        background-color: black;
+        border-radius: 8px;
+        align-self: center;
+        padding: 10px;
+        border:3px solid white;
+    }
+
+    #iniciar{
+       
+       
+        display: block;
+        width: 300px;
+        height: 50px;
+        border-radius: 8px;
+        font-weight: bold;
+        background-color: #1DB954;
+        color: white;
+        font-size: 20px;
+        align-self: center;
+        cursor: pointer;
+    }
+
+
+    .container_menu{
+        width: 100%;
+        max-width: auto;
+        height: auto;
+        display: none;
+    }
+
+
+    .pergunta{
+        width: 500px;
+        padding: 10px;
+        background-color: #1DB954;
+        align-self: center;
+    }
+
+
+    .iniciar{
+        
+        width: 300px;
+        height: 50px;
+        border-radius: 8px;
+        font-weight: bold;
+        background-color: #1DB954;
+        color: white;
+        font-size: 20px;
+        align-self: center;
+        cursor: pointer;
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: none;
+    }
+    
+    
+    .container_pergunta {
+        width: auto;
+        height: 500px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-self: center;
+}
+
+    /* Responsivo para celular */
+    @media(max-width: 768px) {
+      .container_backgroud::before {
+        background-position: -600px center;
+      }
+
+      .container_texto h1{
+        font-size: 25px;
+        width: 350px;
+
+      }
+
+      .container_atrair{
+        width: 350px;
+      }
+
+      .container_texto h3{
+        width: 350px;
+       
+      }
+
+      .pergunta{
+        width: 350px;
+      }
+    }
