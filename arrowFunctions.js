@@ -11,3 +11,5 @@ const add = v1 =>v1=v1+10
 console.log(add(20))
 console.log(soma(13,14));
 console.log(nome("bryan"));
+
+

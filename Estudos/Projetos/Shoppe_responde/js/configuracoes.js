@@ -49,6 +49,7 @@ const produtosSeparados = [
 ];
 
 
+let carrinho_compras = new Map()
 
 let contador = 0
 const criar_carrolsel = ()=>{
@@ -385,27 +386,39 @@ frete_para_chevron.innerHTML=`<svg viewBox="0 0 24 24" width="16" height="16" fi
 `
 div1.appendChild(frete_para_chevron)
 
+let produto_estado = null
 
       const container_estados = document.createElement("div")
       container_estados.classList.add("container_estados")
       div2.appendChild(container_estados)
 
-frete_para_chevron.addEventListener("mouseover",()=>{
-  
-     container_estados.style.display="flex"
 
-
+      fretesPorEstado.forEach((res)=>{
+       
      const estado = document.createElement("div")
      estado.classList.add("estado")
+     estado.textContent=res.estado
      container_estados.appendChild(estado)
+        
+     estado.addEventListener("click",()=>{
+      text_frete_para.textContent=`${res.estado}, ${res.nome}`
+      text_valor_frete.textContent=`${res.frete.toLocaleString("pt-br",{
+        currency:"BRL",
+        style:"currency"
+      })}`
 
+      produto_estado = res.frete
+
+     })
+      })
+
+  frete_para_chevron.addEventListener("click",()=>{
+     container_estados.style.display="flex"
 })
 
 
-container_estados.addEventListener("mouseleave",()=>{
-    
+container_estados.addEventListener("click",()=>{
       container_estados.style.display="none"
-
 })
 
 
@@ -425,15 +438,34 @@ pagina_produto_container_informacoes.appendChild(container_quantidade)
   container_quantidade_numeros.classList.add("container_quantidade_numeros")
   container_quantidade.appendChild(container_quantidade_numeros)
 
+  
+  let quantidade = 0
+
   const btnMenos = document.createElement("div")
   btnMenos.classList.add("btn_menos")
   btnMenos.textContent="-"
   container_quantidade_numeros.appendChild(btnMenos)
   const btnValor = document.createElement("div")
-  btnValor.textContent="0"
+  btnMenos.addEventListener("click",()=>{
+    quantidade--
+    if(quantidade < 1){
+      quantidade = 0
+    }
+    btnValor.textContent=quantidade
+
+  })
+  btnValor.textContent=quantidade
   btnValor.classList.add("btn_menos")
   container_quantidade_numeros.appendChild(btnValor)
   const btnMais  = document.createElement("div")
+  btnMais.addEventListener("click",()=>{
+    quantidade++
+    if(quantidade > 1){
+      quantidade = 1
+      alert("Quantidade maxima atingida")
+    }
+    btnValor.textContent=quantidade
+  })
   btnMais.textContent="+"
   btnMais.classList.add("btn_menos")
   container_quantidade_numeros.appendChild(btnMais)
@@ -456,12 +488,23 @@ pagina_produto_container_informacoes.appendChild(container_quantidade)
 
 
       btn_colocar_carrinho.addEventListener("click",()=>{
-        alert("Produto adicionado ao carrinho")
+        if(respondeu_tudo){
+          let produto_foto = res.link
+          let produto_titulo = res.titulo
+          let produto_credito = res.pontosNecessarios
+          let id = carrinho_compras.size + 1
+          carrinho_compras.set(id,{produto_foto,produto_titulo,produto_credito,produto_estado})
+          numero_produtos.textContent=carrinho_compras.size
+          console.log(carrinho_compras)
+        }
       })
-////////////////////////////////////Aqui chama a funçao carrinho de compras//////////////////////////////////////////////////////////////////
+
       btn_comprar.addEventListener("click",()=>{
         if(valor == 0 ){
           alert("Voce nao tem creditos sulficientes para comprar responda as perguntas para adquirir creditos")
+        }else{
+         
+          //////////////////////////////////Aqui vem o carrinho de compras//////////////////////////////////////////////////////
         }
       })
 
@@ -489,7 +532,21 @@ produtosSeparados[contador].forEach(produto => {
   containerFoto.appendChild(img);
 
   containerFoto.addEventListener("click",()=>{
-    paginaProduto(produto)
+    // paginaProduto(produto)
+
+
+    if(respondeu_tudo == true){
+      const tudo = document.querySelector("#principal")
+      const titulo_h3 = document.querySelector(".subt")
+      const section_produtos = document.querySelector(".produtos")
+      titulo_h3.setAttribute("id","titulo_h3")
+      
+
+      paginaProduto(produto)
+    }else{
+      paginaProduto(produto)
+      
+    }
 
   })
 
@@ -1116,8 +1173,8 @@ const criarProdutos = ()=>{
   </g>
 </svg>
 `
-const numero_produtos = document.createElement("p")
-numero_produtos.textContent=`0`
+window.numero_produtos = document.createElement("p")
+numero_produtos.textContent=carrinho_compras.size
 numero_produtos.classList.add("numero_produtos")
 container_cart.appendChild(numero_produtos)
 
