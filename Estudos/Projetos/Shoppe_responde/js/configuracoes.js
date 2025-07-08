@@ -496,6 +496,9 @@ pagina_produto_container_informacoes.appendChild(container_quantidade)
           carrinho_compras.set(id,{produto_foto,produto_titulo,produto_credito,produto_estado})
           numero_produtos.textContent=carrinho_compras.size
           console.log(carrinho_compras)
+          
+          
+
         }else{
           alert("Responda as perguntas para adicionar produtos ao carrinho")
            
@@ -1175,6 +1178,15 @@ const criarProdutos = ()=>{
   </g>
 </svg>
 `
+
+container_cart.addEventListener("click",()=>{
+  
+    const container_carrinho_compras = document.createElement("div")
+    container_carrinho_compras.classList.add("container_carrinho_compras")
+    main.appendChild(container_carrinho_compras)
+
+})
+
 window.numero_produtos = document.createElement("p")
 numero_produtos.textContent=carrinho_compras.size
 numero_produtos.classList.add("numero_produtos")

@@ -68,6 +68,5 @@ main.appendChild(container_tampinha)
 
 
 let caneta1 = new caneta(caninho,tinta,ponta,container_tampinha)
-let caneta2 = new caneta(caninho,tinta,ponta,container_tampinha)
 
 caneta1.mostrar_tudo()
