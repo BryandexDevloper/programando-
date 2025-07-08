@@ -489,15 +489,26 @@ pagina_produto_container_informacoes.appendChild(container_quantidade)
 
       btn_colocar_carrinho.addEventListener("click",()=>{
         if(respondeu_tudo){
-          let produto_foto = res.link
-          let produto_titulo = res.titulo
-          let produto_credito = res.pontosNecessarios
-          let id = carrinho_compras.size + 1
-          carrinho_compras.set(id,{produto_foto,produto_titulo,produto_credito,produto_estado})
-          numero_produtos.textContent=carrinho_compras.size
-          console.log(carrinho_compras)
-          
-          
+
+          if(!produto_estado){
+            alert("Selecione o estado para entrega")
+          }else{
+
+               if(carrinho_compras.size > 0){
+            alert("Voce só pode adicionar 1 produto no seu carrinho")
+          }else{
+
+            let produto_foto = res.link
+            let produto_titulo = res.titulo
+            let produto_credito = res.pontosNecessarios
+            let id = carrinho_compras.size + 1
+            carrinho_compras.set(id,{produto_foto,produto_titulo,produto_credito,produto_estado})
+            numero_produtos.textContent=carrinho_compras.size
+
+          }
+
+          }
+ 
 
         }else{
           alert("Responda as perguntas para adicionar produtos ao carrinho")
@@ -1183,7 +1194,63 @@ container_cart.addEventListener("click",()=>{
   
     const container_carrinho_compras = document.createElement("div")
     container_carrinho_compras.classList.add("container_carrinho_compras")
+    const container_balao  = document.createElement("div")
+    container_balao.classList.add("triangulo")
+  
+    container_carrinho_compras.appendChild(container_balao)
+    const produtos_carrinho = document.createElement("div")
+    produtos_carrinho.classList.add("produtos_carrinho")
+    container_balao.appendChild(produtos_carrinho)
+
+  if(carrinho_compras.size){
+    carrinho_compras.forEach((res,index)=>{
+
+      const container_produto_carrinho = document.createElement("div")
+      container_produto_carrinho.classList.add("container_produto_carrinho")
+      produtos_carrinho.appendChild(container_produto_carrinho)
+
+      const container_foto_carrinho = document.createElement("div")
+      container_foto_carrinho.classList.add("container_foto_carrinho")
+      container_produto_carrinho.appendChild(container_foto_carrinho)
+
+      const img_carrinho = document.createElement("img")
+      img_carrinho.setAttribute("src",res.produto_foto)
+      container_foto_carrinho.appendChild(img_carrinho)
+
+      const nome_prod_carrinho = document.createElement("p")
+      nome_prod_carrinho.classList.add("nome_prod_carrinho")
+      nome_prod_carrinho.textContent=`${res.produto_titulo}`
+      nome_prod_carrinho.style.fontSize="10px"
+      nome_prod_carrinho.style.color="black"
+      container_produto_carrinho.appendChild(nome_prod_carrinho)
+
+
+      const container_lixeira_prod = document.createElement("div")
+      container_lixeira_prod.classList.add("container_lixeira_prod")
+      container_lixeira_prod.innerHTML=`<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18 6L17.1991 18.0129C17.129 19.065 17.0939 19.5911 16.8667 19.99C16.6666 20.3412 16.3648 20.6235 16.0011 20.7998C15.588 21 15.0607 21 14.0062 21H9.99377C8.93927 21 8.41202 21 7.99889 20.7998C7.63517 20.6235 7.33339 20.3412 7.13332 19.99C6.90607 19.5911 6.871 19.065 6.80086 18.0129L6 6M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6M14 10V17M10 10V17" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>`
+      container_produto_carrinho.appendChild(container_lixeira_prod)
+
+
+      container_lixeira_prod.addEventListener("click",()=>{
+
+        
+        carrinho_compras.delete(index)
+        container_produto_carrinho.remove()
+        numero_produtos.textContent=carrinho_compras.size
+
+
+      })
+
+    })
+  }else{
+    produtos_carrinho.textContent=`Seu carrinho esta vazio`
+  }
+
     main.appendChild(container_carrinho_compras)
+
+    main.addEventListener("click",()=>{
+      container_carrinho_compras.style.display="none"
+    })
 
 })
 
