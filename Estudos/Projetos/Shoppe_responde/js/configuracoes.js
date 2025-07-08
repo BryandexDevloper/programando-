@@ -496,6 +496,9 @@ pagina_produto_container_informacoes.appendChild(container_quantidade)
           carrinho_compras.set(id,{produto_foto,produto_titulo,produto_credito,produto_estado})
           numero_produtos.textContent=carrinho_compras.size
           console.log(carrinho_compras)
+        }else{
+          alert("Responda as perguntas para adicionar produtos ao carrinho")
+           
         }
       })
 
@@ -508,8 +511,7 @@ pagina_produto_container_informacoes.appendChild(container_quantidade)
         }
       })
 
-  } 
-
+  }  
 
 
          
