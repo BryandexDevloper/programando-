@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container_inputs{
+            width: 500px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid;
+            padding: 10px;
+        }
+
+        input{
+            margin-bottom: 15px;
+            height: 30px;
+        }
+
+        .container_veiculos{
+            width: 300px;
+            height: 300px;
+            border: 1px solid;
+            margin-top: 20px;
+        }
+        
+        .container_inputss input{
+            height: 15px;
+
+        }
+
+        .container_inputss{
+            margin-top: 20px;
+            align-items: flex-start;
+            display: flex;
+            flex-direction: column;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="container_inputs">
+
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome">
+
+        <label for="portas">Portas</label>
+        <input type="text" name="portas" id="portas">
+
+        <label for="blindagem">Blindagem</label>
+        <input type="text" name="blindagem" id="blindagem">
+
+        <label for="municao">Municao</label>
+        <input type="text" name="municao" id="municao">
+
+        <button id="btn_enviar">Enviar</button>
+
+        <div class="container_inputss">  
+            <p>Tipo do Veiculo:</p>     
+            <div class="container_selecionar">
+                <label for="selecionar">Militar</label>
+                <input type="radio" name="selecionar" id="militar">
+            </div>
+            <div class="container_selecionar">
+                <label for="selecionar">Classico</label>
+                <input type="radio" name="selecionar" id="classico">
+            </div>
+        </div>
+
+    </div>
+
+    
+
+    <div class="container_veiculos">
+
+    </div>
+
+
+    <script src="ex01.js"></script>
+</body>
+</html>
