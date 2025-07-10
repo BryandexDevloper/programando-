@@ -26,3 +26,7 @@ msg.addEventListener("click",(evet)=>{
 
 })
 
+
+setInterval(() => {
+    
+}, interval);
