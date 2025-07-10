@@ -1,9 +1,14 @@
 name: generate animation
 
 on:
+  # roda automaticamente todo dia à meia-noite (UTC)
   schedule:
-    - cron: "0 */24 * * *"  # roda a cada 24 horas
-  workflow_dispatch:        # permite rodar manualmente
+    - cron: "0 0 * * *" 
+  
+  # permite rodar manualmente na aba Actions
+  workflow_dispatch:
+  
+  # roda no push para os branches master ou main
   push:
     branches:
       - master
@@ -11,21 +16,23 @@ on:
 
 jobs:
   generate:
-    permissions:
+    permissions: 
       contents: write
     runs-on: ubuntu-latest
     timeout-minutes: 5
-
+    
     steps:
-      - name: Gera o SVG da cobrinha
+      # gera a cobrinha SVG com base nas contribuições do usuário BryandexDevloper
+      - name: generate github-contribution-grid-snake.svg
         uses: Platane/snk/svg-only@v3
         with:
-          github_user_name: BryandexDeveloper
+          github_user_name: "BryandexDevloper"
           outputs: |
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
-
-      - name: Faz push dos SVGs para o branch "output"
+          
+      # faz push dos SVGs gerados para o branch 'output'
+      - name: push github-contribution-grid-snake.svg to the output branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
           target_branch: output
