@@ -1,0 +1,1523 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/**ASS:magodopix**/
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat';
+}
+
+body{
+    height: 100vh;
+    width: 100%;
+    background-color: #ebebeb;
+    display: flex;
+    flex-direction: column;
+    
+   
+    
+}
+
+main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.alinhamento-conteudo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    z-index: 10;
+    position: relative;
+    top: 350px;
+    width: 100%;
+}
+
+header{ 
+    width: 100%;
+    height: 100px;
+    background-color: #FFE600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.cima{
+    width: 1200px;
+    height: 50px;
+    gap: 75px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.baixo{
+    width: 1200px;
+    height: 50px;
+    
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
+
+/**img logo**/
+
+.img{
+    width: 162px;
+    height: 40px;
+    display: flex;
+}
+
+
+.img img{
+    width: 100px;
+}
+
+/**Fim img logo**/
+
+
+/**img-meli+**/
+
+.img2{
+    width: 340px;
+    height: 40px;
+    
+}
+
+.img2 img{
+    width: 100%;
+
+}
+
+/**fim-img-meli+**/
+
+
+/**div search**/
+
+.search{
+    width: 588px;
+    height: 40px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+
+    
+}
+
+.btn-pesquisa{
+    width: 46px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-left: 1px solid rgba(0, 0, 0, 0.329);
+    justify-content: center;
+    cursor: pointer;
+}
+
+
+#search{
+    width: 542px;
+    border: none;
+    height: 40px;
+    padding: 10px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    background-color: white;
+}
+
+/** Fim div search**/
+
+
+/**sessao cep**/
+
+.cep{
+    width: 162px;
+    height: 40px;
+    
+    padding: 0px 10px;
+    display: flex;
+    
+}
+
+.location{
+    width:30px;
+    height: 100%;
+    
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.location img{
+    width: 30px;
+    height:auto;
+}
+.div-texto-cep{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/** Fim sessao cep**/
+
+
+/**div categorias**/
+
+.categorias{
+    width: 588px;
+    height: 40px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.categorias ul { 
+    display: flex;
+    font-size: 14px;
+    list-style: none;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+}
+
+.submenu {
+    
+    display: none; /* Submenu oculto por padrão */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color:transparent ;
+    list-style: none;
+    padding: 5px 0;
+    margin: 0;
+    
+    z-index: 100;
+    color: transparent;
+    border-radius: 10px;
+    width: max-content;
+}
+
+.submenu li {
+    padding: 10px;
+    white-space:wrap;
+    cursor: pointer;
+    width: 100%;
+}
+
+.submenu li:hover {
+    background-color:#0084ff;
+    width: 100px;
+    color: white;
+    width: 100%;
+}
+
+.categorias li:hover > .submenu {
+    display: block; /* Mostra o submenu ao passar o mouse */
+    background-color: rgb(26, 25, 25);
+    color: white;
+    padding: 20px 0px;
+    width: 200px;
+
+}
+
+/** Fim div Categorias**/
+
+
+/**div menu**/
+
+.menu{
+    width: 340px;
+    height: 40px;
+    
+    display: flex;
+    justify-content:end;
+    align-items:center;
+}
+
+.menu ul {
+    display: flex;
+    font-size: 14px;
+    list-style: none;
+    gap: 8px;
+}
+
+
+/**Fim div menu**/
+
+
+
+/**area Carrosel de imagens com botoes e radio**/
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.carrosel {
+    width: 100%;
+    height: 100%;
+    position: relative; /* Para que o z-index dos outros elementos funcione */
+    z-index: 1; /* Certifique-se de que isso é menor que os botões */
+    display: flex;
+    overflow: hidden;
+}
+
+.botoes-radio {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    position: absolute; /* Necessário para sobreposição */
+    z-index: 10; /* Maior que o .carrosel */
+}
+
+.btn1, .btn2 {
+    width: 50px;
+    height: 60px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: absolute; /* Para posicionar sobre a imagem */
+    z-index: 10; /* Certifique-se de que está acima do .carrosel */
+}
+
+.btn1 {
+    left: 0px; /* Ajuste conforme a posição desejada */
+    top: 50%;
+    transform: translateY(-50%);
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.btn2 {
+    right: 0px; /* Ajuste conforme a posição desejada */
+    top: 50%;
+    transform: translateY(-50%);
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+
+.radio {
+    position: absolute;
+    bottom: 70px; /* Posiciona a 20px da parte inferior do container */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translateX(-50%);
+    font-size: 8px;
+    display: flex;
+    gap: 1px;
+    z-index: 10; /* Também acima do .carrosel */
+}
+
+.radio input[type="radio"] {
+    width: 10px; /* Largura do radio */
+    height: 10px; /* Altura do radio */
+    transform: scale(0.5); /* Ajusta a escala para reduzir o tamanho */
+    accent-color: rgb(52, 132, 250); /* Define a cor do radio (se suportado pelo navegador) */
+    cursor: pointer; /* Para indicar que é clicável */
+}
+
+
+.carrosel img{
+    width: 100%;
+    height: 100%;
+}
+
+
+/**Fim Carrosel de imagens com botoes e radio**/
+
+
+
+/**Menu celular**/
+
+#menucelular{
+    display: none;
+    width: 100%;
+}
+
+nav{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 134px;
+    background-color: FFE600;
+    border-top: 1px solid grey;
+    padding: 8px;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.perfil-foto{
+    display: flex;
+    height: 60px;
+    width: 100%;
+}
+
+.foto-perfil{
+    width: 70px;
+    border-radius: 100%;
+    height: 100%;
+    background-color: grey;
+    margin-right: 16px;
+}
+
+.texto{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap:7px
+}
+
+.buttons-menu{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.buttons-menu a{
+    width: 164px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 3px;
+}
+.navgation{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    padding:20px ;
+    gap: 50px;
+    justify-content: space-around;
+}
+
+ .navgation ul {
+    flex-direction: column;
+    display: flex;
+    gap: 30px;
+    margin-left: -20px;
+    width: 370px;
+        
+ }
+
+ .navgation li{
+        display: flex;
+        width: 100%;
+        
+        gap: 3px;
+        align-items: center;
+       padding: 0px 20px;
+        
+    }
+    .navgation .icon{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap:8px;
+    }
+ 
+
+/** Fim menu celular**/
+
+
+/**area Carrosel de imagens com botoes e radio**/
+
+
+.footer{
+   
+        
+    width: 100%;
+    height: 400px;
+   background-color: red;
+   background-position:center;
+   background-size:cover;
+   background-repeat:no-repeat ;
+   display: flex;
+   flex-direction: row;
+   
+   
+}
+
+
+.img-footer{
+    width: 100%;
+    height: 100px;
+    
+    position: absolute;
+    top: 450px;
+    right: 50;
+    background: rgba(0, 0, 0, 0); /* Fundo semi-transparente */
+ z-index: 1;
+    backdrop-filter: blur(4px); /* Aplica o desfoque ao fundo */
+}
+
+.blur{
+    z-index: 1;
+    width: 100%;
+    height: 50px;
+    
+    position: relative;
+    top: 370px;
+    backdrop-filter: blur(4px); /* Aplica o desfoque ao fundo */
+    background: rgba(0, 0, 0, 0); /* Fundo semi-transparente */
+}
+
+
+/** Fim area Carrosel de imagens com botoes e radio**/
+
+
+
+/**Area insira sua localizaçao entre na sua conta etc...**/
+
+#sec1{
+    display: flex;
+    gap: 15px;
+    
+    align-items: center;
+    justify-content: center;
+    overflow-x:auto;
+    scroll-snap-type: mandatory;
+    gap: 15px;
+    width:100% ;
+    
+}
+
+#sec3{
+    height: 450px;
+    background-color: #fff0;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+        
+}
+
+
+
+#sec4{
+    width: 1180px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+
+
+
+
+.mini-container{
+    
+    width: 183px;
+    height: 300px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+   justify-content: center;
+   align-items: center;
+   background-color: white;
+  z-index: 1;
+    scroll-snap-align: start;
+}
+  
+
+.mini-container .h2{
+    width: 183px;
+    height: 52px;
+    margin-left: 35px;
+    font-size: 10px;
+    
+    
+}
+
+.mini-container .mini-container-img{
+    width: 101.34px;
+    height: 101.34px;
+}
+
+.mini-container .paragrafo{
+    width: 183px;
+    height: 88.66px;
+    padding: 12px 16px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.mini-container .paragrafo:hover{
+    color: #0084ff;
+}
+
+.mini-container .btn{
+
+    width: 149px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+
+}
+
+
+.btn a{
+    background-color: #E3EDFB;
+    display: flex;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #3483FA;
+    text-align: center;
+    width: 149px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+   
+    
+    
+}
+/** Fim rea insira sua localizaçao entre na sua conta etc...**/
+
+
+
+/**barra frete gratis celular com caminhaozinho**/
+
+.container-celular-frete-gratis{
+    z-index: 2;
+    width: 95%;
+    height: 24px;
+    
+    position: relative;
+    top: 23%;
+    left: 47%;
+    transform: translate(-50%);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    gap: 10px;
+    
+   }
+
+   .container-celular-frete-gratis p{
+    font-size: 13px;
+   }
+
+/**barra frete gratis celular com caminhaozinho**/
+
+
+
+/**bolinha de categorias celular**/
+
+.categorias-celular{
+    width: 98%;
+    height:60px;
+    overflow-y: hidden;
+    
+    
+   
+    display: flex;
+   justify-content: center;
+    gap: 5px;
+    overflow-x: auto;
+}
+
+.bolinha{
+    width:60px;
+    height: 60px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bolinha img{
+    width: 80%;
+    height: 80%;
+}
+
+.bolinha-categoria p{
+font-size: 10px;
+text-align: center;
+height: 100%;
+}
+
+
+/**produtos sec3**/
+
+.container-produtos{
+    width: 1170px;
+    height: 460px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius:8px ;
+    justify-content: center;
+    
+}
+
+
+
+.produtos {
+    width: auto;
+    height: auto;
+    overflow-x: auto; 
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    padding: 0px 20px;
+    overflow-y: hidden;
+    
+    
+
+}
+
+.titulo-mais{
+    
+   
+    height: 50px;
+    align-items: center;
+    display: flex;
+    font-size: 16px;
+    padding: 0px 23px;
+}
+
+.area-produtos{
+    
+    width: 173.33px;
+    height: 355.33px;
+}
+
+.foto-produto{
+    width: 173.33px;
+    height: 173.33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.titulo-preco{
+    width: 173.33px;
+    height: 178px;
+   
+}
+
+.titulo-preco a {
+    text-decoration: none;
+    margin:16px 0;
+}
+
+.foto-produto img{
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.cifrao{
+    font-size: 24px;
+}
+
+.valor{
+    font-size: 24px;
+    margin-left:5px;
+}
+.centavos{
+    font-size: 12px;
+    position: relative;
+    bottom: 5px;
+    
+}
+
+.desconto{
+
+    font-size: 14px;
+    margin-left: 8px;
+    color: rgb(0, 166, 80);
+    font-weight: 400;
+}
+
+.valor-desconto{
+    display: flex;
+    align-items: center;
+}
+
+.frete-verde{
+    color:rgb(0, 166, 80)
+}
+.frete-gratis{
+    margin-top: 8px;
+}
+
+.restante{
+    color: #737373;
+}
+
+#titulo-produto{
+    color: black;
+    
+}
+.promo{
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+
+
+/** Banners sec4 eletroluz**/
+
+.banners{
+    width: 1180px;
+    height: 130px;
+    display: flex;
+    justify-content: space-between;
+   
+}
+
+.banner1{
+    width: 582px;
+    height: 130px;
+    
+    display: flex;
+    justify-content: space-between;
+    background-color: #E6E4E5;
+    
+}
+
+.banner2{
+    width: 582px;
+    height: 130px;
+    
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+/**Conteudo dos Banners**/
+
+.palavras{
+    width: 334px;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+.foto-perfume{
+    width: 230px;
+    height: 130px;
+    display: flex;
+}
+
+.foto-perfume img{
+    width: 100%;
+    height: auto;
+}
+
+/**conteudo dos banners 2**/
+
+.texto1{
+width: 376.09px;
+height: 130px;
+background-color: #0084ff;
+display: flex;
+justify-content:center;
+align-items: center;
+gap: 30px;
+}
+.foto1{
+width: 205.91px;
+height: 130px;
+display: flex;
+background-color: yellow;
+}
+
+.foto1 img{
+    width: 100%;
+    height: auto;
+}
+
+.eletro div{
+    width: 56px;
+    height: auto;
+}
+
+.eletro img {
+    width: 100%;
+}
+
+.palavras2{
+    
+    width: 120px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+
+/**conteudo meli+ banner**/
+
+.banner-meli-mais{
+    width: 1180px;
+    height: 212px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.meli{
+    width: 1180px;
+    background-color: white;
+    border-radius: 8px;
+    height: 212px;
+
+    
+}
+
+.roxo{
+    width: 1180px;
+    height: 70px;
+    border-radius: 8px 8px 0px 0px ;
+    background-image: linear-gradient(to right,#64218D 40%,#a71292);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    
+    padding: 20px;
+}
+
+.meli-img-titulo img{
+width: 60px;
+height: auto;
+}
+
+.meli-img-titulo{
+    display: flex;
+    align-items: center;
+    gap: 10;
+    width: 50%;
+   
+}
+.botao{
+ width: 120px;
+ background-color: rgba(255, 255, 255, 0.26);
+ height: 32px;
+ align-items: center;
+ justify-content: center;
+ display: flex;  
+ border-radius: 5px;
+ 
+}
+.botao a{
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+}
+
+
+.conteudo-roxo{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.condicoes-etc{
+    width: 170px;
+    height: 70px;
+    
+    display: flex;
+    gap:5px
+}
+
+.condicoes{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.imagem-banner {
+    width: 50%;
+    height: 66px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.imagem-banner img{
+    border-radius: 8px;
+    width: 70%;
+}
+
+.texto-banner{
+    width: 50%;
+    height: 66px;
+    display: flex;
+    
+
+}
+
+.texto-banner span{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/** Fim bolinha de categorias celular**/
+
+
+
+
+
+
+
+@media(max-width:700px){
+   
+   
+   
+   /**header tablet**/
+   
+    .search{
+        width: 350px;
+       
+        
+    }
+    
+
+
+    .cima{
+        justify-content:center;
+        display: flex;
+        gap: 40px;
+        width: 100%;
+       
+    }
+
+    .baixo{
+        justify-content: space-around;
+        width: 700px;
+        padding: 0px 40px;
+    }
+    
+    .categorias li:nth-child(8){
+        display: none;
+    }
+
+    .categorias li:nth-child(7){
+        display: none;
+    }
+
+    .categorias li:nth-child(6){
+        display: none;
+    }
+
+    .menu li {
+        display: none;         
+    }
+
+
+    .menu{
+        display: flex;
+        width: 100%;
+        
+        
+    }
+    .icone-seta{
+        width: 40px;
+        height: 30px;
+        cursor: pointer;
+    }
+
+    .img2 img{
+        display: none;
+    }
+.cep{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+
+.remov2{
+    font-size: 13px;
+}
+.div-texto-cep{
+    flex-direction: row;
+}
+
+.tablet-text{
+    font-size: 13px;
+}
+
+.menu-hamburguer {
+    width: 30px;
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+    
+   
+}
+
+.menu-hamburguer .linha {
+    width: 100%;
+    height: 4px;
+    background-color: #000000;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+
+.img2{
+    
+    width: 100px;
+    display: flex;
+    gap: 20px;
+    
+   
+    
+}
+   
+.img{
+    
+    width: 100px;
+}
+.img img{
+    width: 100%;
+    height: auto;
+}
+
+
+.footer{
+    width: 100%;
+    
+}
+
+/**fim header tablet**/
+/**fim media quieres tablet**/
+
+
+
+/**media quieres celular vvvvv **/
+    
+}
+
+@media(max-width:400px){
+   
+
+   main{
+    background-image: linear-gradient(to bottom,#FFE600 10%,#ebebeb 50%);
+   }
+    
+   
+   
+    header{
+    width: 100%;
+   }
+
+   
+   /**header celular**/
+
+   .cima{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    gap: 0;
+   }
+   .img2{
+    padding: 0;
+    display: flex;
+    gap: 5px;
+    width: auto;
+    justify-content: space-around;
+   }
+
+   .search{
+    
+    width: 220px;
+    display: flex;
+    
+   }
+
+   #search{
+    width: 200px;
+    
+   }
+
+   .baixo{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 10px;
+   }
+
+   .menu{
+   width: auto;
+   }
+   .cep{
+    width: auto;
+   }
+
+   .menu-hamburguer {
+    width: 25px;
+    height: 100%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+    
+   
+}
+
+.menu-hamburguer .linha {
+    width: 100%;
+    height: 3px;
+    background-color: #000000;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+.icone-seta{
+    width: 20px;
+    height: 20px;
+}
+.img {
+    display: none;
+}
+.img-cell{
+    width: 40px;
+    display: flex;
+    height:auto;
+    
+}
+.img-cell img{
+    width: 100%;
+}
+.svg-carrinho{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footer{
+    width: 95%;
+    height: 171px;
+    background-image: none;
+    background-color: transparent;
+    
+}
+
+.img-cell-corpo{
+    width: 100%;
+    height:100%;
+    display: flex;
+}
+
+
+
+.img-cell-corpo img{
+    width: 100%;
+}
+
+.img-footer{
+    display: none;
+}
+
+.remov1{
+    display: none;
+}
+.remov2{
+    display: none;
+}
+
+
+.categorias{
+    display: none;
+}
+
+.svg2-carrinho{
+    display: none;
+}
+
+
+/**fim header celular**/
+
+
+/**area carrosel de imagens 1**/
+
+.carrosel .carrosel-mob{
+    display:none ;
+}
+
+.radio{
+    display: none;
+}
+
+
+.blur{
+    position: relative;
+    top:150px;
+    height: 40px;
+    backdrop-filter: blur(4px); /* Aplica o desfoque ao fundo */
+    background: rgba(0, 0, 0, 0); /* Fundo semi-transparente */
+
+
+   }
+
+
+/**area carrosel de imagens 1**/
+
+
+
+/**area carrosel com botao compra frete gratis localizaçao etc..**/
+
+#sec1{
+    height: auto;
+}
+
+.alinhamento-conteudo{
+    position: relative;
+    top:180px;
+    padding: 5px;
+}
+
+
+#sec3{
+   
+    height: 450px;
+    width: 100%;
+    
+}
+
+#sec4{
+    display: none;
+}
+
+.mini-container{
+    height: 250px;
+    width: 160px;
+}
+.mini-container .mini-container-img{
+    width: 97px;
+    height: 88px;
+}
+
+.mini-container .h2{
+    font-size: 9px;
+}
+.mini-container .paragrafo{
+    font-size: 10px;
+}
+
+/**area carrosel com botao compra frete gratis localizaçao etc..**/
+
+.carrosel{
+    border-radius: 4px;
+    scrollbar-width: none; /* Remove a barra de rolagem (Firefox) */
+    -ms-overflow-style: none; /* Remove a barra de rolagem (IE/Edge) */
+
+}
+
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+/**produtos sec3**/
+
+.produtos{
+    height:500px;
+    max-width: 100%;
+    
+
+}
+    
+.container-produtos{
+    width: 100%;
+    max-width:370px;
+    height: 450px;
+    padding: 0px 10px;
+    
+}
+
+/**banner off meli mais pc **/
+
+.banner-meli-mais{
+    display: none;
+}
+ 
+
+.container-banner-roxo-mobile{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 400px;
+    background-color: white;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.roxo-mobile{
+    width: 100%;
+    height: 80px;
+    background-image: linear-gradient(to right,#64218D 60%,#a71292 );
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border-top-left-radius:10px ;
+    border-top-right-radius: 10px;
+}
+
+
+.img-meli-mobile img{
+    width: 25%;
+    
+}
+.img-meli-mobile{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.traco-branco-meli-mobile{
+    height: 40px;
+    width: 2px;
+    background-color: white;
+}
+
+.conteudo-roxo-mobile{
+    flex-direction: column;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.conteudo-roxo-mobile-sessao1{
+    display: flex;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-size: 14px;
+}
+
+   
+
+.imagem-banner-mobile-meli img{
+    width: 50px;
+}
+
+
+/**Fim do media quieres celular**/
+
+
+
+
+/**Media quieres para tirar itens da tela do pc vvvv **/
+
+}
+
+@media(min-width:400px) and (max-width:1980px){
+    .tablet-text{
+        display: none;
+        
+    }
+    .container-hamburguer{
+        display: none;
+    }
+    
+
+    .icone-seta{
+        display: none;
+    }
+    .img-cell{
+        display: none;
+    }
+    .img-cell img{
+        display: none;
+    }
+    #menucelular{
+        display: none;
+    }
+
+    .img-cell-corpo{
+        display: none;
+    }
+    
+    .svg-carrinho{
+        display: none;
+    }
+
+    .carrosel-mob{
+        display: none;
+    }
+
+    .container-celular-frete-gratis{
+        display: none;
+    }
+    
+    .categorias-celular{
+        display: none;
+    }
+    
+    .container-banner-roxo-mobile{
+        display: none;
+    }
+}
+
+/** fim do Media quieres para tirar itens da tela do pc vvvv **/
