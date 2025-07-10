@@ -5,11 +5,6 @@
 
 
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Cobrinha GitHub API</title>
   <style>
     body {
       background: #0d1117;
@@ -43,7 +38,7 @@
       background-color: #58a6ff !important;
     }
   </style>
-</head>
+
 <body>
   <div class="github-grid" id="grid"></div>
 
@@ -134,5 +129,4 @@
 
     buscarCommits();
   </script>
-</body>
-</html>
+
