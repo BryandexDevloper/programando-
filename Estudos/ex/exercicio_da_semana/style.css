@@ -1,0 +1,190 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-color: black;
+    
+    height: 100vh;
+
+}
+
+
+main{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+
+    
+    
+}
+
+footer{
+    color: white;
+    display: flex;
+    justify-content: center;
+
+}
+
+.box_img,.box_form{
+    width: 100%;
+    height: 500px;
+    border: 3px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.img{
+    width: 400px;
+    height: 400px;
+    background-color: red;
+    border-radius: 10px;
+}
+
+.img img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.form{
+    width: 400px;
+    height: 400px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+}
+
+.logo_instagram{
+    font-size: 35px;
+    text-align: center;
+
+}
+
+.box_input{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+   
+}
+
+.box_password{
+    width: 100%;
+    position: relative;
+}
+
+
+.box_input input{
+    width: 100%;
+    height: 50px;
+    border-radius: 3px;
+    padding: 5px;
+    border: none;
+    border: 1px solid blue;
+}
+
+.box_input label{
+    font-size: 12px;
+    margin-bottom: 5px;
+  
+    
+}
+
+.btn_password{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 1px solid ;
+    top: 50%;
+    right:0px;
+    transform: translate(-50%,-50%);
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.box_forget_password{
+    width: 100%;
+    
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color:blue;
+    cursor: pointer;
+}
+
+
+.box_buttons_login{
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.box_buttons_login p{
+    width: 100%;
+    height: 50px;
+    background-color: grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bolder;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.box_buttons_login > p:hover{
+    transition: 0.8s;
+    background-color: black;
+}
+
+
+.input_style{
+     width: 100%;
+    height: 50px;
+    border-radius: 3px;
+    padding: 5px;
+    border: none;
+    border: 1px solid blue;
+}
+
+.new_btn{
+     width: 100%;
+    height: 50px;
+    background-color: grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bolder;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+@media(max-width:850px){
+    main{
+        flex-direction: column-reverse;
+    }
+}
