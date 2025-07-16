@@ -1,11 +1,6 @@
 
-document.body.style.height="100%"
-document.body.style.width="100%"
-
-document.body.addEventListener("click",()=>{
-
-
-
+let numero = {nome:"roberto",idade:12}
+localStorage.setItem("numero", JSON.stringify(numero))
 let dados = localStorage.getItem("fenando") /// aqui resgatamos o item 
 
 
@@ -16,4 +11,3 @@ if(dados){
 }else{
     console.log("nada foi")
 }
-})
