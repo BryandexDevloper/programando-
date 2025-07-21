@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mexer olhos </title>
+    <style>
+
+        *{
+            box-sizing: border-box;
+        }
+
+        .container_olhos{
+            width: 500px;
+            height: 200px;
+            border: 1px solid;
+            display: flex;
+            justify-content: space-between;
+            margin: auto;
+
+        }
+
+        .olhos{
+            width: 200px;
+            height: 100%;
+            border-radius: 50%;
+            border:5px solid black;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .olho_bolinha{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 3px solid;
+            display: flex;
+            flex-direction: row-reverse;
+            background-color: black;
+         
+        }
+
+        .olho{
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: white;
+           
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container_olhos">
+        <div class="olhos">
+            <div class="olho_bolinha">
+                <div class="olho"></div>
+            </div>
+        </div>
+        <div class="olhos">
+            <div class="olho_bolinha">
+                <div class="olho"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="ex01.js"></script>
+</body>
+</html>
