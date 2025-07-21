@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Relógio Estático (eixo pai)</title>
+  <style>
+    .relogio {
+      width: 300px;
+      height: 300px;
+      border: 5px solid black;
+      border-radius: 50%;
+      position: relative;
+      margin: 50px auto;
+      background: #f5f5f5;
+    }
+
+    .numero {
+      position: absolute;
+      font-size: 20px;
+      font-family: sans-serif;
+      font-weight: bold;
+    }
+
+    .n12 { top: 10px; left: 50%; transform: translateX(-50%); }
+    .n1  { top: 35px; right: 60px; }
+    .n2  { top: 70px; right: 30px; }
+    .n3  { top: 50%; right: 10px; transform: translateY(-50%); }
+    .n4  { bottom: 70px; right: 30px; }
+    .n5  { bottom: 35px; right: 60px; }
+    .n6  { bottom: 10px; left: 50%; transform: translateX(-50%); }
+    .n7  { bottom: 35px; left: 60px; }
+    .n8  { bottom: 70px; left: 30px; }
+    .n9  { top: 50%; left: 10px; transform: translateY(-50%); }
+    .n10 { top: 70px; left: 30px; }
+    .n11 { top: 35px; left: 60px; }
+
+    .container_ponteiros {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .base_ponteiro {
+      position: absolute;
+      width: 0;
+      height: 0;
+      top: 0;
+      left: 0;
+      transform-origin: center center;
+    }
+
+    .ponteiro {
+      width: 2px;
+      height: 100px;
+      background-color: black;
+      margin-left: -1px; /* centraliza a espessura */
+    }
+
+    /* Rotação dos ponteiros - feita na base (pai) */
+    
+    
+    #hora .ponteiro{
+        height:80px;
+    }
+
+    .segundo .ponteiro {
+      background-color: red;
+      height: 110px;
+    }
+
+    .container_agendar_horario{
+      width: 300px;
+      height: 100px;
+      border: 1px solid black;
+      margin: auto;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="relogio">
+    <!-- Números -->
+    <div class="numero n12">12</div>
+    <div class="numero n1">1</div>
+    <div class="numero n2">2</div>
+    <div class="numero n3">3</div>
+    <div class="numero n4">4</div>
+    <div class="numero n5">5</div>
+    <div class="numero n6">6</div>
+    <div class="numero n7">7</div>
+    <div class="numero n8">8</div>
+    <div class="numero n9">9</div>
+    <div class="numero n10">10</div>
+    <div class="numero n11">11</div>
+
+    <!-- Ponteiros girando em torno do centro do relógio -->
+    <div class="container_ponteiros">
+      <div id="hora" class="base_ponteiro hora">
+        <div class="ponteiro"></div>
+      </div>
+      <div id="minuto" class="base_ponteiro minuto">
+        <div class="ponteiro"></div>
+      </div>
+      <div id="segundo" class="base_ponteiro segundo">
+        <div class="ponteiro"></div>
+      </div>
+      <div id="milisecund" class="base_ponteiro segundo">
+        <div class="ponteiro" style="background-color: blue;"></div>
+      </div>
+    </div>
+    
+  </div>
+  <div class="container_agendar_horario">
+    <p>Dispertador</p>
+    <input type="number" name="" id="segundos_despertador" placeholder=" digite daqui quantos segundos ira despertar"> <p id="iniciar">iniciar</p>
+    <p id="para">Parar Alarme</p>
+  </div>
+</body>
+
+<script src="ex01.js"></script>
+</html>

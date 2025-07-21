@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <string.h> 
 
 
 // int main(){
@@ -25,9 +25,9 @@
 
 
  
-int somarNotas( double al1 , double al2 , double al3 , double al4 ,double al5){
-    return (al1 + al2 + al3 + al4 + al5) / 5;
-}
+// int somarNotas( double al1 , double al2 , double al3 , double al4 ,double al5){
+//     return (al1 + al2 + al3 + al4 + al5) / 5;
+// }
 
 
 
@@ -40,20 +40,20 @@ int main(){
 
         // printf("Resultado: %d\n", resultado);
 
-    int num1 = 130;
+    // int num1 = 130;
 
     char username[100] = "";
     char email[400] = "";
 
     
     while(strcmp(username,"") == 0){
-        printf("Digite um nome: ");
-        scanf("%s",username);   
+          printf("Digite um nome: ");
+          scanf("%s",username);   
     }
      while(strcmp(email,"") == 0){
         
-        printf("Digite um email: ");
-        scanf("%s",email);
+         printf("Digite um email: ");
+         scanf("%s",email);
     }  
     
     printf("\n usuario: %s email: %s",username,email);
