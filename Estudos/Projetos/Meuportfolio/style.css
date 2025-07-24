@@ -90,6 +90,7 @@
 
         [data-theme="light"] .theme-toggle {
             border-color: rgba(30, 41, 59, 0.3);
+            
         }
 
         .theme-toggle:hover {
@@ -105,7 +106,8 @@
         }
 
         [data-theme="light"] .theme-icon {
-            fill: #1e293b;
+         
+            stroke: black;
         }
 
         main {
@@ -322,11 +324,11 @@
         }
 
         #graus {
-            font-size: 23px;
+            font-size: 14px;
         }
 
         .c {
-            font-size: 12px;
+            font-size: 10px;
         }
 
         .condicao {
@@ -344,7 +346,7 @@
 
         .sencacao_termica {
             font-size: 8px;
-            color: rgb(159, 159, 159);
+            color: rgb(255, 255, 255);
         }
 
         .btn_fh {
@@ -438,7 +440,7 @@
         }
 
         [data-theme="light"] .perfil_texto {
-            color: #1e293b;
+            color: white;
         }
 
         /* Projects Section */
@@ -463,7 +465,7 @@
         }
 
         [data-theme="light"] .section-title {
-            color: #1e293b;
+            color: white;
         }
 
         .projects-grid {

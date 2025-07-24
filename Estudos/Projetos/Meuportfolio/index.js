@@ -5,7 +5,7 @@ let musicas = [
     {src: new Audio("songs/Snoop_Dogg_Riders_on_the_Storm_(feat. The Doors).mp3"), capa: "https://th.bing.com/th/id/OIP.M4f6hfSVb0zHPAjU1esIbgHaHa?w=164&h=180&c=7&r=0&o=7&pid=1.7&rm=3"}
 ];
 
-let contador_1 = 0;
+let contador_1 = 3;
 let audio = musicas[contador_1].src;
 
 
@@ -23,6 +23,7 @@ let audio = musicas[contador_1].src;
 
     audio.autoplay = true
     audio.volume = 0.02
+    audio.play()
 
     audio.addEventListener("ended",()=>{
         contador_1++
@@ -198,47 +199,53 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-setInterval(()=>{
+setInterval(() => {
+  navigator.geolocation.getCurrentPosition((position) => {
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
 
+    fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`)
+      .then(data => data.json())
+      .then(cidade => {
+        // Corrigindo para pegar a cidade correta do objeto
+        const nomeCidade = cidade.address.city || cidade.address.town || cidade.address.village || 'Sao Paulo';
 
-
-fetch('https://ipinfo.io/json?token=b51a49f00a3421')
-.then(data => data.json())
-.then(cidade =>{
-
-fetch(`https://wttr.in/${cidade.city}?format=j1`)
-.then(datas => datas.json())
-.then(geolocalizacao =>{
-    console.log(cidade.city)
-    const graus = document.querySelector("#graus")
-    graus.textContent=`${geolocalizacao.current_condition[0].temp_C}`
-    const sensacao_termica = document.querySelector(".sencacao_termica")
-    const desc_clima = document.querySelector(".desc_clima")
-    desc_clima.textContent=`${geolocalizacao.current_condition[0].weatherDesc[0].value }`
-    
-    sensacao_termica.textContent=`Sensação termica ${geolocalizacao.current_condition[0].FeelsLikeC} Cº`
-
-    const btn_fh = document.querySelector(".btn_fh")
-    let contador = 0
-    btn_fh.addEventListener("click",()=>{
-        contador++
-        if(contador == 1){
-           btn_fh.textContent="Cº"
-            graus.textContent=`${geolocalizacao.current_condition[0].temp_C}` 
-             sensacao_termica.textContent=`Sensação termica ${geolocalizacao.current_condition[0].FeelsLikeC} Cº`
-        }else{
-             contador = 0
-             btn_fh.textContent="ºF"
-              graus.textContent=`${geolocalizacao.current_condition[0].temp_F}`
-               sensacao_termica.textContent=`Sensação termica ${geolocalizacao.current_condition[0].FeelsLikeF} ºF`
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(nomeCidade)},BR&appid=ad30cc98e4dc41aef1a77b7bf0c46292&units=metric&lang=pt_br`)
+          .then(datas => datas.json())
+          .then(geolocalizacao => {
             
-        }
-    })
-})
+            const graus = document.querySelector("#graus");
+            const sensacao_termica = document.querySelector(".sencacao_termica");
+            const desc_clima = document.querySelector(".desc_clima");
 
-})
+            graus.textContent = `${geolocalizacao.main.temp}`;
+            desc_clima.textContent = `${geolocalizacao.weather[0].description}`;
+            sensacao_termica.textContent = `Sensação térmica ${geolocalizacao.main.feels_like} Cº`;
 
-},50000 )
+            // Evita adicionar o listener múltiplas vezes
+            if (!btn_fh.hasListener) {
+              let contador = 0;
+              btn_fh.addEventListener("click", () => {
+                contador++;
+                if (contador == 1) {
+                  btn_fh.textContent = "Cº";
+                  graus.textContent = `${geolocalizacao.main.temp}`;
+                  sensacao_termica.textContent = `Sensação térmica ${geolocalizacao.main.feels_like} Cº`;
+                } else {
+                  contador = 0;
+                  btn_fh.textContent = "ºF";
+                  graus.textContent = `${((geolocalizacao.main.temp * 9) / 5 + 32)}`;
+                  sensacao_termica.textContent = `Sensação térmica ${((geolocalizacao.main.feels_like * 9) / 5 + 32)} ºF`;
+                }
+              });
+              btn_fh.hasListener = true; // marca que já adicionou listener
+            }
+          });
+      });
+  });
+}, 50000);
+
+const btn_fh = document.querySelector(".btn_fh");
 
 
 

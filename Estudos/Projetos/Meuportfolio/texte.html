@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+    <script>
+
+        navigator.geolocation.getCurrentPosition((position)=>{
+            const lati = position.coords.latitude;
+            const lon = position.coords.longitude;
+
+            console.log(lati+" "+lon)
+      
+
+        fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lati}&lon=${lon}&format=json`)
+        .then(data =>data.json())
+        .then(res => console.log(res.address.city))
+  })
+
+        fetch('https://api.openweathermap.org/data/2.5/weather?q=Sertaozinho,BR&appid=ad30cc98e4dc41aef1a77b7bf0c46292&units=metric&lang=pt_br')
+        .then(data => data.json())
+        .then(res => console.log(res))
+    </script>
+</body>
+</html>
