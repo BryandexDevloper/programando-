@@ -1,0 +1,289 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    
+}
+
+body{
+    background-color: rgb(5, 12, 18);
+}
+
+header{
+    width: 100%;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.235);
+    padding:5px 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 12px;
+}
+
+header h1{
+    font-family: "Bebas Neue";
+    color: white;
+    
+}
+
+header ul{
+    display: flex;
+    color: white;
+    gap: 20px;
+    list-style: none;
+    align-self: flex-end;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+header li {
+  border-bottom: 1px solid transparent; 
+  transition: border-color 0.1s ease;  
+  cursor: pointer;
+}
+
+header li:hover {
+  border-bottom-color: white;          
+}
+
+
+main{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.container_musica{
+    width: 200px;
+    
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: black;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    padding: 10px 10px;
+    gap: 10px;
+}
+
+
+.container_tempo{
+    width: 200px; /*rgba(0, 132, 255, 0.898) 40%,rgba(255, 255, 255, 0.841) 100%);*/
+    height: 50px;
+    position: absolute;
+    background-image: linear-gradient(to bottom , rgba(0, 132, 255, 0.898) 40%,rgba(255, 255, 255, 0.841) 100%);
+    right: 0;
+    margin-top: 10px;
+    margin-right: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 10px;
+    align-items: center;
+   
+}
+
+.container_foto_musica{
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.container_controles{
+    width: 100%;
+    height: 50px;
+    
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.container_botoes{
+    width: 100%;
+    height: 60px;
+  
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;  
+    justify-content: center;
+    cursor: pointer;
+   
+   
+}
+
+
+.container_controles input{
+    width: 100px;
+    
+}
+
+
+.container_rage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    height: 100%;
+}
+
+.btn_controles{
+    width: 20px;
+    height:20px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#pause{
+    display: none;
+}
+
+#right_next{
+   
+    transform: rotate(180deg);
+}
+
+.container_horas{
+    width: 200px;
+    height: 50px;
+    background-color: white;
+    display: flex;
+    border-radius: 10px;
+}
+
+.horas{
+    flex: 1;
+    height: 100%;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-family:Arial, Helvetica, sans-serif ;
+}
+
+
+.texto_pequeno{
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-weight: bold;
+}
+
+
+.container_satelite{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+   
+}
+
+.sol{
+    width: 25px;
+    height: 25px;
+    border-radius: 100px;
+    background-image: linear-gradient(
+  to bottom,
+  #fceabb 0%,   /* Amarelo claro */
+  #f8b500 100%  /* Amarelo mais intenso (cor do sol) */
+)
+;
+}
+
+.lua{
+     width: 25px;
+    height: 25px;
+    border-radius: 100px;
+    background-image: linear-gradient(
+  to bottom,
+  #0f2027 0%,   /* Azul escuro */
+  #203a43 50%,  /* Azul petróleo */
+  #2c5364 100%  /* Azul acinzentado */);
+  display: none;
+}
+
+
+.container_graus{
+    width: 100%;
+    height: 100%;
+    padding:0px 2px;
+    display: flex;
+}
+
+.graus{
+    width: 50px;
+    height: 100%;
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+
+#graus{
+    font-size: 23px;
+}
+
+.c{
+    font-size: 12px;
+}
+
+
+.condicao{
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+.desc_clima{
+    font-size: 12px;
+    color: white;
+    font-weight: bolder;
+}
+
+.sencacao_termica{
+    font-size: 8px;
+    color: rgb(54, 54, 54);
+}
+
+
+.btn_fh{
+    font-size: 12px;
+    border-radius: 5px;
+    background-color: rgba(128, 128, 128, 0.346);
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    top: -10px;
+    right: 0;
+    cursor: pointer;
+}
+
+
+
+.container_foto_musica img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}

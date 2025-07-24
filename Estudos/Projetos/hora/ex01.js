@@ -90,6 +90,7 @@ iniciar_despertador.addEventListener("click",()=>{
             const pararalarme = document.querySelector("#para")
             pararalarme.addEventListener("click",()=>{
                 som_alarme.pause()
+                
                 numero = 0
                 clearInterval(temporizador)
             })
