@@ -114,46 +114,102 @@ musica.addEventListener("input", () => {
 
 
 
-/// aqui vem o foreach com as musicas
+function aplicarTemaManual(theme) {
+  const body = document.body;
+  const themeIcon = document.querySelector('.theme-icon path');
+  const container_tempo = document.querySelector('.container_tempo');
+  const sol = document.querySelector('.sol');
+  const lua = document.querySelector('.lua');
 
-const horas = document.querySelectorAll(".horas")
-setInterval(()=>{
-    
-    horas[0].textContent = new Date().getHours()
-    horas[1].textContent = new Date().getMinutes()
-    horas[2].textContent = new Date().getSeconds()
+  if (theme === 'light') {
+    body.setAttribute('data-theme', 'light');
+    themeIcon.setAttribute('d', 'M12 2v2m0 16v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M2 12h2m16 0h2M6.34 6.34l-1.42-1.42M19.07 19.07l-1.42-1.42');
+    container_tempo.style.backgroundImage = `linear-gradient(to bottom, rgba(0, 132, 255, 0.898) 40%, rgba(255, 255, 255, 0.841) 100%)`;
+    sol.style.display = "flex";
+    lua.style.display = "none";
+  } else {
+    body.removeAttribute('data-theme');
+    themeIcon.setAttribute('d', 'M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z');
+    container_tempo.style.backgroundImage = `linear-gradient(to bottom, #0a1f33 0%, #2c2c2c 100%)`;
+    sol.style.display = "none";
+    lua.style.display = "flex";
+  }
+  localStorage.setItem('theme', theme);
+}
 
-    let hora = new Date().getHours()
-    const container_tempo = document.querySelector(".container_tempo")
-    const sol = document.querySelector(".sol")
-    const lua = document.querySelector(".lua")
-    if(hora > 18){
-       sol.style.display="none"
-       lua.style.display="flex"
-       container_tempo.style.backgroundImage=` linear-gradient(
-       to bottom,
-      #0a1f33 0%,    /* Azul quase preto */
-      #2c2c2c 100%   /* Cinza escuro */
-)`
-    }else{
-        sol.style.display="flex"
-        lua.style.display="none"
-         container_tempo.style.backgroundImage=` linear-gradient(to bottom , rgba(0, 132, 255, 0.898) 40%,rgba(255, 255, 255, 0.841) 100%)`
+function toggleTheme() {
+  const body = document.body;
+  const currentTheme = body.getAttribute('data-theme');
+  if (currentTheme === 'light') {
+    aplicarTemaManual('dark');
+  } else {
+    aplicarTemaManual('light');
+  }
+}
+
+setInterval(() => {
+  const horas = document.querySelectorAll(".horas");
+  const now = new Date();
+  const hora = now.getHours();
+
+  horas[0].textContent = String(hora).padStart(2, '0');
+  horas[1].textContent = String(now.getMinutes()).padStart(2, '0');
+  horas[2].textContent = String(now.getSeconds()).padStart(2, '0');
+
+  const container_tempo = document.querySelector(".container_tempo");
+  const sol = document.querySelector(".sol");
+  const lua = document.querySelector(".lua");
+
+  // Só muda o fundo automático se o usuário NÃO tiver escolhido tema manual
+  if (!localStorage.getItem('theme')) {
+    if (hora > 18) {
+      sol.style.display = "none";
+      lua.style.display = "flex";
+      container_tempo.style.backgroundImage = `linear-gradient(
+        to bottom,
+        #0a1f33 0%, 
+        #2c2c2c 100%
+      )`;
+    } else {
+      sol.style.display = "flex";
+      lua.style.display = "none";
+      container_tempo.style.backgroundImage = `linear-gradient(
+        to bottom,
+        rgba(0, 132, 255, 0.898) 40%,
+        rgba(255, 255, 255, 0.841) 100%
+      )`;
     }
-})
+  }
+}, 1000);
+
+document.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    aplicarTemaManual(savedTheme);
+  } else {
+    // Se não tiver salvo, aplica o fundo e ícones conforme a hora atual
+    const hora = new Date().getHours();
+    if (hora > 18) {
+      aplicarTemaManual('dark');
+    } else {
+      aplicarTemaManual('light');
+    }
+  }
+});
+
 
 setInterval(()=>{
 
 
 
-fetch('https://ipinfo.io/json?token=')
+fetch('https://ipinfo.io/json?token=b51a49f00a3421')
 .then(data => data.json())
 .then(cidade =>{
 
 fetch(`https://wttr.in/${cidade.city}?format=j1`)
 .then(datas => datas.json())
 .then(geolocalizacao =>{
-    
+    console.log(cidade.city)
     const graus = document.querySelector("#graus")
     graus.textContent=`${geolocalizacao.current_condition[0].temp_C}`
     const sensacao_termica = document.querySelector(".sencacao_termica")
@@ -182,7 +238,7 @@ fetch(`https://wttr.in/${cidade.city}?format=j1`)
 
 })
 
-},30000 )
+},50000 )
 
 
 

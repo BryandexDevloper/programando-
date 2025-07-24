@@ -8,57 +8,163 @@
 </head>
 <body>
     <header>
-                <h1> <\> Bryandex Devloper  <\> </h1>
-                <div class="container_horas">
-                    <p class="horas">13</p>
-                    <p class="horas">22</p>
-                    <p class="horas">54</p>
-                </div>
-                <ul>
-                    <li>Sobre mim</li>
-                    <li>Projetos</li>
-                    <li>Contato</li>
-                </ul>
-
-                
+        <h1>&lt;/&gt; Bryandex Developer &lt;/&gt;</h1>
+        <div class="container_horas">
+            <p class="horas" id="horas">13</p>
+            <p class="horas" id="minutos">22</p>
+            <p class="horas" id="segundos">54</p>
+        </div>
+        <ul>
+            <li><a href="#sobre_sec" style="color: inherit; text-decoration: none;">Sobre mim</a></li>
+            <li><a href="#projects" style="color: inherit; text-decoration: none;">Projetos</a></li>
+            <li><a href="#contact" style="color: inherit; text-decoration: none;">Contato</a></li>
+            <li>
+                <button class="theme-toggle" onclick="toggleTheme()">
+                    <svg class="theme-icon" viewBox="0 0 24 24">
+                        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                    </svg>
+                </button>
+            </li>
+        </ul>
     </header>
 
-<main>
-    <div class="container_tempo">
-        <p class="texto_pequeno">Clima atual</p>
-        <div class="container_satelite">
-            <div class="sol"></div>
-            <div class="lua"></div>
-            <div class="container_graus">
-                <div class="graus"><p id="graus">29</p><p class="c">ºC</p></div>
-                <div class="condicao">
-                    <p class="desc_clima">Ensolarado</p>
-                    <p class="sencacao_termica"></p>
+    <main>
+        <section id="sobre_sec">
+            <div class="container_sobre">
+                <div class="container_perfil">
+                    <div class="perfil"><img src="https://i.gifer.com/origin/34/34fc02f204dd4880783fd539d913cff1_w200.webp" alt=""></div>
+                    <div class="perfil_texto">
+                        Sou o Bryandex, dev frontend focado em aprender React, Vue e chegar a ser fullstack. Gosto de criar interfaces simples, funcionais e fáceis de usar.
+
+Tenho boa base em HTML, CSS e JavaScript, mas sei que ainda tenho muito pra melhorar, principalmente em lógica e backend. O que me motiva é resolver problemas reais e ver o código funcionando.
+
+Não busco perfeição, mas evoluir todo dia e fazer projetos que me deixem satisfeito.
+                    </div>
                 </div>
             </div>
-            <p class="btn_fh">ºF</p>
-        </div>
-    </div>
+        </section>
 
-    <div class="container_musica">
-        <div class="container_foto_musica"><img src="" alt="" id="foto_capa"></div>
-        <div class="container_controles">
-            <div class="container_botoes">
-                <p class="btn_controles"><img id="left_next" src="assets/next.svg" alt=""></p>
-                <p class="btn_controles"><img id="play" src="assets/play.svg" alt="">
-                <img src="assets/pause.svg" alt="" id="pause">
-                </p>
-                <p  class="btn_controles"><img id="right_next" src="assets/next.svg" alt=""></p>
-                
+        <section id="projects" class="projects">
+            <h2 class="section-title">Meus Projetos</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">🛍️</div>
+                    <div class="project-content">
+                        <h3 class="project-title">E-commerce Platform</h3>
+                        <p class="project-description">Plataforma completa de e-commerce com carrinho de compras, sistema de pagamento e painel administrativo.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Stripe</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Demo</a>
+                            <a href="#" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">📱</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Task Manager App</h3>
+                        <p class="project-description">Aplicativo de gerenciamento de tarefas com interface intuitiva, drag & drop e sincronização em tempo real.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Vuetify</span>
+                            <span class="tech-tag">PWA</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Demo</a>
+                            <a href="#" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">📊</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Analytics Dashboard</h3>
+                        <p class="project-description">Dashboard interativo para visualização de dados com gráficos dinâmicos e relatórios personalizáveis.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Next.js</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">Chart.js</span>
+                            <span class="tech-tag">Prisma</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Demo</a>
+                            <a href="#" class="project-link">GitHub</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="container_rage">
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="contact-content">
+                <h2 class="section-title">Vamos Trabalhar Juntos</h2>
+                <p style="color: rgba(255,255,255,0.8); margin-bottom: 2rem; font-family: Arial, Helvetica, sans-serif;">
+                    Está interessado em colaborar? Entre em contato e vamos conversar sobre seu próximo projeto!
+                </p>
                 
-                    <input type="range" name="muscia" id="musica" min="0" max="100" value="0">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensagem</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Enviar Mensagem</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Widget de Tempo -->
+        <div class="container_tempo">
+            <p class="texto_pequeno">Clima atual</p>
+            <div class="container_satelite">
+                <div class="sol"></div>
+                <div class="lua"></div>
+                <div class="container_graus">
+                    <div class="graus"><p id="graus">29</p><p class="c">ºC</p></div>
+                    <div class="condicao">
+                        <p class="desc_clima">Ensolarado</p>
+                        <p class="sencacao_termica"></p>
+                    </div>
+                </div>
+                <p class="btn_fh">ºF</p>
             </div>
         </div>
-    </div>
-</main>
+
+        <!-- Player de Música -->
+        <div class="container_musica">
+            <div class="container_foto_musica"><img src="" alt="" id="foto_capa"></div>
+            <div class="container_controles">
+                <div class="container_botoes">
+                    <p class="btn_controles"><img id="left_next" src="assets/next.svg" alt=""></p>
+                    <p class="btn_controles">
+                        <img id="play" src="assets/play.svg" alt="">
+                        <img src="assets/pause.svg" alt="" id="pause">
+                    </p>
+                    <p class="btn_controles"><img id="right_next" src="assets/next.svg" alt=""></p>
+                </div>
+                <div class="container_rage">
+                    <input type="range" name="muscia" id="musica" min="0" max="100" value="0">
+                </div>
+            </div>
+        </div>
+    </main>
     
     <script src="index.js"></script>
+
 </body>
 </html>
