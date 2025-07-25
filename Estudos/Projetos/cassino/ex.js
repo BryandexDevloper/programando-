@@ -10,6 +10,7 @@ let conbinacoes = [  //.🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 ];
 
 
+
 let conbinacoes_baixas = [ // conbinaçoes baixas para sabichoes
     [0, 0, 0, 0.1, 0.05, 0, 0.2, 0, 0.15, 0],
     [0, 0, 0.1, 0, 0.05, 0.2, 0, 0.1, 0.3, 0],

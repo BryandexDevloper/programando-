@@ -5,7 +5,7 @@ let musicas = [
     {src: new Audio("songs/Snoop_Dogg_Riders_on_the_Storm_(feat. The Doors).mp3"), capa: "https://th.bing.com/th/id/OIP.M4f6hfSVb0zHPAjU1esIbgHaHa?w=164&h=180&c=7&r=0&o=7&pid=1.7&rm=3"}
 ];
 
-let contador_1 = 3;
+let contador_1 = 0;
 let audio = musicas[contador_1].src;
 
 
@@ -23,12 +23,12 @@ let audio = musicas[contador_1].src;
 
     audio.autoplay = true
     audio.volume = 0.02
-    audio.play()
+    
 
     audio.addEventListener("ended",()=>{
         contador_1++
         audio = musicas[contador_1].src
-        audio.play()
+        audio.autoplay = true
         audio.volume = 0.02
         capa.src = musicas[contador_1].capa
     })

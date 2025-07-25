@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>async</title>
+</head>
+<body>
+    
+    <img id="img">
+
+
+    <script>
+
+//         let lat
+//         let lon
+
+//         window.document.addEventListener("DOMContentLoaded",()=>{
+
+//             navigator.geolocation.getCurrentPosition((pos)=>{
+//                 lat = pos.coords.latitude
+//                 lon= pos.coords.longitude
+                 
+
+
+//                 async function pegarloc(params) {
+
+//                     localizacao = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`)
+//                     resposta = await localizacao.json()
+//                     console.log(resposta)
+
+//                 }
+
+
+//                 pegarloc()
+
+//             })
+
+//              { enableHighAccuracy: true }
+//         })
+
+      
+//         const img = document.querySelector("#img")
+        
+//         setInterval(()=>{
+
+            
+        
+//         async function exemplo() {
+//             try{
+
+//                 const api = await fetch('https://api.thecatapi.com/v1/images/search')
+//                 const data = await api.json()
+//                 img.src=data[0].url
+//                 console.log(data)
+
+//             }catch(error){
+//                 console.log("Errei fui muleque")
+//             }
+//         }
+//         exemplo()
+// },10000)
+
+fetch("https://jsonplaceholder.typicode.com/posts",{
+    method:'POST',
+    headers:{
+        'Content-Type': 'application/json'
+    },body:JSON.stringify({
+        titlse:"Estudando fetch",
+        body:'Aprendendo sobre body',
+        Userid:1
+    })
+})
+.then(data => data.json())
+.then(resposta => console.log(resposta))
+
+        
+    </script>
+</body>
+</html>
