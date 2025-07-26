@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        // async function buscarDados() {
+        //     const data = await fetch('https://jsonplaceholder.typicode.com/posts',{
+        //         method:'POST',
+        //         headers:{
+        //             'Content-Type':'Application/json'
+        //         },
+        //         body:JSON.stringify({
+        //             title:'Meu primeiro post em api',
+        //             body:'Estou aprendendo usar api',
+        //             UserId:1
+        //         })
+        //     })
+            
+        //     const resposta = await data.json()
+        //     console.log(resposta)
+        // }
+
+        // async function mudar_dados() {
+        //     const data = await fetch('https://jsonplaceholder.typicode.com/posts/1',{
+        //         method:'PUT',
+        //         headers:{'Content-Type':'application/json'},
+        //         body:JSON.stringify({
+        //             id:1,
+        //             title:'Mudadando texto',
+        //             body:'Texto mudado',
+        //             UserId:1
+        //         })
+
+
+        //     })
+
+        //     const resultado = await data.json()
+        //     try{
+        //         console.log(resultado)
+        //     }catch(erro){
+        //         console.log('desculpe' + erro)
+        //     }
+
+        // }
+
+        // fetch('https://jsonplaceholder.typicode.com/posts')
+        // .then(data => data.json())
+        // .then(res => console.log(res))
+
+
+       
+        // mudar_dados()
+        // buscarDados()
+
+
+
+        //pegando dados
+        async function meuDb(params) {
+            const data = await fetch('http://localhost:3000/posts')
+            const resposta = await data.json()
+            console.log(resposta)
+        }
+        
+        meuDb()
+
+        async function mudando_dados(params) {
+            const data = await fetch('http://localhost:3000/posts/1',{
+                method:'PUT',
+                headers:{
+                    'Content-type':'application/json'
+                },
+                body:JSON.stringify({
+                    id:1,
+                    title:"Texto mudado",
+                    body:'hacked',
+                    userId:1
+                })
+            })
+        }
+
+        mudando_dados()
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let caso = 0;
+        let id = 1;
+        let email = "bryan@email.com";
+        let novo_email = "dunha2325@gmai.com"
+        let senha = "jaosdfgd";
+        let nova_senha = ""
+       
+
+        console.log("\n Painel do usuario ");
+        console.log("\n [1] mudar senha \n [2] mudar email \n [3] Fazer um post \n [4] Apagar um post");
+
+        switch (caso) {
+            case 1: {
+                TrocarSenha(id, email);
+            }
+            break;
+            case 2: {
+                TrocarEmail(id, senha);
+            }
+            break;
+            case 3: {
+                FazerumPost(id, "Ola tudo bem sou novo por aqui");
+            }
+            break;
+            case 4: {
+                DeletarumPost(id);
+            }
+            break;
+        }
+            // pra trocar uma senha preciso primeiro confirma email depois senha
+        async function TrocarSenha(id, email) {
+            if (!email.includes("@") || !email.includes(".")) {
+                console.log("email Descaracterizado");
+                return;
+            } else {
+                const response = await fetch(`http://localhost:3000/usuarios/${id}`);
+                const confirmar = await response.json()
+
+                if(email != confirmar.email){
+                    console.log("email errado");
+                    return;
+                }
+
+                if(senha != confirmar.senha){
+                    console.log("Senha errada");
+                    return;
+                }else{
+                    const data = await fetch(`http://localhost:3000/usuarios/${id}`,{
+                        method:'PATCH',
+                        headers:{
+                            'Content-Type':'application/json'
+                        },
+
+                        body:JSON.stringify({
+                            senha:`${nova_senha}`
+                        })
+                    })
+                }
+                
+            }
+        }
+            // confirmar email senha ok? novo email 
+        async function TrocarEmail(id, novaEmail) {
+             if (!email.includes("@") || !email.includes(".")) {
+                console.log("email Descaracterizado");
+                return;
+            } else {
+                const response = await fetch(`http://localhost:3000/usuarios/${id}`);
+                const confirmar = await response.json()
+
+                if(email != confirmar.email){
+                    console.log("email errado");
+                    return;
+                }
+
+                if(senha != confirmar.senha){
+                    console.log("Senha errada");
+                    return;
+                }else{
+                    const data = await fetch(`http://localhost:3000/usuarios/${id}`,{
+                        method:'PATCH',
+                        headers:{
+                            'Content-Type':'application/json'
+                        },
+
+                        body:JSON.stringify({
+                            email:`${novo_email}`
+                        })
+                    })
+                }
+                
+            }
+        }
+
+        async function FazerumPost(id, conteudo) {
+            
+           const data = await fetch(`http://localhost:3000/posts`,{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                
+                titulo:'Fazendo meu segundo post',
+                conteudo:conteudo,
+                userId:id
+            })
+           })
+        }
+
+        async function DeletarumPost(postId) {
+            
+        }
+
+        async function ver() {
+            const data = await fetch("http://localhost:3000/posts");
+            const resultado = await data.json();
+            console.log("Lista atualizada de usuários:", resultado);
+        }
+
+        ver()
+
+    </script>
+</body>
+</html>

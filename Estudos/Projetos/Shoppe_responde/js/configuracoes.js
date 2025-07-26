@@ -367,6 +367,9 @@ section.appendChild(containerBtn);
 ];
 
 
+
+
+
 text_frete_para.textContent=`${fretesPorEstado[25].estado}, ${fretesPorEstado[25].nome}`
 const text_valor_frete = document.createElement("p")
 text_valor_frete.textContent=`${fretesPorEstado[25].frete.toLocaleString("pt-br",{

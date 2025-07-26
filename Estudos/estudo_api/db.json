@@ -1,0 +1,49 @@
+{
+  "usuarios": [
+    {
+      "id": "1",
+      "nome": "Bryan",
+      "email": "dunha2325@gmai.com",
+      "senha": "jaosdfgd"
+    },
+    {
+      "id": "2",
+      "nome": "Ana",
+      "email": "ana@email.com",
+      "senha": "Segredo456"
+    }
+  ],
+  "posts": [
+    {
+      "id": "1",
+      "titulo": "Meu primeiro post",
+      "conteudo": "Estou aprendendo a usar APIs com JSON Server!",
+      "userId": 1
+    },
+    {
+      "id": "2",
+      "titulo": "Dica de JavaScript",
+      "conteudo": "Sempre use const e let no lugar de var.",
+      "userId": 2
+    },
+    {
+      "titulo": "Fazendo meu segundo post",
+      "conteudo": "Ola tudo bem sou novo por aqui",
+      "userId": 1
+    }
+  ],
+  "comentarios": [
+    {
+      "id": "1",
+      "mensagem": "Muito bom!",
+      "postId": 1,
+      "usuarioId": 2
+    },
+    {
+      "id": "2",
+      "mensagem": "Valeu pela dica!",
+      "postId": 2,
+      "usuarioId": 1
+    }
+  ]
+}
