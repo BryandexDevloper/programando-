@@ -1,0 +1,41 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "nome": "Bryan",
+      "email": "dunha2325@gmai.com",
+      "senha": "Momo123."
+    },
+    {
+      "id": 2,
+      "nome": "Ana",
+      "email": "ana@email.com",
+      "senha": "Segredo456"
+    },
+    {
+      "id": 3,
+      "email": "admnegro666gordo@gmail.com",
+      "senha": "asad"
+    },
+    {
+      "id": 4,
+      "email": "wst88794@gmail.com",
+      "senha": "sasa"
+    },
+    {
+      "id": 5,
+      "email": "pneusmulticargas@gmail.com",
+      "senha": "popo32423"
+    },
+    {
+      "id": 6,
+      "email": "asdsawd@gmail.com",
+      "senha": "Mo1me2."
+    },
+    {
+      "id": 7,
+      "email": "infectado123@gmail.com",
+      "senha": "Momo123."
+    }
+  ]
+}
