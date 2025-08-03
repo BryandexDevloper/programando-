@@ -4,19 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .container{
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+        }
+
+        .container_produtos{
+            width: 200px;
+            height: 250px;
+            border: 1px solid;
+            margin: 10px 10px;
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="container">
+        <input type="text" name="nome_produto" id="nome_produto">
+        <input type="number" name="valor_produto" id="valor_produto">
+        <button id="enviar">Colocar produto</button>
+    </div>
+
+    <div class="container_produtos">
+
+    </div>
 
 <script>
-    async function name(params) {
-        const data = await fetch('http://localhost:3000/produtos')
-        const resultado = await data.json()
 
-        console.log(resultado)
-    }
+    async function mostrar_produtos() {
+    const data = await fetch('http://localhost:3000/produtos')
+    const resultado = await data.json()
 
-    name()
+    const container_produtos = document.querySelector(".container_produtos")
+    container_produtos.innerHTML = "" // limpa o conteúdo anterior
+
+    resultado.resultado.forEach((res) => {
+        const div = document.createElement("div")
+        div.textContent = `${res.nome} - R$${res.preco} - Estoque: ${res.estoque}`
+        container_produtos.appendChild(div)
+    })
+}
+
+
+    mostrar_produtos()
+    
+
 </script>
 
 </body>

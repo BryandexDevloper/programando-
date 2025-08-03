@@ -13,10 +13,11 @@ const conexao = mysql.createConnection({
 })
 
 servidor.get('/produtos',(req,res)=>{
-    conexao.query('SELEC * FROM produtos',(error,resposta)=>{
+    conexao.query('SELECT * FROM produtos',(error,resposta)=>{
         if(error){
             return res.status(500).json({erro:'Erro foi mal'})
         }else{
+    
             res.json({resultado:resposta})
         }
     })
