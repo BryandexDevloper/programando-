@@ -307,7 +307,7 @@ async function Recupearsenha(email) {
             texto.textContent = `${resultado.mensagem}`
             clearTimeout(id)
         }
-    }, 4000)
+    }, 2000)
 }
 
 Telalogin()
