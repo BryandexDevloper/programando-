@@ -25,6 +25,13 @@ Uma API REST simples e eficiente para envio de e-mails usando diferentes provedo
 https://api-envio-email-bryandex.onrender.com
 ```
 
+## 🌐 Site da API
+
+```
+https://chipper-empanada-0d677c.netlify.app/#api
+
+```
+
 ## 🚀 Características
 
 - ✅ **API totalmente online** - Sem necessidade de instalação
