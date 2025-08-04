@@ -10,6 +10,11 @@ const servidor = express();
 servidor.use(cors());
 servidor.use(express.json());
 
+servidor.get("/teste-cors", (req, res) => {
+  res.json({ msg: "CORS funciona!" });
+});
+
+
 servidor.post("/enviar_mail",async (req, res) => {
   const { service, email, password, to, subject,html,email_user } = req.body;
 

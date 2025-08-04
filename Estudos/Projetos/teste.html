@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Teste API Envio de Email - Bryandex</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 15px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .status {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Teste API Envio de Email - Bryandex</h1>
+  
+  <label for="service">Serviço (ex: gmail):</label>
+  <input type="text" id="service" placeholder="gmail" value="gmail" />
+
+  <label for="email">Seu e-mail (usuário):</label>
+  <input type="email" id="email" placeholder="seu.email@gmail.com" />
+
+  <label for="password">Senha ou token de app:</label>
+  <input type="password" id="password" placeholder="Senha ou token do app" />
+
+  <label for="to">Para (destinatário):</label>
+  <input type="email" id="to" placeholder="destinatario@example.com" />
+
+  <label for="subject">Assunto:</label>
+  <input type="text" id="subject" placeholder="Assunto do e-mail" value="Teste API Bryandex" />
+
+  <label for="html">Conteúdo (HTML):</label>
+  <textarea id="html" rows="5" placeholder="<h1>Conteúdo do e-mail</h1>"></textarea>
+
+  <label for="email_user">Email user (geralmente igual ao destinatário):</label>
+  <input type="email" id="email_user" placeholder="destinatario@example.com" />
+
+  <button onclick="enviarEmail()">Enviar Email</button>
+
+  <div class="status" id="status"></div>
+
+  <script>
+    async function enviarEmail() {
+      const statusDiv = document.getElementById("status");
+      statusDiv.textContent = "Enviando...";
+
+      const payload = {
+        service: document.getElementById("service").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        password: document.getElementById("password").value.trim(),
+        to: document.getElementById("to").value.trim(),
+        subject: document.getElementById("subject").value.trim(),
+        html: document.getElementById("html").value.trim(),
+        email_user: document.getElementById("email_user").value.trim(),
+      };
+
+      try {
+        const response = await fetch("https://api-envio-email-bryandex.onrender.com/enviar_mail", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          statusDiv.style.color = "green";
+          statusDiv.textContent = data.mensagem || "Email enviado com sucesso!";
+        } else {
+          statusDiv.style.color = "red";
+          statusDiv.textContent = data.mensagem || "Erro ao enviar o email";
+        }
+      } catch (error) {
+        statusDiv.style.color = "red";
+        statusDiv.textContent = "Erro na requisição: " + error.message;
+      }
+    }
+  </script>
+</body>
+</html>
