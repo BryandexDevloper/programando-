@@ -25,7 +25,7 @@ main{
 
 .form{
     width: 300px;
-    height: 300px;
+    height: auto;
     border: 1px solid;
     position: absolute;
     top: 50%;
