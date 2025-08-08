@@ -60,42 +60,43 @@ const inputs = document.querySelectorAll('.input_carrolssel')
 let contador = 0
 
 
-const imagens_carrolsel = ['https://http2.mlstatic.com/D_NQ_676863-MLA89232785805_082025-OO.webp',
-    'https://http2.mlstatic.com/D_NQ_627045-MLA82787677787_022025-OO.webp',
-    'https://http2.mlstatic.com/D_NQ_610204-MLA89279266484_082025-OO.webp',
-    'https://http2.mlstatic.com/D_NQ_862512-MLA89284372476_082025-OO.webp',
-    'https://http2.mlstatic.com/D_NQ_763677-MLA89637956165_082025-OO.webp',
-    'https://http2.mlstatic.com/D_NQ_605657-MLA89583968475_082025-OO.webp',
-    'https://http2.mlstatic.com/D_NQ_781192-MLA88988196762_082025-OO.webp'
+const cores_carrossel = [
+    '#FF5733', // laranja avermelhado
+    '#33FF57', // verde limão
+    '#3357FF', // azul vibrante
+    '#F1C40F', // amarelo ouro
+    '#9B59B6', // roxo
+    '#E67E22', // laranja queimado
+    '#1ABC9C'  // verde água
 ]
 
-setInterval(()=>{
+
+setInterval(() => {
     contador++
-     if(contador >= imagens_carrolsel.length){
+    if (contador >= cores_carrossel.length) {
         contador = 0
     }
-    container_carrosel.style.backgroundImage=`url(${imagens_carrolsel[contador]})`
-    inputs[contador].checked=true
-    
-},5000)
+    container_carrosel.style.backgroundColor = cores_carrossel[contador]
+    inputs[contador].checked = true
+}, 5000)
 
-inputs[contador].checked=true
-container_carrosel.style.backgroundImage=`url(${imagens_carrolsel[contador]})`
+inputs[contador].checked = true
+container_carrosel.style.backgroundColor = cores_carrossel[contador]
 
-btn_avancar.addEventListener('click',()=>{
+btn_avancar.addEventListener('click', () => {
     contador++
-    if(contador >= imagens_carrolsel.length){
+    if (contador >= cores_carrossel.length) {
         contador = 0
     }
-    container_carrosel.style.backgroundImage=`url(${imagens_carrolsel[contador]})`
-    inputs[contador].checked=true
+    container_carrosel.style.backgroundColor = cores_carrossel[contador]
+    inputs[contador].checked = true
 })
 
-btn_voltar.addEventListener('click',()=>{
+btn_voltar.addEventListener('click', () => {
     contador--
-    if(contador <= 0){
-        contador = imagens_carrolsel.length -1
+    if (contador < 0) {
+        contador = cores_carrossel.length - 1
     }
-        container_carrosel.style.backgroundImage=`url(${imagens_carrolsel[contador]})`
-     inputs[contador].checked=true
+    container_carrosel.style.backgroundColor = cores_carrossel[contador]
+    inputs[contador].checked = true
 })

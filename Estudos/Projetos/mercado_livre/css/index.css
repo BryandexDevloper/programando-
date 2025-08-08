@@ -27,7 +27,7 @@ body{
 header {
     width: 100%;
     height: 100px;
-    background-color: var(--amarelo_principal);
+    background-color: rgba(128, 128, 128, 0.729);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -59,13 +59,14 @@ header {
 }
 
 
-.container_input {
+header .container_input {
     width: 50%;
     height: 40px;
 
     display: flex;
     background-color: white;
     align-items: center;
+    border-radius: 5px;
 
 }
 
@@ -73,6 +74,10 @@ header {
 .container_img_anuncio {
     width: 340px;
     height: 40px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
 }
 
@@ -200,6 +205,7 @@ header {
     height: 100%;
     border: none;
     padding: 10px;
+    border-radius: 5px;
 }
 
 .container_input .container_btn_pesquisar {
@@ -348,7 +354,7 @@ main {
 
 
 #carrolssel_Section{
- margin-bottom: 300px;
+ margin-bottom: 250px;
 
  
 }
@@ -366,21 +372,22 @@ main {
     padding: 10px;
     border-radius: 8px;
     background-color: white;
+    position: relative;
     
 }
 
 .container_botoes2{
-    width: 69%;
+    width: 100%;
     height: 60px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    border: 1px solid;
     display: flex;
     justify-content: space-between;
-    cursor: pointer;
+
     padding: 0px 20px;
+    
    
 
 }
@@ -389,16 +396,114 @@ main {
     height:100%;
     width: 60px;
     border-radius: 50%;
-    background-color: black;
+    background-color: white;
+    cursor: pointer;
+}
+
+.btn_avancar_produtos,.btn_voltar_produtos:hover{
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .container_categoria_inputs{
     width: 100%;
     height: 40px;
-    border: 1px solid;
     justify-content: space-between;
+    display: flex;
+    align-items: center;
 }
 
-#section_produtos{
-    position: relative;
+
+.menu_celular{
+    display: none;
+    gap: 10px;
+    list-style-type: none;
+    cursor: pointer;
+    
+}
+
+.container_localizacao_mobile{
+    width: 100%;
+    display: none;
+    justify-content: space-between;
+   
+
+}
+
+.container_location{
+    display: flex;
+    font-size: 12px;
+    align-items: center;
+    gap: 5px;
+    
+}
+
+.container_localizacao_box{
+    position: absolute;
+    width: 300px;
+    height: 150px;
+    background-color:white;
+    border-radius: 5px;
+    left: 350px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    gap: 10px;
+    text-align: left;
+}
+
+@media(max-width:970px){
+   .container_img_anuncio{
+    display: none;
+   }
+  
+   .cima{
+    justify-content: space-around;
+   }
+
+   .menu_celular{
+    display: flex;
+   }
+
+   .container_logo{
+    width: auto;
+   }
+
+   .baixo .container_localiza,.baixo .container_lista,.baixo .container_menu_lista{
+    display: none;
+   }
+
+   .container_primeira_sessao{
+    display: flex;
+    
+    overflow-x: scroll;
+   }
+
+   .container_retangunlo{
+     min-width: 150px;
+      flex: 0 0 auto; /* flex-grow: 0, flex-shrink: 0, flex-basis: auto */
+
+   }
+
+   .container_botoes{
+    display: flex;
+   }
+
+   .container_inputs{
+    
+    margin: auto;
+   }
+
+   header .container_input{
+    width: 65%;
+   }
+
+   .container_localizacao_mobile{
+    display: flex;
+   }
+
+
+   
+.btn_avancar_produtos,.btn_voltar_produtos{
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
 }
