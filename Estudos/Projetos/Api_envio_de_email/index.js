@@ -23,6 +23,7 @@ const envio_mail_pra_mim = transponder.createTransport({
   }
 })
 
+
 servidor.post("/enviar_mail",async (req, res) => {
   const { service, email, password, to, subject,html,email_user } = req.body;
 
