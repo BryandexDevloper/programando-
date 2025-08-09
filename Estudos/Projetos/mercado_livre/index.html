@@ -11,6 +11,28 @@
 
 <body>
 
+<!--Area colocar cep divs com filtro-->
+<div class="container_filtro_escuro">
+    <div class="container_colocar_cep_box">
+        <div class="container_colocar_cep">
+            <div class="container_text">
+                <h3>Selecione onde quer receber suas compras</h3>
+                <p style="font-size: 12px; color: grey;">Você poderá ver custos e prazos de entrega precisos em tudo que procurar.</p>
+            </div>
+            <div class="container_input_cep">
+                <label for="cep">CEP</label>
+                <input type="number" name="cep" id="cep" placeholder="Infomar um CEP">
+                <p class="btn_usar_cep">Usar</p>
+            </div>
+            <div class="container_btn_close">
+                <img id="btn_close_container_cep" src="assets/close.svg" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<!--Area colocar cep divs com filtro-->
+
+
     <header>
         <div class="cima">
             <div class="container_logo">
@@ -68,7 +90,7 @@
             <div class="container_localizacao_mobile">
                 <div class="container_location">
                     <img src="assets/location_mob.svg" alt="">
-                    <p>Insira seu CEP</p>
+                    <p class="cep_text_mob">Insira seu CEP</p>
                 </div>
                 <img src="assets/chevron_black.svg" alt="chevron">
             </div>
@@ -80,7 +102,20 @@
         <strong><p style="font-size: 14px;">Confira o envio para seu endereço</p></strong>
         <p style="font-size: 12px;">Inclua seu CEP para verificar os custos e prazos de entrega precisos na busca.</p>
         <div class="container_botoes_localizacao">
-            btn_
+            <!--div.nome_da_div  (classe)-->
+            <!--div#nome da div  (id)--> 
+            <!--para fazer divs dinamicamente colocas a tag div e um * e o numero de vezes que voce quer a div por ex 3 div*3-->
+
+            
+            <button class="aceitar">Adicionar o Cep</button>
+            <button class="cancelar">Cancelar</button>
+               
+            
+            
+            
+             </div>
+             
+    
         </div>
     </div>
     <div class="container_carrosel">

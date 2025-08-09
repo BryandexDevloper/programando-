@@ -15,6 +15,79 @@
 
 body{
     background-color: var(--cor_de_fundo);
+    position: relative;
+    height: 100vh;
+    
+}
+
+.container_filtro_escuro{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: rgba(0, 0, 0, 0.211);
+    z-index: 111111111111111111111111111111111111111111111111111111111111111111;
+    display: none;
+}
+
+.container_colocar_cep_box{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.container_colocar_cep{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 500px;
+    height: 200px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+   
+}
+
+.container_input_cep{
+    width: 50%;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+
+.container_input_cep input{
+    height: 100%;
+    padding: 0px 5px;
+    border: 2px solid grey;
+    border-radius: 5px;
+}
+
+
+.btn_usar_cep{
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    padding: 5px;
+    background-color: var(--azul_forte_principal);
+    color: white;
+    border-radius: 5px;
+    transform: translate(0px,-10%);
+    cursor: pointer;
+}
+
+.container_btn_close{
+  position: absolute;
+   top:10px;
+   right:10px;
+   cursor: pointer;
 }
 
 * {
@@ -448,7 +521,48 @@ main {
     padding: 10px;
     gap: 10px;
     text-align: left;
+    display: none;
 }
+
+
+/*----------------aqui vem as novos css------------------------------ */
+    .container_botoes_localizacao{
+     width: 100%;
+    
+     margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    }
+
+    .container_botoes_localizacao .cancelar ,.container_botoes_localizacao .aceitar{
+        height: 40px;
+        width: 50%;
+        font-weight: bolder;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+      
+    .cancelar{
+        background-color: var(--azul_claro_principal);
+        
+    }
+
+    .aceitar{
+        background-color: var(--azul_forte_principal);
+        color: white;
+    }
+
+    .cancelar:hover{
+        background-color: #cbdef8;
+    }
+
+    .aceitar:hover{
+         background-color:#0666f7;
+
+    }
+
+    
 
 @media(max-width:970px){
    .container_img_anuncio{
@@ -504,6 +618,25 @@ main {
    
 .btn_avancar_produtos,.btn_voltar_produtos{
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+.container_localizacao_box{
+    top: 
+    0;
+    left: 0px;
+    
+}
+
+.container_colocar_cep{
+    width: 100%;
+}
+
+.container_input_cep {
+    width: 100%;
+}
+
+.btn_usar_cep{
+    padding: 2px 5px;
+    top: 52%;
 }
 
 }
