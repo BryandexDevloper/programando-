@@ -4,6 +4,7 @@
     "express": "^4.18.2",
     "mysql2": "^3.14.3",
     "node-fetch": "^3.3.2",
-    "router": "^2.2.0"
+    "router": "^2.2.0",
+    "validator": "^13.15.15"
   }
 }
