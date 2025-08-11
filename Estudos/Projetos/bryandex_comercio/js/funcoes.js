@@ -307,8 +307,9 @@ function tela_Criar_conta() {
 
     const btnCriar = document.querySelector('#btnCriar')
 
-    btnCriar.addEventListener('click', () => {
-        if (senha.value = !confirmarSenha.value) {
+    btnCriar.addEventListener('click', (event) => {
+         event.preventDefault(); 
+        if (senha.value != confirmarSenha.value) {
             return alert('Senhas não coincidem')
         } else {
             Criar_conta(email.value, senha.value, codigoVerificacao.value, telefone.value, nome.value, sobrenome.value)
@@ -355,7 +356,7 @@ function tela_Validacao_Email() {
             <p>🔒 Enviaremos um código de verificação para este email. Certifique-se de que está correto e que você tem acesso a ele.</p>
         </div>
 
-        <button type="submit" class="btn_criar_conta" id="btnValidarEmail">
+        <button class="btn_criar_conta" id="btnValidarEmail">
             Continuar
         </button>
 
@@ -386,6 +387,13 @@ function tela_Validacao_Email() {
     // Monta tudo
     container.append(header, form);
     main.appendChild(container);
+
+    const email_validacao = document.querySelector('#email_validacao');
+    const btnValidarEmail = document.querySelector('#btnValidarEmail')
+    btnValidarEmail.addEventListener('click',(event)=>{
+        event.preventDefault(); 
+        Validar_cadastro(email_validacao.value)
+    })
 }
 
 
@@ -466,7 +474,8 @@ function tela_Login() {
     const senha_login = document.querySelector('#senha_login')
     const btnEntrar = document.querySelector('#btnEntrar')
 
-    btnEntrar.addEventListener('click', () => {
+    btnEntrar.addEventListener('click', (event) => {
+         event.preventDefault(); 
         Login(email_login.value, senha_login.value)
         email_login.value = ""
         senha_login.value = ""
@@ -509,7 +518,7 @@ async function Login(email, senha) {
         })
         // titulo_criar_conta  titulo da tela login 
         const resultado = await data.json();
-        if (resultado) {
+        if (resultado.sucesso) {
             const titulo_criar_conta = document.querySelector('.titulo_criar_conta')
             titulo_criar_conta.textContent = resultado.mensagem
             const usuario = {
@@ -520,7 +529,10 @@ async function Login(email, senha) {
             }
             localStorage.setItem('usuario', JSON.stringify(usuario));
             logado = true
-            location.reload()
+           
+            setTimeout(()=>{
+                location.reload()
+            },3000)
         } else {
             const titulo_criar_conta = document.querySelector('.titulo_criar_conta')
             titulo_criar_conta.textContent = resultado.mensagem
@@ -544,7 +556,7 @@ async function Validar_cadastro(email) {
     })
 
     const resultado = await data.json()
-    if (resultado) {
+    if (resultado.sucesso) {
         const titulo_criar_conta = document.querySelector('.titulo_criar_conta')
         titulo_criar_conta.textContent = `${resultado.mensagem} voce sera redirecionado...`
 
@@ -569,7 +581,7 @@ async function Criar_conta(email, senha, codigo_verificacao, telefone, nome, sob
             body: JSON.stringify({
                 email: email,
                 senha: senha,
-                codigo_verificacao,
+                codigo_verificacao:codigo_verificacao,
                 nome: nome,
                 sobrenome: sobrenome,
                 telefone: telefone
@@ -577,7 +589,7 @@ async function Criar_conta(email, senha, codigo_verificacao, telefone, nome, sob
         })
 
         const resultado = await data.json()
-        if (resultado) {
+        if (resultado.sucesso) {
             const titulo_criar_conta = document.querySelector('.titulo_criar_conta')
             titulo_criar_conta.textContent = resultado.mensagem
 
