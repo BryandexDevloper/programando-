@@ -1,0 +1,1 @@
+fetch('https://wttr.in/Sao+Paulo?format=j1').then(data => data.json()).then(res => console.log(res))
