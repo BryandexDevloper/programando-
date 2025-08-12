@@ -66,7 +66,7 @@ servidor.post('/validar_cadastro',(req,res)=>{
             return res.status(400).json({mensagem:'Email inválido', sucesso:false})
         }
         
-        console.log('Validando email:', email_limpo) // DEBUG
+       
         
         // Verifica se email já existe
         conexao.query(sql_verificar_email_existe, [email_limpo], (err, resultado) => {
@@ -82,7 +82,7 @@ servidor.post('/validar_cadastro',(req,res)=>{
             let codigo = Math.floor(Math.random() * 145751) 
             const htmlEmail = confirmar_cadastro_html(codigo) 
             
-            console.log('Código gerado:', codigo) // DEBUG
+            
             
             conexao.query(sql_validar_cadastro,[codigo],(err,resultado)=>{
                     if(err){
@@ -109,7 +109,7 @@ servidor.post('/validar_cadastro',(req,res)=>{
                     })
 
                     const resultado_email = await data.json()
-                    console.log('Resultado do email:', resultado_email) // DEBUG
+                    
                     
                     if(resultado_email && resultado_email.mensagem){
                         res.status(200).json({mensagem: resultado_email.mensagem, sucesso:true})
@@ -118,7 +118,7 @@ servidor.post('/validar_cadastro',(req,res)=>{
                     }
 
                     }catch(err){
-                        console.error('Erro ao enviar email:', err) // DEBUG
+                       
                         return res.status(400).json({mensagem:'Erro ao enviar o email tente novamente',sucesso:false})
                     }
                   

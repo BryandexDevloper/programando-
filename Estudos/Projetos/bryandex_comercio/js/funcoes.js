@@ -2,11 +2,9 @@
 
 
 
-let logadoo = false
-const subcategoria = document.querySelector('.subcategoria')
-localStorage.setItem("valor_boo", JSON.stringify(logadoo))
 
-let logado = JSON.parse(localStorage.getItem('valor_boo'))
+
+const subcategoria = document.querySelector('.subcategoria')
 
 
 async function PegarCep(cep) {
@@ -83,50 +81,6 @@ container_localizacao_mobile.addEventListener('click', () => {
     ColocarCep()
 })
 
-
-if (!logado) {
-
-    setTimeout(() => {
-        ColocarCep()
-    }, 5000)
-
-    document.addEventListener('DOMContentLoaded', () => {
-
-        document.addEventListener('DOMContentLoaded', () => {
-
-            async function obter() {
-                try {
-                    const data = await obterLocaliza()
-                    console.log(data.coords.longitude, data.coords.latitude)
-                } catch (err) {
-                    console.log('Erro ao obter localização:', err)
-                }
-            }
-
-            obter()
-
-            async function obterLocaliza() {
-                return new Promise((resolve, reject) => {
-                    if (!navigator.geolocation) {
-                        reject('Geolocalização não suportada pelo navegador')
-                    } else {
-                        navigator.geolocation.getCurrentPosition(
-                            (posicao) => resolve(posicao),
-                            (erro) => reject(erro)
-                        )
-                    }
-                })
-            }
-        })
-
-
-    })
-
-
-} else {
-    console.log('voce esta logado')
-
-}
 
 
 subcategoria.addEventListener('mouseover', () => {
@@ -308,7 +262,7 @@ function tela_Criar_conta() {
     const btnCriar = document.querySelector('#btnCriar')
 
     btnCriar.addEventListener('click', (event) => {
-         event.preventDefault(); 
+        event.preventDefault();
         if (senha.value != confirmarSenha.value) {
             return alert('Senhas não coincidem')
         } else {
@@ -390,8 +344,8 @@ function tela_Validacao_Email() {
 
     const email_validacao = document.querySelector('#email_validacao');
     const btnValidarEmail = document.querySelector('#btnValidarEmail')
-    btnValidarEmail.addEventListener('click',(event)=>{
-        event.preventDefault(); 
+    btnValidarEmail.addEventListener('click', (event) => {
+        event.preventDefault();
         Validar_cadastro(email_validacao.value)
     })
 }
@@ -475,13 +429,82 @@ function tela_Login() {
     const btnEntrar = document.querySelector('#btnEntrar')
 
     btnEntrar.addEventListener('click', (event) => {
-         event.preventDefault(); 
+        event.preventDefault();
         Login(email_login.value, senha_login.value)
         email_login.value = ""
         senha_login.value = ""
     })
 
 }
+
+function telaPerfilusuario(usuario){
+    const main = document.querySelector("#principal")
+    main.innerHTML=""
+    const conteudo = document.createElement("div")
+    conteudo.innerHTML=`
+
+ <div class="container_perfil">
+        <div class="header_perfil">
+            <div class="foto_perfil">
+                <img id="foto" src="https://via.placeholder.com/120" alt="Foto do Perfil">
+            </div>
+            <h1 class="nome_usuario">Nome do Usuário</h1>
+            <p class="email_usuario">usuario@exemplo.com</p>
+        </div>
+        <div class="container_info_perfil">
+            <div class="grupo_info">
+                <label>Telefone</label>
+                <p class ="numero">(11) 98765-4321</p>
+            </div>
+            <div class="grupo_info">
+                <label>Endereco</label>
+                <p class ="rua">Rua Exemplo, 123, São Paulo, SP</p>
+            </div>
+            <div class="container_opcoes">
+                <div class="opcao_perfil">
+                    <span>Histórico de Compras</span>
+                    <span class="icone">➔</span>
+                </div>
+                <div class="opcao_perfil">
+                    <span>Favoritos</span>
+                    <span class="icone">➔</span>
+                </div>
+                <div class="opcao_perfil">
+                    <span>Configurações de Notificação</span>
+                    <span class="icone">➔</span>
+                </div>
+            </div>
+            <button class="btn_editar_perfil">Editar Perfil</button>
+            <button class="btn_logout">Sair</button>
+        </div>
+    </div>
+    
+    `
+    main.appendChild(conteudo)
+    const btn_sair = document.querySelector(".btn_logout")
+    const foto = document.querySelector("#foto")
+    const nome_usuario = document.querySelector(".nome_usuario")
+    const email_usuario = document.querySelector(".email_usuario")
+    const numero = document.querySelector(".numero")
+    const Endereco = document.querySelector(".rua")
+
+    if(!usuario.foto){
+        foto.setAttribute("src","https://objetivoligar.com/wp-content/uploads/2017/03/blank-profile-picture-973460_1280-768x768.jpg")
+    }
+
+    nome_usuario.textContent=`${usuario.nome} ${usuario.sobrenome}`
+    email_usuario.textContent=`${usuario.email}`
+    numero.textContent=`${usuario.numero}`
+    Endereco.textContent=`${usuario.endereco}`
+    console.log(usuario)
+
+    btn_sair.addEventListener("click",()=>{
+        location.reload()
+    })
+}
+
+ 
+
 
 
 
@@ -490,18 +513,6 @@ const entre = document.querySelector('#entre')
 const compras = document.querySelector('#compras')
 
 
-
-crie_sua_conta.addEventListener('click', () => {
-    tela_Validacao_Email()
-})
-
-compras.addEventListener('click',()=>{
-    tela_Login()
-})
-
-entre.addEventListener('click', () => {
-    tela_Login()
-})
 
 
 async function Login(email, senha) {
@@ -524,15 +535,21 @@ async function Login(email, senha) {
             const usuario = {
                 email: resultado.usuario.email,
                 nome: resultado.usuario.nome,
-                foto: resultado.usuario.foto,
+                sobrenome: resultado.usuario.sobrenome,
+                foto: resultado.usuario.foto_perfil,
+                numero:resultado.usuario.telefone,
+                endereco:resultado.usuario.endereco,
                 carrinho_de_compras: resultado.usuario.carrinho_de_compras
             }
+
             localStorage.setItem('usuario', JSON.stringify(usuario));
-            logado = true
-           
-            setTimeout(()=>{
+            let logado = true
+            localStorage.setItem('logado', JSON.stringify(logado))
+
+
+            setTimeout(() => {
                 location.reload()
-            },3000)
+            }, 3000)
         } else {
             const titulo_criar_conta = document.querySelector('.titulo_criar_conta')
             titulo_criar_conta.textContent = resultado.mensagem
@@ -581,7 +598,7 @@ async function Criar_conta(email, senha, codigo_verificacao, telefone, nome, sob
             body: JSON.stringify({
                 email: email,
                 senha: senha,
-                codigo_verificacao:codigo_verificacao,
+                codigo_verificacao: codigo_verificacao,
                 nome: nome,
                 sobrenome: sobrenome,
                 telefone: telefone
@@ -596,7 +613,7 @@ async function Criar_conta(email, senha, codigo_verificacao, telefone, nome, sob
             setTimeout(() => {
                 tela_Login()
             }, 3000)
-        }else{
+        } else {
             const titulo_criar_conta = document.querySelector('.titulo_criar_conta')
             titulo_criar_conta.textContent = resultado.mensagem
         }
@@ -611,7 +628,76 @@ async function Criar_conta(email, senha, codigo_verificacao, telefone, nome, sob
 
 
 const usuario = JSON.parse(localStorage.getItem('usuario'))
+const logado = JSON.parse(localStorage.getItem('logado'))
 
-if (usuario) {
-    // aqui vem as mudanças de layolt
+
+function Alterartela() {
+    crie_sua_conta.textContent=`${usuario.nome} ${usuario.sobrenome}`
+    entre.textContent=`favoritos`
+    crie_sua_conta.addEventListener("click",()=>{
+        telaPerfilusuario(usuario)
+    })
+}
+
+
+
+
+//  function telaPerfilusuario()
+
+
+if (!logado) {
+
+    setTimeout(() => {
+        ColocarCep()
+    }, 5000)
+
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+        async function obter() {
+            try {
+                const data = await obterLocaliza()
+                console.log(data.coords.longitude, data.coords.latitude)
+            } catch (err) {
+                console.log('Erro ao obter localização:', err)
+            }
+        }
+
+        obter()
+
+        async function obterLocaliza() {
+            return new Promise((resolve, reject) => {
+                if (!navigator.geolocation) {
+                    reject('Geolocalização não suportada pelo navegador')
+                } else {
+                    navigator.geolocation.getCurrentPosition(
+                        (posicao) => resolve(posicao),
+                        (erro) => reject(erro)
+                    )
+                }
+            })
+        }
+    })
+
+
+
+    crie_sua_conta.addEventListener('click', () => {
+        tela_Validacao_Email()
+    })
+
+    compras.addEventListener('click', () => {
+        tela_Login()
+    })
+
+    entre.addEventListener('click', () => {
+        tela_Login()
+    })
+
+
+
+} else {
+    console.log('voce esta logado')
+    Alterartela()
+
 }
