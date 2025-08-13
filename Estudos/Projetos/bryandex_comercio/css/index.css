@@ -472,12 +472,10 @@ main {
     border-radius: 50%;
     background-color: white;
     cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    
 }
 
-.btn_avancar_produtos,
-.btn_voltar_produtos:hover {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
 
 .container_categoria_inputs {
     width: 100%;
@@ -976,6 +974,119 @@ main {
     background-color: #cbdef8;
 }
 
+
+.menu_hamburguer {
+            
+           
+            width:100%;
+            height: 100%;
+            background-color: white;
+            box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
+           
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .perfil_area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .foto_perfil {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--azul_forte_principal);
+            margin-bottom: 15px;
+        }
+
+        .foto_perfil img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .bem_vindo {
+            font-size: var(--tam_medio);
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .email_usuario {
+            font-size: var(--tam_muito_pequeno);
+            color: var(--cinza);
+        }
+
+        .menu_opcoes {
+            flex: 1;
+            padding: 20px 0;
+        }
+
+        .menu_opcoes ul {
+            list-style: none;
+        }
+
+        .menu_opcoes li {
+            padding: 15px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .menu_opcoes li:hover {
+            background-color: var(--azul_claro_principal);
+            border-radius: 8px;
+        }
+
+        .menu_botoes {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 20px 0;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .btn_criar_conta,
+        .btn_login {
+            width: 100%;
+            height: 45px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-align: center;
+        }
+
+        .btn_criar_conta {
+            background: linear-gradient(135deg, var(--azul_forte_principal), #1e88e5);
+            color: white;
+        }
+
+        .btn_criar_conta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 131, 250, 0.3);
+        }
+
+        .btn_login {
+            background-color: var(--azul_claro_principal);
+            color: #333;
+            border: 2px solid #e0e0e0;
+        }
+
+        .btn_login:hover {
+            background-color: #cbdef8;
+        }
+
 @keyframes spin {
     0% {
         transform: translate(-50%, -50%) rotate(0deg);
@@ -1045,8 +1156,7 @@ main {
 
 
 
-    .btn_avancar_produtos,
-    .btn_voltar_produtos {
+    .btn_avancar_produtos, .btn_voltar_produtos {
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
 
@@ -1110,5 +1220,7 @@ main {
     .nome_usuario {
         font-size: var(--tam_medio);
     }
+
+    
 
 }

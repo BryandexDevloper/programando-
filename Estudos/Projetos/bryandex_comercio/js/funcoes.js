@@ -437,11 +437,11 @@ function tela_Login() {
 
 }
 
-function telaPerfilusuario(usuario){
+function telaPerfilusuario(usuario) {
     const main = document.querySelector("#principal")
-    main.innerHTML=""
+    main.innerHTML = ""
     const conteudo = document.createElement("div")
-    conteudo.innerHTML=`
+    conteudo.innerHTML = `
 
  <div class="container_perfil">
         <div class="header_perfil">
@@ -487,23 +487,109 @@ function telaPerfilusuario(usuario){
     const email_usuario = document.querySelector(".email_usuario")
     const numero = document.querySelector(".numero")
     const Endereco = document.querySelector(".rua")
+    email_usuario.style.color="white"
+    
+    foto.setAttribute('src', usuario.foto || 'https://objetivoligar.com/wp-content/uploads/2017/03/blank-profile-picture-973460_1280-768x768.jpg')
 
-    if(!usuario.foto){
-        foto.setAttribute("src","https://objetivoligar.com/wp-content/uploads/2017/03/blank-profile-picture-973460_1280-768x768.jpg")
-    }
-
-    nome_usuario.textContent=`${usuario.nome} ${usuario.sobrenome}`
-    email_usuario.textContent=`${usuario.email}`
-    numero.textContent=`${usuario.numero}`
-    Endereco.textContent=`${usuario.endereco}`
+    nome_usuario.textContent = `${usuario.nome} ${usuario.sobrenome}`
+    email_usuario.textContent = `${usuario.email}`
+    numero.textContent = `${usuario.numero}`
+    Endereco.textContent = `${usuario.endereco}`
     console.log(usuario)
 
-    btn_sair.addEventListener("click",()=>{
+    btn_sair.addEventListener("click", () => {
         location.reload()
     })
 }
 
- 
+
+
+
+function menuHamburer(usuario, logado) {
+    const main = document.querySelector("#principal")
+    main.innerHTML = ""
+
+    const div = document.createElement("div")
+    div.style.height = "100%"
+    div.innerHTML = `
+
+        <div class="menu_hamburguer">
+        <div class="perfil_area">
+            <div class="foto_perfil">
+                <img class='img' src="https://via.placeholder.com/80" alt="Foto de Perfil">
+            </div>
+            <div class="bem_vindo">Bem-vindo!</div>
+            <div class="email_usuario">exemplo@dominio.com</div>
+        </div>
+        <div class="menu_opcoes">
+            <ul>
+                <li id='incio'>Início</li>
+                <li id='perfil'>Perfil</li>
+                <li id='carrinho'>Minhas Compras</li>
+                <li id='favoritos'>Favoritos</li>
+                <li id='configuracoes'>Configurações</li>
+            </ul>
+        </div>
+        <div class="menu_botoes">
+            <button class="btn_criar_conta">Criar Conta</button>
+            <button class="btn_login">Login</button>
+        </div>
+    </div>
+    
+    `
+    main.appendChild(div)
+
+    const foto_perfil = document.querySelector(".img")
+    const email_usuario = document.querySelector(".email_usuario")
+    const btn_criar_conta = document.querySelector('.btn_criar_conta')
+    const btn_login = document.querySelector(".btn_login")
+    const btn_bem_vindo = document.querySelector(".bem_vindo")
+
+    // lista desorsenada
+
+    const inicio = document.querySelector('#incio'); // cuidado com o "incio" no ID
+    const perfil = document.querySelector('#perfil');
+    const carrinho = document.querySelector('#carrinho');
+    const favoritos = document.querySelector('#favoritos');
+    const configuracoes = document.querySelector('#configuracoes');
+
+    if (logado) {
+
+        foto_perfil.setAttribute("src", usuario.foto || 'https://objetivoligar.com/wp-content/uploads/2017/03/blank-profile-picture-973460_1280-768x768.jpg')
+        email_usuario.textContent = usuario.email
+        btn_bem_vindo.textContent = `${btn_bem_vindo.textContent} ${usuario.nome}`
+        btn_login.remove()
+        btn_criar_conta.remove()
+    } else {
+        btn_criar_conta.addEventListener('click', () => {
+            tela_Criar_conta()
+        })
+
+
+        btn_login.addEventListener('click', () => {
+            tela_Login()
+        })
+    }
+
+    inicio.addEventListener('click',()=>{
+        location.reload()
+    })
+
+    perfil.addEventListener('click',()=>{
+        telaPerfilusuario(usuario)
+    })
+
+    carrinho.addEventListener('click',()=>{
+        telaCarrinho()
+    })
+
+
+
+
+}
+
+
+
 
 
 
@@ -537,8 +623,8 @@ async function Login(email, senha) {
                 nome: resultado.usuario.nome,
                 sobrenome: resultado.usuario.sobrenome,
                 foto: resultado.usuario.foto_perfil,
-                numero:resultado.usuario.telefone,
-                endereco:resultado.usuario.endereco,
+                numero: resultado.usuario.telefone,
+                endereco: resultado.usuario.endereco,
                 carrinho_de_compras: resultado.usuario.carrinho_de_compras
             }
 
@@ -619,7 +705,7 @@ async function Criar_conta(email, senha, codigo_verificacao, telefone, nome, sob
         }
 
     } catch (err) {
-        console.log(err)
+        throw new Error(err.mesage)
     }
 
 
@@ -632,24 +718,60 @@ const logado = JSON.parse(localStorage.getItem('logado'))
 
 
 function Alterartela() {
-    crie_sua_conta.textContent=`${usuario.nome} ${usuario.sobrenome}`
-    entre.textContent=`favoritos`
-    crie_sua_conta.addEventListener("click",()=>{
+    crie_sua_conta.textContent = `${usuario.nome} ${usuario.sobrenome}`
+    entre.textContent = `favoritos`
+    crie_sua_conta.addEventListener("click", () => {
         telaPerfilusuario(usuario)
     })
+
+
+
+    menu_hambur.addEventListener('click', () => {
+        num++
+        if (num == 1) {
+            menuHamburer(usuario, logado)
+            menu_hambur.setAttribute("src","assets/close.svg")
+        } else {
+            num = 0
+            location.reload()
+        }
+
+    })
+
 }
 
+
+
+async function apiPegarendecoLatitude(lat, lon) {
+    try {
+        const data = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`)
+        const resultado = await data.json()
+        const cep = document.querySelector('.cep')
+        cep.textContent = `${resultado.address.city}`
+
+
+
+    } catch (err) {
+        if (err) {
+            console.log('ocorreu um erro ' + err)
+        }
+    }
+}
+
+
+
+const menu_hambur = document.querySelector("#menu_hambur")
+let num = 0
 
 
 
 //  function telaPerfilusuario()
 
 
+
+
 if (!logado) {
 
-    setTimeout(() => {
-        ColocarCep()
-    }, 5000)
 
 
 
@@ -658,7 +780,7 @@ if (!logado) {
         async function obter() {
             try {
                 const data = await obterLocaliza()
-                console.log(data.coords.longitude, data.coords.latitude)
+                apiPegarendecoLatitude(data.coords.latitude, data.coords.longitude)
             } catch (err) {
                 console.log('Erro ao obter localização:', err)
             }
@@ -693,6 +815,22 @@ if (!logado) {
     entre.addEventListener('click', () => {
         tela_Login()
     })
+
+
+
+
+    menu_hambur.addEventListener('click', () => {
+        num++
+        if (num == 1) {
+            menuHamburer()
+
+        } else {
+            num = 0
+            location.reload()
+        }
+
+    })
+
 
 
 
