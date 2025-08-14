@@ -1,0 +1,1561 @@
+/* ===== IMPORTAÇÃO DE FONTES E VARIÁVEIS CSS ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap&subset=latin');
+
+/* Definição de variáveis CSS para cores e tamanhos */
+:root {
+    --amarelo_principal: #FFE600;        /* Amarelo característico do Mercado Livre */
+    --azul_forte_principal: #3483FA;     /* Azul principal dos botões */
+    --azul_claro_principal: #E3EDFB;     /* Azul claro para fundos */
+    --cor_de_fundo: #EBEBEB;            /* Cinza claro para fundo geral */
+    --cinza: grey;                       /* Cinza padrão */
+    --verde_forte_principal: #00A650;    /* Verde para indicadores de sucesso */
+    --fonte_principal: 'Poppins';        /* Fonte principal do site */
+    --tam_muito_pequeno: 12px;           /* Tamanho de fonte pequeno */
+    --tam_medio: 20px;                   /* Tamanho de fonte médio */
+    --tam_grande: 26px;                  /* Tamanho de fonte grande */
+}
+
+/* ===== ESTILOS GLOBAIS E RESET ===== */
+/* Reset básico para remover margens e paddings padrão */
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;              /* Inclui border e padding no cálculo da largura */
+    font-family: var(--fonte_principal); /* Aplica a fonte Poppins globalmente */
+}
+
+/* Estilo do corpo da página */
+body {
+    background-color: var(--cor_de_fundo);
+    position: relative;
+    height: 100vh;                       /* Altura total da viewport */
+}
+
+/* ===== MODAL DE CEP (OVERLAY ESCURO) ===== */
+/* Container para o filtro escuro que cobre toda a tela quando o modal está aberto */
+.container_filtro_escuro {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);    /* Centraliza o elemento */
+    background-color: rgba(0, 0, 0, 0.211); /* Fundo semi-transparente */
+    z-index: 111111111111111111111111111111111111111111111111111111111111111111; /* Z-index muito alto para ficar por cima de tudo */
+    display: none;                       /* Inicialmente oculto */
+}
+
+/* Container que envolve o modal de CEP */
+.container_colocar_cep_box {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Modal principal para inserção de CEP */
+.container_colocar_cep {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);    /* Centraliza o modal */
+    width: 500px;
+    height: 200px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Container do campo de input do CEP */
+.container_input_cep {
+    width: 50%;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Estilo do input de CEP */
+.container_input_cep input {
+    height: 100%;
+    padding: 0px 5px;
+    border: 2px solid grey;
+    border-radius: 5px;
+}
+
+/* Botão para usar o CEP inserido */
+.btn_usar_cep {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    padding: 5px;
+    background-color: var(--azul_forte_principal);
+    color: white;
+    border-radius: 5px;
+    transform: translate(0px, -10%);
+    cursor: pointer;
+}
+
+/* Botão de fechar o modal */
+.container_btn_close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+/* ===== HEADER (CABEÇALHO) ===== */
+/* Cabeçalho principal do site */
+header {
+    width: 100%;
+    height: 100px;
+    background-color: rgba(128, 128, 128, 0.729); /* Fundo cinza semi-transparente */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Containers das seções superior e inferior do header */
+.cima,
+.baixo {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    max-width: 1200px;                   /* Largura máxima para centralizar conteúdo */
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* ===== LOGO ===== */
+/* Container da logo do Mercado Livre */
+.container_logo {
+    width: 135px;
+    height: 34px;
+}
+
+.container_logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;                 /* Mantém proporção da imagem */
+}
+
+/* ===== BARRA DE PESQUISA ===== */
+/* Container principal da barra de pesquisa */
+header .container_input {
+    width: 50%;
+    height: 40px;
+    display: flex;
+    background-color: white;
+    align-items: center;
+    border-radius: 5px;
+}
+
+/* Campo de pesquisa */
+.container_input #container_pesquisar {
+    flex: 1;                            /* Ocupa todo espaço disponível */
+    height: 100%;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Botão de pesquisar */
+.container_input .container_btn_pesquisar {
+    width: 50px;
+    height: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid;
+}
+
+/* ===== ÁREA DE ANÚNCIO ===== */
+/* Container para banner de anúncio no header */
+.container_img_anuncio {
+    width: 340px;
+    height: 40px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container_img_anuncio img {
+    width: 100%;
+    object-fit: cover;
+}
+
+/* ===== LOCALIZAÇÃO ===== */
+/* Container de localização (CEP) */
+.container_localiza {
+    margin-right: 15px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.container_localiza:hover {
+    border: 0.5px solid grey;           /* Borda ao passar o mouse */
+}
+
+/* Ícone de localização */
+.container_localiza .container_ping {
+    height: 100%;
+    width: 26px;
+}
+
+.container_ping img {
+    width: 100%;
+    object-fit: contain;
+}
+
+/* Texto da localização */
+.container_localiza .container_texto {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.container_texto .informe_cep {
+    font-size: var(--tam_muito_pequeno);
+    color: var(--cinza);
+}
+
+/* ===== NAVEGAÇÃO E MENUS ===== */
+/* Container da lista de categorias */
+.container_lista {
+    width: 50%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Lista de categorias principal */
+#lista_categorias {
+    width: 100%;
+    display: flex;
+    list-style-type: none;              /* Remove marcadores da lista */
+    font-size: 13px;
+    justify-content: space-between;
+    position: relative;
+}
+
+#lista_categorias li {
+    cursor: pointer;
+}
+
+/* Subcategorias */
+.subcategoria {
+    position: relative;
+    display: flex;
+    gap: 5px;
+}
+
+/* Container das subcategorias (dropdown) */
+.container_listaa {
+    position: absolute;
+    top: 30px;
+    background-color: red;
+    height: 300px;
+    width: 300px;
+    z-index: 1000000;                   /* Z-index alto para ficar por cima */
+    display: flex;
+    border-radius: 8px;
+    display: none;                      /* Inicialmente oculto */
+}
+
+/* Flag do Mercado Play */
+.flag_mercado_play {
+    position: absolute;
+    top: -9px;
+    left: 68%;
+    border-radius: 10px;
+    background-color: var(--verde_forte_principal);
+    font-size: 8px;
+    padding: 0px 3px;
+    color: white;
+    font-weight: bold;
+}
+
+/* Ícone de seta (chevron) */
+.container_chevron {
+    transform: rotate(-92deg);          /* Rotaciona a seta */
+    vertical-align: middle;
+}
+
+/* Menu horizontal */
+#lista_menu {
+    display: flex;
+    list-style-type: none;
+    justify-content: space-around;
+    font-size: 13px;
+}
+
+#lista_menu li {
+    cursor: pointer;
+}
+
+.container_menu_lista {
+    width: 340px;
+    height: 20px;
+}
+
+/* ===== CARROSSEL PRINCIPAL ===== */
+/* Container do carrossel de imagens principal */
+.container_carrosel {
+    width: 100%;
+    height: 500px;
+    background-color: var(--amarelo_principal);
+    display: flex;
+    flex-direction: column-reverse;     /* Inverte a ordem dos elementos */
+    align-items: center;
+    background-position: center;
+}
+
+/* Botões de navegação do carrossel */
+.container_botoes {
+    width: 100%;
+    margin: auto;
+    justify-content: space-between;
+    display: none;                      /* Inicialmente oculto */
+}
+
+/* Mostra os botões quando passa o mouse sobre o carrossel */
+.container_carrosel:hover .container_botoes {
+    display: flex;
+}
+
+/* Botões de avançar e voltar do carrossel */
+.btn_avancar,
+.btn_voltar {
+    width: 40px;
+    height: 60px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.btn_avancar {
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+}
+
+.btn_voltar {
+    border-bottom-right-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+/* Indicadores (dots) do carrossel */
+.container_inputs {
+    display: flex;
+    align-self: flex-end;
+    margin-left: 50%;
+    margin-right: 50%;
+    margin-bottom: 150px;
+    gap: 5px;
+}
+
+/* ===== ÁREA PRINCIPAL (MAIN) ===== */
+main {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background-color: var(--cor_de_fundo);
+}
+
+/* ===== SEÇÃO DE INFORMAÇÕES ===== */
+/* Container das informações principais */
+.container_informacoes {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 400px;                         /* Posicionado abaixo do carrossel */
+    left: 50%;
+    transform: translate(-50%);         /* Centraliza horizontalmente */
+}
+
+/* Primeira seção de informações */
+.container_primeira_sessao {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    position: relative;
+}
+
+/* Botões de navegação da seção de informações */
+.container_botoes_informacoes {
+    position: absolute;
+    width: 103%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container_botoes_informacoes p {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border-radius: 30px;                /* Botões circulares */
+    cursor: pointer;
+}
+
+.container_botoes_informacoes p:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra ao passar o mouse */
+}
+
+/* Retângulos de informação */
+.container_retangunlo {
+    flex: 1;
+    height: 300px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+/* Efeito de blur no fundo */
+.container_blur {
+    position: absolute;
+    width: 100%;
+    z-index: -1;                        /* Fica atrás do conteúdo */
+    backdrop-filter: blur(10px);        /* Aplica blur no fundo */
+    background-color: rgba(255, 255, 255, 0.041);
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    height: 300px;
+}
+
+/* ===== SEÇÃO DE PRODUTOS ===== */
+/* Espaçamento da seção do carrossel */
+#carrolssel_Section {
+    margin-bottom: 250px;
+}
+
+/* Container dos produtos */
+.container_produtos {
+    width: 100%;
+    max-width: 1200px;
+    height: 500px;
+    border: 1px solid black;
+    margin: auto;
+    margin-bottom: 20px;
+    overflow-x: scroll;                 /* Scroll horizontal */
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: white;
+    position: relative;
+}
+
+/* Botões de navegação dos produtos */
+.container_botoes2 {
+    width: 100%;
+    height: 60px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 20px;
+}
+
+.btn_avancar_produtos,
+.btn_voltar_produtos {
+    height: 100%;
+    width: 60px;
+    border-radius: 50%;                 /* Botões circulares */
+    background-color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Container de inputs da categoria */
+.container_categoria_inputs {
+    width: 100%;
+    height: 40px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+}
+
+/* ===== MENU MOBILE ===== */
+/* Menu hambúrguer para dispositivos móveis */
+.menu_celular {
+    display: none;                      /* Oculto por padrão (desktop) */
+    gap: 10px;
+    list-style-type: none;
+    cursor: pointer;
+}
+
+/* Localização mobile */
+.container_localizacao_mobile {
+    width: 100%;
+    display: none;                      /* Oculto por padrão (desktop) */
+    justify-content: space-between;
+}
+
+.container_location {
+    display: flex;
+    font-size: 12px;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Box de localização */
+.container_localizacao_box {
+    position: absolute;
+    width: 300px;
+    height: 150px;
+    background-color: white;
+    border-radius: 5px;
+    left: 350px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    gap: 10px;
+    text-align: left;
+    display: none;                      /* Inicialmente oculto */
+}
+
+/* ===== BOTÕES DE LOCALIZAÇÃO ===== */
+.container_botoes_localizacao {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.container_botoes_localizacao .cancelar,
+.container_botoes_localizacao .aceitar {
+    height: 40px;
+    width: 50%;
+    font-weight: bolder;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cancelar {
+    background-color: var(--azul_claro_principal);
+}
+
+.aceitar {
+    background-color: var(--azul_forte_principal);
+    color: white;
+}
+
+/* Efeitos hover nos botões */
+.cancelar:hover {
+    background-color: #cbdef8;
+}
+
+.aceitar:hover {
+    background-color: #0666f7;
+}
+
+/* ===== FORMULÁRIO DE CRIAR CONTA ===== */
+/* Container principal do formulário */
+.container_criar_conta {
+    width: 100%;
+    max-width: 1200px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Header do formulário */
+.header_criar_conta {
+    background: linear-gradient(135deg, var(--azul_forte_principal), #1e88e5);
+    padding: 30px 20px;
+    text-align: center;
+    color: white;
+}
+
+/* Logo no formulário */
+.logo_conta {
+    width: 120px;
+    height: 35px;
+    padding: 30px;
+    margin: 0 auto 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* Títulos do formulário */
+.titulo_criar_conta {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.subtitulo_criar_conta {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* Formulário */
+.form_criar_conta {
+    padding: 40px 30px;
+}
+
+/* Grupos de input */
+.grupo_input {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.grupo_input label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.grupo_input input {
+    width: 100%;
+    height: 48px;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;          /* Transição suave */
+    background-color: #fafafa;
+}
+
+/* Estado de foco dos inputs */
+.grupo_input input:focus {
+    outline: none;
+    border-color: var(--azul_forte_principal);
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(52, 131, 250, 0.1);
+}
+
+.grupo_input input::placeholder {
+    color: #999;
+}
+
+/* Grupos duplos (lado a lado) */
+.grupo_duplo {
+    display: flex;
+    gap: 15px;
+}
+
+.grupo_duplo .grupo_input {
+    flex: 1;
+}
+
+/* ===== CHECKBOX E TERMOS ===== */
+.checkbox_grupo {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.checkbox_grupo input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    cursor: pointer;
+    accent-color: var(--azul_forte_principal);
+}
+
+.checkbox_texto {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.4;
+}
+
+.checkbox_texto a {
+    color: var(--azul_forte_principal);
+    text-decoration: none;
+}
+
+.checkbox_texto a:hover {
+    text-decoration: underline;
+}
+
+/* ===== BOTÕES ===== */
+/* Botão principal de criar conta */
+.btn_criar_conta {
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(135deg, var(--azul_forte_principal), #1e88e5);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.btn_criar_conta:hover {
+    transform: translateY(-2px);        /* Eleva o botão */
+    box-shadow: 0 6px 20px rgba(52, 131, 250, 0.3);
+}
+
+.btn_criar_conta:active {
+    transform: translateY(0);           /* Volta à posição original */
+}
+
+/* ===== SEPARADOR E LOGIN SOCIAL ===== */
+/* Linha separadora */
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 25px 0;
+    color: #999;
+    font-size: 13px;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: #e0e0e0;
+}
+
+.divider span {
+    padding: 0 15px;
+}
+
+/* Botões de login social */
+.login_social {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.btn_social {
+    flex: 1;
+    height: 45px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.btn_social:hover {
+    border-color: var(--azul_forte_principal);
+    background-color: #f8f9ff;
+}
+
+/* Cores específicas dos botões sociais */
+.btn_google {
+    color: #db4437;                     /* Cor do Google */
+}
+
+.btn_facebook {
+    color: #4267b2;                     /* Cor do Facebook */
+}
+
+/* ===== LINKS E INFORMAÇÕES ===== */
+/* Link para login */
+.link_login {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.link_login p {
+    font-size: 14px;
+    color: #666;
+}
+
+.link_login a {
+    color: var(--azul_forte_principal);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.link_login a:hover {
+    text-decoration: underline;
+}
+
+/* Informações de segurança */
+.info_seguranca {
+    background-color: var(--azul_claro_principal);
+    border-left: 4px solid var(--azul_forte_principal);
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.info_seguranca p {
+    font-size: 12px;
+    color: #333;
+    line-height: 1.4;
+}
+
+/* ===== ESTADOS DE ERRO ===== */
+.erro_input {
+    border-color: #e74c3c !important;
+    background-color: #fdf2f2 !important;
+}
+
+.mensagem_erro {
+    font-size: 12px;
+    color: #e74c3c;
+    margin-top: 5px;
+    display: none;
+}
+
+/* ===== ANIMAÇÃO DE LOADING ===== */
+.btn_criar_conta.loading {
+    position: relative;
+    color: transparent;                 /* Oculta o texto durante loading */
+}
+
+.btn_criar_conta.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation: spin 1s linear infinite;  /* Animação de rotação */
+}
+
+
+/* ======= EDITAR USUARIO =====*/
+
+
+.container_editar_perfil {
+            width: 100%;
+            max-width: 1200px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin: 20px auto;
+        }
+
+        .header_editar_perfil {
+            background: linear-gradient(135deg, var(--azul_forte_principal), #1e88e5);
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .foto_perfil {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 15px;
+            border: 4px solid white;
+            background-color: var(--azul_claro_principal);
+            position: relative;
+        }
+
+        .foto_perfil img {
+            padding: 5px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .foto_perfil input[type="file"] {
+            display: none;
+        }
+
+        .foto_perfil label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+            padding: 8px 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .foto_perfil label:hover {
+            background-color: var(--azul_forte_principal);
+        }
+
+        .header_editar_perfil h1 {
+            font-size: var(--tam_grande);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .container_form_perfil {
+            padding: 40px 30px;
+        }
+
+        .grupo_form {
+            margin-bottom: 25px;
+        }
+
+        .grupo_form label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .grupo_form input {
+            width: 100%;
+            font-size: 14px;
+            color: #333;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #fafafa;
+            transition: border-color 0.3s ease;
+        }
+
+        .grupo_form input:focus {
+            outline: none;
+            border-color: var(--azul_forte_principal);
+            background-color: white;
+        }
+
+        .container_botoes {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn_salvar {
+            width: 100%;
+            height: 50px;
+            background: linear-gradient(135deg, var(--azul_forte_principal), #1e88e5);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn_salvar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 131, 250, 0.3);
+        }
+
+        .btn_salvar:active {
+            transform: translateY(0);
+        }
+
+        .btn_cancelar {
+            width: 100%;
+            height: 50px;
+            background-color: var(--azul_claro_principal);
+            color: #333;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn_cancelar:hover {
+            background-color: #cbdef8;
+        }
+
+
+/* ===== PERFIL DO USUÁRIO ===== */
+/* Container principal do perfil */
+.container_perfil {
+    width: 100%;
+    max-width: 1200px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 20px auto;
+}
+
+/* Header do perfil */
+.header_perfil {
+    background: linear-gradient(135deg, var(--azul_forte_principal), #1e88e5);
+    padding: 30px 20px;
+    text-align: center;
+    color: white;
+}
+
+/* Foto do perfil */
+.foto_perfil {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;                 /* Circular */
+    overflow: hidden;
+    margin: 0 auto 15px;
+    border: 4px solid white;
+    background-color: var(--azul_claro_principal);
+}
+
+.foto_perfil img {
+    padding: 5px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Nome e email do usuário */
+.nome_usuario {
+    font-size: var(--tam_grande);
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.email_usuario {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* Informações do perfil */
+.container_info_perfil {
+    padding: 40px 30px;
+}
+
+.grupo_info {
+    margin-bottom: 25px;
+}
+
+.grupo_info label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.grupo_info p {
+    font-size: 14px;
+    color: #666;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #fafafa;
+}
+
+/* ===== OPÇÕES DO PERFIL ===== */
+.container_opcoes {
+    margin-top: 30px;
+}
+
+.opcao_perfil {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.opcao_perfil:hover {
+    background-color: var(--azul_claro_principal);
+}
+
+.opcao_perfil span {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.opcao_perfil .icone {
+    width: 20px;
+    height: 20px;
+    color: var(--azul_forte_principal);
+}
+
+/* Botões do perfil */
+.btn_editar_perfil {
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(135deg, var(--azul_forte_principal), #1e88e5);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.btn_editar_perfil:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(52, 131, 250, 0.3);
+}
+
+.btn_editar_perfil:active {
+    transform: translateY(0);
+}
+
+.btn_logout {
+    width: 100%;
+    height: 50px;
+    background-color: var(--azul_claro_principal);
+    color: #333;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn_logout:hover {
+    background-color: #cbdef8;
+}
+
+/* ===== MENU HAMBÚRGUER ===== */
+.menu_hamburguer {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+/* Área do perfil no menu */
+.perfil_area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Foto do perfil no menu hambúrguer (versão menor) */
+.perfil_area .foto_perfil {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--azul_forte_principal);
+    margin-bottom: 15px;
+}
+
+.perfil_area .foto_perfil img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Texto de boas-vindas */
+.bem_vindo {
+    font-size: var(--tam_medio);
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.perfil_area .email_usuario {
+    font-size: var(--tam_muito_pequeno);
+    color: var(--cinza);
+}
+
+/* Opções do menu hambúrguer */
+.menu_opcoes {
+    flex: 1;                            /* Ocupa o espaço disponível */
+    padding: 20px 0;
+}
+
+.menu_opcoes ul {
+    list-style: none;
+}
+
+.menu_opcoes li {
+    padding: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.menu_opcoes li:hover {
+    background-color: var(--azul_claro_principal);
+    border-radius: 8px;
+}
+
+/* Botões do menu hambúrguer */
+.menu_botoes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 0;
+    border-top: 1px solid #e0e0e0;
+}
+
+.menu_botoes .btn_criar_conta,
+.menu_botoes .btn_login {
+    width: 100%;
+    height: 45px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    text-align: center;
+}
+
+.menu_botoes .btn_criar_conta {
+    background: linear-gradient(135deg, var(--azul_forte_principal), #1e88e5);
+    color: white;
+}
+
+.menu_botoes .btn_criar_conta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(52, 131, 250, 0.3);
+}
+
+.menu_botoes .btn_login {
+    background-color: var(--azul_claro_principal);
+    color: #333;
+    border: 2px solid #e0e0e0;
+}
+
+.menu_botoes .btn_login:hover {
+    background-color: #cbdef8;
+}
+
+/* ===== TELA DE VERIFICAÇÃO ===== */
+/* Container principal da verificação */
+.container_verificacao {
+    width: 100%;
+    max-width: 500px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    margin: 20px;
+}
+
+
+.container_editar_perfill{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+/* Header da verificação */
+.header_verificacao {
+    background: linear-gradient(135deg, var(--azul_forte_principal), #1e88e5);
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+.header_verificacao h1 {
+    font-size: var(--tam_grande);
+    font-weight: 600;
+    margin: 0 0 8px;
+}
+
+.header_verificacao p {
+    font-size: 14px;
+    opacity: 0.9;
+    margin: 0;
+}
+
+/* Formulário de verificação */
+.container_form_verificacao {
+    padding: 30px;
+}
+
+.grupo_form {
+    margin-bottom: 20px;
+}
+
+.grupo_form label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.grupo_form input {
+    width: 100%;
+    font-size: 14px;
+    color: #333;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #fafafa;
+    transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+}
+
+.grupo_form input:focus {
+    outline: none;
+    border-color: var(--azul_forte_principal);
+    background-color: white;
+    box-shadow: 0 0 8px rgba(21, 101, 192, 0.2);
+}
+
+/* Container dos botões de verificação */
+.container_form_verificacao .container_botoes {
+    display: flex;
+    gap: 10px;
+}
+
+/* Botão de verificar */
+.btn_verificar {
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(135deg, var(--azul_forte_principal), #1e88e5);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    -webkit-transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    -moz-transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.btn_verificar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(52, 131, 250, 0.3);
+    background: linear-gradient(135deg, #0d47a1, #1565c0);
+}
+
+.btn_verificar:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(52, 131, 250, 0.2);
+}
+
+/* Botão de cancelar */
+.btn_cancelar {
+    width: 100%;
+    height: 50px;
+    background-color: var(--azul_claro_principal);
+    color: #333;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    -webkit-transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    -moz-transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn_cancelar:hover {
+    background-color: #cbdef8;
+    border-color: #b0c4de;
+    transform: translateY(-2px);
+}
+
+.btn_cancelar:active {
+    transform: translateY(0);
+}
+
+/* ===== ANIMAÇÕES ===== */
+/* Animação de rotação para loading */
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* ===== MEDIA QUERIES - RESPONSIVIDADE ===== */
+/* Estilos para telas menores que 970px (tablets e celulares) */
+@media(max-width:970px) {
+    
+    /* ===== HEADER MOBILE ===== */
+    /* Oculta o banner de anúncio em telas menores */
+    .container_img_anuncio {
+        display: none;
+    }
+
+    /* Ajusta o espaçamento do header superior */
+    .cima {
+        justify-content: space-around;
+    }
+
+    /* Mostra o menu hambúrguer em dispositivos móveis */
+    .menu_celular {
+        display: flex;
+    }
+
+    /* Ajusta o tamanho da logo para mobile */
+    .container_logo {
+        width: auto;
+    }
+
+    /* Oculta elementos do header inferior em mobile */
+    .baixo .container_localiza,
+    .baixo .container_lista,
+    .baixo .container_menu_lista {
+        display: none;
+    }
+
+    /* ===== SEÇÃO DE INFORMAÇÕES MOBILE ===== */
+    /* Permite scroll horizontal na primeira seção */
+    .container_primeira_sessao {
+        display: flex;
+        overflow-x: scroll;
+    }
+
+    /* Ajusta os retângulos para não diminuir em mobile */
+    .container_retangunlo {
+        min-width: 150px;               /* Largura mínima fixa */
+        flex: 0 0 auto;                 /* flex-grow: 0, flex-shrink: 0, flex-basis: auto */
+    }
+
+    /* Força exibição dos botões de navegação em mobile */
+    .container_botoes {
+        display: flex;
+    }
+
+    /* Centraliza os indicadores do carrossel */
+    .container_inputs {
+        margin: auto;
+    }
+
+    /* ===== BARRA DE PESQUISA MOBILE ===== */
+    /* Aumenta a largura da barra de pesquisa em mobile */
+    header .container_input {
+        width: 65%;
+    }
+
+    /* ===== LOCALIZAÇÃO MOBILE ===== */
+    /* Mostra a localização mobile */
+    .container_localizacao_mobile {
+        display: flex;
+    }
+
+    /* Adiciona sombra aos botões de produtos em mobile */
+    .btn_avancar_produtos, 
+    .btn_voltar_produtos {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Reposiciona a caixa de localização */
+    .container_localizacao_box {
+        top: 0;
+        left: 0px;
+    }
+
+    /* ===== MODAL DE CEP MOBILE ===== */
+    /* Ajusta o modal de CEP para tela cheia em mobile */
+    .container_colocar_cep {
+        width: 100%;
+    }
+
+    /* Input de CEP ocupa largura total */
+    .container_input_cep {
+        width: 100%;
+    }
+
+    /* Reposiciona o botão do CEP */
+    .btn_usar_cep {
+        padding: 2px 5px;
+        top: 52%;
+    }
+
+    /* ===== FORMULÁRIOS MOBILE ===== */
+    /* Remove border-radius extremo em mobile */
+    .container_criar_conta {
+        border-radius: 8px;
+    }
+
+    /* Reduz padding do formulário */
+    .form_criar_conta {
+        padding: 30px 20px;
+    }
+
+    /* Grupos duplos viram coluna em mobile */
+    .grupo_duplo {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    /* Botões sociais viram coluna em mobile */
+    .login_social {
+        flex-direction: column;
+    }
+
+    .btn_social {
+        width: 100%;
+    }
+
+    /* ===== PERFIL MOBILE ===== */
+    /* Ajusta container do perfil para mobile */
+    .container_perfil {
+        border-radius: 8px;
+    }
+
+    /* Reduz padding das informações do perfil */
+    .container_info_perfil {
+        padding: 30px 20px;
+    }
+
+    /* Reduz tamanho da foto do perfil em mobile */
+    .foto_perfil {
+        width: 100px;
+        height: 100px;
+    }
+
+    /* Ajusta tamanho da fonte do nome do usuário */
+    .nome_usuario {
+        font-size: var(--tam_medio);
+    }
+    /* ===== EDITAR PERFIL MOBILE ===== */
+
+    .container_verificacao{
+        width: 100%;
+        margin: 0;
+        margin-top: 20px;
+    }
+
+    .btn_verificar,.btn_cancelar{
+        font-size: 14px;
+    }
+}
