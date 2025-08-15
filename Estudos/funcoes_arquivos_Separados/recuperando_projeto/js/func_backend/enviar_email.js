@@ -1,4 +1,4 @@
-const senha_app = process.env.SENHA_APP
+
 
 async function Enviaremail({to,email_user,html}) {
     const data = await fetch('https://api-envio-email-bryandex.onrender.com/enviar_mail',{
@@ -7,7 +7,7 @@ async function Enviaremail({to,email_user,html}) {
         body:JSON.stringify({
             service:'gmail',
             email:'adrianbryan072@gmail.com',
-            password:senha_app,
+            password:'fnfb gmzw sefz gaem',
             to:to,
             subject:'Tentativa de login nesse endereço de email',
             html:html,
