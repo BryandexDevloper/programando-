@@ -9,6 +9,6 @@ num0 = num1
 num1 = soma
 
 
-console.log(soma)
+console.log(soma + 1)
 }
 
