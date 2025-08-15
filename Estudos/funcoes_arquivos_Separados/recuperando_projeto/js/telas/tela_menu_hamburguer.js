@@ -4,8 +4,6 @@ import { tela_Criar_conta } from './tela_cadastro.js'
 import { telaPerfilusuario } from './tela_perfil_usuario.js'
 
 
-const logado = JSON.parse(localStorage.getItem('logado')); // vai retornar true ou false
-const usuario = JSON.parse(localStorage.getItem('usuario')); // retorna o objeto salvo
 
 
 
@@ -85,6 +83,9 @@ export function menuHamburer({logado, usuario}) {
 
         btn_login.addEventListener('click', () => {
             tela_Login()
+        })
+        perfil.addEventListener('click',()=>{
+            alert('Faça login para acessar seu perfil')
         })
     }
 

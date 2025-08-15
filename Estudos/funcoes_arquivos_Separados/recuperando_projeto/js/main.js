@@ -279,7 +279,7 @@ if (!logado) {
 
     // Event listeners para autenticação
     crie_sua_conta.addEventListener('click', () => {
-        tela_Validacao_Email();
+        tela_Criar_conta();
     });
 
     compras.addEventListener('click', () => {
@@ -292,9 +292,9 @@ if (!logado) {
 
     // Event listener para menu hamburger
     menu_hambur.addEventListener('click', () => {
-        num++;
+        num++;  
         if (num == 1) {
-            menuHamburer(logado,usuario);
+            menuHamburer({logado:logado,usuario:usuario});
         } else {
             num = 0;
             location.reload();
