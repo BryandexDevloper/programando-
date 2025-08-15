@@ -144,137 +144,6 @@ function ColocarCep() {
 
 
 // ==========================================
-// FUNÇÕES DE AUTENTICAÇÃO
-// ==========================================
-
-/**
- * Realiza login do usuário
- * @param {string} email - Email do usuário
- * @param {string} senha - Senha do usuário
- */
-async function Login(email, senha) {
-    try {
-        const data = await fetch('http://localhost:3000/login', {
-            method: 'POST',
-            headers: { 'Content-type': 'application/json' },
-            body: JSON.stringify({
-                email: email,
-                senha: senha
-            })
-        });
-        
-        const resultado = await data.json();
-        
-        if (resultado.sucesso) {
-            const titulo_criar_conta = document.querySelector('.titulo_criar_conta');
-            titulo_criar_conta.textContent = resultado.mensagem;
-            
-            // Criar objeto usuário
-            const usuario = {
-                email: resultado.usuario.email,
-                nome: resultado.usuario.nome,
-                sobrenome: resultado.usuario.sobrenome,
-                foto: resultado.usuario.foto_perfil,
-                numero: resultado.usuario.telefone,
-                endereco: resultado.usuario.endereco,
-                carrinho_de_compras: resultado.usuario.carrinho_de_compras
-            };
-
-            // Salvar no localStorage
-            localStorage.setItem('usuario', JSON.stringify(usuario));
-            let logado = true;
-            localStorage.setItem('logado', JSON.stringify(logado));
-
-            // Recarregar página após 3 segundos
-            setTimeout(() => {
-                location.reload();
-            }, 3000);
-            
-        } else {
-            const titulo_criar_conta = document.querySelector('.titulo_criar_conta');
-            titulo_criar_conta.textContent = resultado.mensagem;
-        }
-
-    } catch (err) {
-        alert('Desculpe ocorreu um erro inesperado ' + err);
-    }
-}
-
-/**
- * Valida se o email já existe no sistema
- * @param {string} email - Email para validação
- */
-async function Validar_cadastro(email) {
-    const data = await fetch('http://localhost:3000/validar_cadastro', {
-        method: 'POST',
-        headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify({
-            email: email
-        })
-    });
-
-    const resultado = await data.json();
-    
-    if (resultado.sucesso) {
-        const titulo_criar_conta = document.querySelector('.titulo_criar_conta');
-        titulo_criar_conta.textContent = `${resultado.mensagem} voce sera redirecionado...`;
-
-        setTimeout(() => {
-            tela_Criar_conta();
-        }, 3000);
-        
-    } else {
-        const titulo_criar_conta = document.querySelector('.titulo_criar_conta');
-        titulo_criar_conta.textContent = resultado.mensagem;
-    }
-}
-
-/**
- * Cria nova conta de usuário
- * @param {string} email - Email do usuário
- * @param {string} senha - Senha do usuário
- * @param {string} codigo_verificacao - Código de verificação
- * @param {string} telefone - Telefone do usuário
- * @param {string} nome - Nome do usuário
- * @param {string} sobrenome - Sobrenome do usuário
- */
-async function Criar_conta({email, senha, codigo_verificacao, telefone, nome, sobrenome}) {
-    try {
-        const data = await fetch('http://localhost:3000/cadastro', {
-            method: 'POST',
-            headers: { 'Content-type': 'application/json' },
-            body: JSON.stringify({
-                email: email,
-                senha: senha,
-                codigo_verificacao: codigo_verificacao,
-                nome: nome,
-                sobrenome: sobrenome,
-                telefone: telefone
-            })
-        });
-
-        const resultado = await data.json();
-        
-        if (resultado.sucesso) {
-            const titulo_criar_conta = document.querySelector('.titulo_criar_conta');
-            titulo_criar_conta.textContent = resultado.mensagem;
-
-            setTimeout(() => {
-                tela_Login();
-            }, 3000);
-            
-        } else {
-            const titulo_criar_conta = document.querySelector('.titulo_criar_conta');
-            titulo_criar_conta.textContent = resultado.mensagem;
-        }
-
-    } catch (err) {
-        throw new Error(err.message);
-    }
-}
-
-
-// ==========================================
 // FUNÇÕES DE CARROSSEL
 // ==========================================
 
@@ -379,15 +248,18 @@ import { tela_Login } from './telas/tela_login.js';
 import { menuHamburer } from './telas/tela_menu_hamburguer.js';
 import { telaPerfilusuario } from './telas/tela_perfil_usuario.js';
 import { tela_Validacao_Email } from './telas/tela_valida_email.js';
-
+import { alterar_tela } from './telas/alterar_tela.js';
 
 
 
 // Inicializar carrossel
 iniciarCarrossel();
 
+let logado = JSON.parse(localStorage.getItem('logado'))
+let usuario = JSON.parse(localStorage.getItem('usuario'))
+
 // Verificação de estado de login
-if (!localStorage.getItem('logado')) {
+if (!logado) {
     
     // ==========================================
     // EXECUTADO QUANDO NÃO ESTÁ LOGADO
@@ -423,7 +295,7 @@ if (!localStorage.getItem('logado')) {
     menu_hambur.addEventListener('click', () => {
         num++;
         if (num == 1) {
-            menuHamburer();
+            menuHamburer(logado,usuario);
         } else {
             num = 0;
             location.reload();
@@ -431,9 +303,7 @@ if (!localStorage.getItem('logado')) {
     });
 
 } else {
-    // ==========================================
-    // EXECUTADO QUANDO ESTÁ LOGADO
-    // ==========================================
+    alterar_tela({logado:logado,usuario:usuario})
      console.log('voce esta logado');
 }
 

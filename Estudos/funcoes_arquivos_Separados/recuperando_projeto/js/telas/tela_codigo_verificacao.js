@@ -1,5 +1,5 @@
 
-export function tela_verificar_codigo({nome,sobrenome,email,telefone,senha}) {
+export function tela_verificar_codigo({nome,sobrenome,email,telefone,senha,email_user}) {
     const main = document.querySelector("#principal")
     main.innerHTML = ""
     const div = document.createElement('div')
@@ -32,7 +32,11 @@ export function tela_verificar_codigo({nome,sobrenome,email,telefone,senha}) {
     const btn_cancelar = document.querySelector(".btn_cancelar")
 
     btn_verificar.addEventListener("click",()=>{
-        Alterar_Perfil({email:usuario.email,codigo_user:codigo.value,novo_email:email,telefone:telefone})
+        if(nome){
+            console.log('oi')
+        }else{
+            console.log('ola')
+        }
     })
 
     btn_cancelar.addEventListener('click',()=>{
@@ -44,38 +48,3 @@ export function tela_verificar_codigo({nome,sobrenome,email,telefone,senha}) {
 
 
 
-
-// async function Criar_conta({email, senha, codigo_verificacao, telefone, nome, sobrenome}) {
-//     try {
-//         const data = await fetch('http://localhost:3000/cadastro', {
-//             method: 'POST',
-//             headers: { 'Content-type': 'application/json' },
-//             body: JSON.stringify({
-//                 email: email,
-//                 senha: senha,
-//                 codigo_verificacao: codigo_verificacao,
-//                 nome: nome,
-//                 sobrenome: sobrenome,
-//                 telefone: telefone
-//             })
-//         });
-
-//         const resultado = await data.json();
-        
-//         if (resultado.sucesso) {
-//             const titulo_criar_conta = document.querySelector('.titulo_criar_conta');
-//             titulo_criar_conta.textContent = resultado.mensagem;
-
-//             setTimeout(() => {
-//                 tela_Login();
-//             }, 3000);
-            
-//         } else {
-//             const titulo_criar_conta = document.querySelector('.titulo_criar_conta');
-//             titulo_criar_conta.textContent = resultado.mensagem;
-//         }
-
-//     } catch (err) {
-//         throw new Error(err.message);
-//     }
-// }

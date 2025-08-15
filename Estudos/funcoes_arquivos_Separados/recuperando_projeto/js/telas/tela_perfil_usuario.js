@@ -1,7 +1,7 @@
 
 import {Tela_editar_perfil} from './tela_editar_perfil_usuario.js'
 
-export function telaPerfilusuario() {
+export function telaPerfilusuario({usuario}) {
     const main = document.querySelector("#principal")
     main.innerHTML = ""
     const conteudo = document.createElement("div")
@@ -53,23 +53,24 @@ export function telaPerfilusuario() {
     const Endereco = document.querySelector(".rua")
     email_usuario.style.color="white"
     
-    // foto.setAttribute('src', usuario.foto || 'https://objetivoligar.com/wp-content/uploads/2017/03/blank-profile-picture-973460_1280-768x768.jpg')
+    foto.setAttribute('src', usuario.foto || 'https://objetivoligar.com/wp-content/uploads/2017/03/blank-profile-picture-973460_1280-768x768.jpg')
 
-    // nome_usuario.textContent = `${usuario.nome} ${usuario.sobrenome}`
-    // email_usuario.textContent = `${usuario.email}`
-    // numero.textContent = `${usuario.numero}`
-    // Endereco.textContent = `${usuario.endereco}`
-    // console.log(usuario)
+    nome_usuario.textContent = `${usuario.nome} ${usuario.sobrenome}`
+    email_usuario.textContent = `${usuario.email}`
+    numero.textContent = `${usuario.numero}`
+    Endereco.textContent = `${usuario.endereco}`
+    console.log(usuario)
 
     btn_sair.addEventListener("click", () => {
         location.reload()
     })
 
    const btn_editar_perfil = document.querySelector(".btn_editar_perfil");
-btn_editar_perfil.style.backgroundColor = 'red';
-btn_editar_perfil.addEventListener('click', () => {
-    Tela_editar_perfil()
-});
+
+    btn_editar_perfil.addEventListener('click', () => {
+    Tela_editar_perfil({usuario:usuario})
+    console.log('oi')
+    });
 
 
     

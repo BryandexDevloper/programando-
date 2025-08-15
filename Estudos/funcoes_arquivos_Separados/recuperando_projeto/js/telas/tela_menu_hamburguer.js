@@ -1,9 +1,15 @@
 
-import {tela_Login} from './tela_login.js'
-import {tela_Criar_conta} from './tela_cadastro.js'
-import {telaPerfilusuario} from './tela_perfil_usuario.js'
+import { tela_Login } from './tela_login.js'
+import { tela_Criar_conta } from './tela_cadastro.js'
+import { telaPerfilusuario } from './tela_perfil_usuario.js'
 
-export function menuHamburer(usuario, logado) {
+
+const logado = JSON.parse(localStorage.getItem('logado')); // vai retornar true ou false
+const usuario = JSON.parse(localStorage.getItem('usuario')); // retorna o objeto salvo
+
+
+
+export function menuHamburer({logado, usuario}) {
     const main = document.querySelector("#principal")
     main.innerHTML = ""
 
@@ -58,7 +64,20 @@ export function menuHamburer(usuario, logado) {
         btn_bem_vindo.textContent = `${btn_bem_vindo.textContent} ${usuario.nome}`
         btn_login.remove()
         btn_criar_conta.remove()
+
+        perfil.addEventListener('click', () => {
+            telaPerfilusuario({usuario:usuario})
+        })
+
+
+        carrinho.addEventListener('click', () => {
+            telaCarrinho()
+        })
+
+
     } else {
+
+        foto_perfil.setAttribute("src", 'https://objetivoligar.com/wp-content/uploads/2017/03/blank-profile-picture-973460_1280-768x768.jpg')
         btn_criar_conta.addEventListener('click', () => {
             tela_Criar_conta()
         })
@@ -73,13 +92,8 @@ export function menuHamburer(usuario, logado) {
         location.reload()
     })
 
-    perfil.addEventListener('click', () => {
-        telaPerfilusuario()
-    })
 
-    carrinho.addEventListener('click', () => {
-        telaCarrinho()
-    })
+
 
 
 

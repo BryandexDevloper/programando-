@@ -1,5 +1,7 @@
 
-export function Tela_editar_perfil() {
+import {tela_verificar_codigo} from './tela_codigo_verificacao.js'
+        
+export function Tela_editar_perfil({usuario}) {
     const main = document.querySelector("#principal")
     main.innerHTML = ""
     const div = document.createElement("div")
@@ -17,19 +19,19 @@ export function Tela_editar_perfil() {
         <div class="container_form_perfil">
             <div class="grupo_form">
                 <label for="nome">Nome</label>
-                <input type="text" id="nome" name="nome" required placeholder="Seu nome">
+                <input type="text" id="nome" name="nome" required placeholder=${usuario.nome}>
             </div>
             <div class="grupo_form">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" required placeholder="exemplo@gmail.com">
+                <input type="email" id="email" name="email" required placeholder=${usuario.email}">
             </div>
             <div class="grupo_form">
                 <label for="telefone">Telefone</label>
-                <input type="tel" id="telefone" name="telefone" pattern="^\(\d{2}\)\s\d{5}-\d{4}$" placeholder="(XX) 99999-9999">
+                <input type="tel" id="telefone" name="telefone" pattern="^\(\d{2}\)\s\d{5}-\d{4}$" placeholder=${usuario.telefone}>
             </div>
             <div class="grupo_form">
                 <label for="endereco">Endereço</label>
-                <input type="text" id="endereco" name="endereco" placeholder="Rua, Número, Bairro, Cidade, Estado">
+                <input type="text" id="endereco" name="endereco" placeholder=${usuario.endereco}>
             </div>
             <div class="container_botoes">
                 <button type="button" class="btn_salvar">Salvar Alterações</button>
@@ -53,11 +55,14 @@ export function Tela_editar_perfil() {
     const btnCancelar = document.querySelector('.btn_cancelar');
 
     btnSalvar.addEventListener('click',()=>{
-        if(inputEmail.value.trim() || inputTelefone.value.trim()){
-        tela_verificar_codigo(usuario,inputEmail.value,inputTelefone.value)
-    }else{
-        Alterar_Perfil({nome:inputNome.value,foto:inputFoto.value,endereco:inputEndereco.value})
-    }
+       
+        if(inputEmail.value.trim()){
+            tela_verificar_codigo({email:inputEmail.value})
+        }
+
+        if(inputTelefone.value.trim()){
+            tela_verificar_codigo({telefone:inputTelefone.value})
+        }
 
     })
 

@@ -1,4 +1,4 @@
-
+import {Login} from '../requisicoes/alteracoes_mutua.js'
 
 export function tela_Login() {
     const main = document.querySelector('#principal'); // ou 'main' se for tag
@@ -83,3 +83,6 @@ export function tela_Login() {
     })
 
 }
+
+
+
