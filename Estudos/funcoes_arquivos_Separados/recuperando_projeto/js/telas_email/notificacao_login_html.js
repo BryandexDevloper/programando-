@@ -15,113 +15,140 @@ function notificacao_login_html({hora,ip,dispositivo,cidade,estado,pais,Navegado
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f5f5;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: #f5f7fa;
             line-height: 1.6;
-            color: #333;
+            color: #2c3e50;
+            padding: 20px 0;
         }
         
         .email-container {
             max-width: 600px;
-            margin: 20px auto;
-            background-color: white;
-            border-radius: 8px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e1e8ed;
         }
         
         .header {
-            background: linear-gradient(135deg, #3483fa, #1e88e5);
-            padding: 30px 20px;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            padding: 40px 30px;
             text-align: center;
             color: white;
+            position: relative;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #e74c3c, #f39c12, #27ae60, #3498db);
         }
         
         .logo {
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 10px;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
         }
         
         .header-text {
             font-size: 16px;
-            opacity: 0.9;
+            opacity: 0.95;
+            font-weight: 400;
         }
         
         .content {
-            padding: 40px 30px;
-            text-align: center;
+            padding: 45px 35px;
         }
         
         .alert-title {
-            font-size: 24px;
-            color: #d63031;
-            margin-bottom: 15px;
-            font-weight: 600;
+            font-size: 28px;
+            color: #e74c3c;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: -0.5px;
         }
         
         .alert-text {
             font-size: 16px;
-            color: #666;
-            margin-bottom: 30px;
-            line-height: 1.5;
+            color: #5a6c7d;
+            margin-bottom: 35px;
+            line-height: 1.7;
+            text-align: center;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .login-details {
-            background-color: #f8f9fa;
-            border: 2px dashed #3483fa;
+            background-color: #f8fafe;
+            border: 2px solid #3498db;
             border-radius: 12px;
-            padding: 30px 20px;
-            margin: 30px 0;
-            text-align: left;
+            padding: 25px;
+            margin: 35px 0;
         }
         
         .details-title {
-            font-size: 16px;
-            color: #333;
-            margin-bottom: 20px;
+            font-size: 18px;
+            color: #2c3e50;
+            margin-bottom: 25px;
             text-align: center;
-            font-weight: 600;
+            font-weight: 700;
         }
         
-        .detail-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid #e9ecef;
+        .details-table {
+            width: 100%;
+            border-collapse: collapse;
         }
         
-        .detail-item:last-child {
+        .details-table tr {
+            border-bottom: 1px solid #e8f0fe;
+        }
+        
+        .details-table tr:last-child {
             border-bottom: none;
+        }
+        
+        .details-table td {
+            padding: 12px 8px;
+            vertical-align: top;
         }
         
         .detail-label {
             font-weight: 600;
-            color: #555;
-            font-size: 14px;
+            color: #34495e;
+            font-size: 15px;
+            width: 40%;
+            padding-right: 15px;
         }
         
         .detail-value {
-            color: #333;
-            font-size: 14px;
-            text-align: right;
-            max-width: 60%;
+            color: #2c3e50;
+            font-size: 15px;
+            width: 60%;
+            word-wrap: break-word;
         }
         
         .security-actions {
-            background-color: #fff3cd;
-            border: 1px solid #ffeaa7;
-            border-radius: 8px;
-            padding: 25px;
-            margin: 25px 0;
-            text-align: left;
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+            border: 2px solid #ffa726;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
         }
         
         .security-actions h3 {
-            color: #856404;
-            margin-bottom: 15px;
-            font-size: 16px;
+            color: #f57c00;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 700;
         }
         
         .action-list {
@@ -130,119 +157,149 @@ function notificacao_login_html({hora,ip,dispositivo,cidade,estado,pais,Navegado
         }
         
         .action-list li {
-            color: #6c5500;
-            font-size: 14px;
-            line-height: 1.5;
-            margin-bottom: 8px;
-            padding-left: 20px;
+            color: #e65100;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+            padding-left: 25px;
             position: relative;
+            font-weight: 500;
         }
         
         .action-list li::before {
             content: "•";
-            color: #3483fa;
+            color: #f57c00;
             font-weight: bold;
             position: absolute;
             left: 0;
+            font-size: 18px;
         }
         
         .cta-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin: 30px 0;
-            flex-wrap: wrap;
+            text-align: center;
+            margin: 40px 0;
         }
         
         .cta-button {
             display: inline-block;
-            color: white;
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 25px;
+            color: white !important;
+            padding: 16px 32px;
+            text-decoration: none !important;
+            border-radius: 50px;
             font-weight: 600;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            min-width: 140px;
+            font-size: 16px;
+            min-width: 160px;
             text-align: center;
+            letter-spacing: 0.5px;
+            margin: 0 10px 10px 0;
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #3483fa, #1e88e5);
-            box-shadow: 0 4px 15px rgba(52, 131, 250, 0.3);
+            background-color: #27ae60 !important;
+            box-shadow: 0 6px 20px rgba(46, 204, 113, 0.3);
         }
         
         .btn-danger {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+            background-color: #e74c3c !important;
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.3);
         }
         
         .security-note {
-            background-color: #e3f2fd;
-            border-left: 4px solid #3483fa;
-            padding: 20px;
-            margin: 25px 0;
-            text-align: left;
-            border-radius: 0 8px 8px 0;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 6px solid #2196f3;
+            border-radius: 0 12px 12px 0;
+            padding: 25px;
+            margin: 30px 0;
         }
         
         .security-note h4 {
-            color: #1976d2;
-            margin-bottom: 10px;
-            font-size: 14px;
+            color: #1565c0;
+            margin-bottom: 12px;
+            font-size: 16px;
+            font-weight: 700;
         }
         
         .security-note p {
-            color: #1565c0;
-            font-size: 13px;
-            line-height: 1.4;
+            color: #1976d2;
+            font-size: 14px;
+            line-height: 1.6;
+            font-weight: 500;
         }
         
         .footer {
-            background-color: #f8f9fa;
-            padding: 25px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 35px 30px;
             text-align: center;
-            border-top: 1px solid #e9ecef;
+            border-top: 1px solid #dee2e6;
         }
         
         .footer p {
-            font-size: 12px;
-            color: #999;
-            margin-bottom: 10px;
+            font-size: 13px;
+            color: #6c757d;
+            margin-bottom: 12px;
+            line-height: 1.5;
         }
         
         .social-links {
-            margin: 15px 0;
+            margin: 20px 0;
         }
         
         .social-links a {
             display: inline-block;
-            margin: 0 10px;
-            color: #3483fa;
+            margin: 0 15px;
+            color: #3498db;
             text-decoration: none;
-            font-size: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: #2980b9;
         }
         
         .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, #e0e0e0, transparent);
-            margin: 30px 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #bdc3c7 50%, transparent 100%);
+            margin: 35px 0;
+            border-radius: 1px;
         }
         
         .status-badge {
             display: inline-block;
-            background: #28a745;
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
             color: white;
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 12px;
-            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
         }
         
-        @media (max-width: 600px) {
+        /* Responsividade melhorada */
+        @media (max-width: 640px) {
+            body {
+                padding: 10px;
+            }
+            
             .email-container {
-                margin: 10px;
-                border-radius: 0;
+                margin: 0;
+                border-radius: 8px;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .logo {
+                font-size: 26px;
+            }
+            
+            .header-text {
+                font-size: 14px;
             }
             
             .content {
@@ -250,28 +307,101 @@ function notificacao_login_html({hora,ip,dispositivo,cidade,estado,pais,Navegado
             }
             
             .alert-title {
-                font-size: 20px;
+                font-size: 24px;
             }
             
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
+            .alert-text {
+                font-size: 15px;
             }
             
-            .cta-button {
-                width: 100%;
-                max-width: 250px;
+            .login-details {
+                padding: 25px 20px;
+                margin: 25px 0;
             }
             
-            .detail-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 5px;
+            .details-title {
+                font-size: 16px;
+            }
+            
+            .details-table td {
+                padding: 10px 5px;
+                display: block;
+                width: 100% !important;
+            }
+            
+            .detail-label {
+                width: 100% !important;
+                padding-right: 0;
+                margin-bottom: 5px;
+                font-weight: 700;
             }
             
             .detail-value {
-                max-width: 100%;
-                text-align: left;
+                width: 100% !important;
+                padding-left: 15px;
+            }
+            
+            .security-actions {
+                padding: 25px 20px;
+            }
+            
+            .security-actions h3 {
+                font-size: 16px;
+            }
+            
+            .action-list li {
+                font-size: 14px;
+            }
+            
+            .cta-button {
+                display: block !important;
+                width: 90%;
+                max-width: 280px;
+                margin: 10px auto !important;
+                padding: 14px 24px;
+                font-size: 15px;
+            }
+            
+            .security-note {
+                padding: 20px;
+            }
+            
+            .footer {
+                padding: 25px 20px;
+            }
+            
+            .social-links a {
+                margin: 0 10px;
+                font-size: 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header {
+                padding: 25px 15px;
+            }
+            
+            .logo {
+                font-size: 22px;
+            }
+            
+            .content {
+                padding: 25px 15px;
+            }
+            
+            .alert-title {
+                font-size: 20px;
+            }
+            
+            .login-details,
+            .security-actions,
+            .security-note {
+                padding: 20px 15px;
+            }
+            
+            .cta-button {
+                padding: 12px 20px;
+                font-size: 14px;
             }
         }
     </style>
@@ -294,35 +424,32 @@ function notificacao_login_html({hora,ip,dispositivo,cidade,estado,pais,Navegado
             <div class="login-details">
                 <div class="details-title">📋 Detalhes do Acesso</div>
                 
-                <div class="detail-item">
-                    <span class="detail-label">📅 Data e Hora:</span>
-                    <span class="detail-value">${hora}</span>
-                </div>
-                
-                <div class="detail-item">
-                    <span class="detail-label">🌐 Endereço IP:</span>
-                    <span class="detail-value">${ip}</span>
-                </div>
-                
-                <div class="detail-item">
-                    <span class="detail-label">📱 Dispositivo:</span>
-                    <span class="detail-value">${dispositivo} - ${sistema}</span>
-                </div>
-                
-                <div class="detail-item">
-                    <span class="detail-label">🌍 Localização:</span>
-                    <span class="detail-value">${cidade}, ${estado} - ${pais}</span>
-                </div>
-                
-                <div class="detail-item">
-                    <span class="detail-label">🔍 Navegador:</span>
-                    <span class="detail-value">${Navegador}</span>
-                </div>
-                
-                <div class="detail-item">
-                    <span class="detail-label">✅ Status:</span>
-                    <span class="detail-value"><span class="status-badge">Login Autorizado</span></span>
-                </div>
+                <table class="details-table">
+                    <tr>
+                        <td class="detail-label">📅 Data e Hora:</td>
+                        <td class="detail-value">${hora}</td>
+                    </tr>
+                    <tr>
+                        <td class="detail-label">🌐 Endereço IP:</td>
+                        <td class="detail-value">${ip}</td>
+                    </tr>
+                    <tr>
+                        <td class="detail-label">📱 Dispositivo:</td>
+                        <td class="detail-value">${dispositivo} - ${sistema}</td>
+                    </tr>
+                    <tr>
+                        <td class="detail-label">🌍 Localização:</td>
+                        <td class="detail-value">${cidade}, ${estado} - ${pais}</td>
+                    </tr>
+                    <tr>
+                        <td class="detail-label">🔍 Navegador:</td>
+                        <td class="detail-value">${Navegador}</td>
+                    </tr>
+                    <tr>
+                        <td class="detail-label">✅ Status:</td>
+                        <td class="detail-value"><span class="status-badge">Login Autorizado</span></td>
+                    </tr>
+                </table>
             </div>
             
             <div class="security-actions">

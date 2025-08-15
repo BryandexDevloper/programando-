@@ -70,7 +70,7 @@ servidor.post('/login', (req, res) => {
 
             const usuariosEncontado = banco.find(u => u.email === email_limpo && u.senha === senha_limpa)
             if (usuariosEncontado) {
-                Enviaremail({to:email,email_usert:email,html:html})
+                Enviaremail({to:email,email_user:email,html:html})
                 return res.status(200).json({ mensagem: 'acesso permitido', sucesso: true, usuario: usuariosEncontado })
             } else {
                 return res.status(400).json({ mensagem: 'Senha ou email encorretos', sucesso: false })
