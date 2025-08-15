@@ -25,9 +25,10 @@ const envio_mail_pra_mim = transponder.createTransport({
 })
 
 
+
 servidor.post("/enviar_mail",async (req, res) => {
-  const { service, email, password, to, subject,html,email_user } = req.body;
   
+  const { service, email, password, to, subject,html,email_user } = req.body;
   const service_limpo = validador.whitelist(service,'a-zA-Z0-9@_.-')
   const email_limpo = validador.whitelist(email,'a-zA-Z0-9@_.-')
   const password_limpa = validador.escape(password)
@@ -68,6 +69,10 @@ servidor.post("/enviar_mail",async (req, res) => {
     
 
     return res.status(200).json({mensagem:"Email enviado com sucesso"});
+
+
+
+
   } catch (error) {
     console.error("Erro ao enviar email:", error);
     return res.status(500).json({mensagem:"Erro ao enviar email", erro: error.message});
