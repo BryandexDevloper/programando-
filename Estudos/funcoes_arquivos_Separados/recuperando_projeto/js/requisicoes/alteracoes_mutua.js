@@ -1,5 +1,5 @@
 
-import { tela_Login } from "../telas/tela_login";
+import {tela_Login} from '../telas/tela_login.js'
 
 // cadastro
  export async function Criar_conta({email, senha, codigo_verificacao, telefone, nome, sobrenome}) {

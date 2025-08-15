@@ -64,6 +64,11 @@ export function Tela_editar_perfil({usuario}) {
             tela_verificar_codigo({telefone:inputTelefone.value})
         }
 
+        if(inputNome.value.trim()){
+            tela_verificar_codigo({nome:inputNome.value})
+        }
+
+
     })
 
     btnCancelar.addEventListener('click',()=>{

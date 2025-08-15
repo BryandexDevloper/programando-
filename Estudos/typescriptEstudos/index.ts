@@ -7,17 +7,18 @@ let ativo : boolean  = false
 console.log(ativo)
 
 
+
 // arrais
 let array :number[] = [1,2,3,4,5,5]
 let array_strings : string[] = ['a','b','c']
 console.log(array[3])
 console.log(array_strings[2])
 
-
 //funções
 function soma_numeros(a:number,b:number):number{
     return a + b ;
 }
+
 console.log(soma_numeros(5,6))
 
 
@@ -38,6 +39,18 @@ let pessoa: {nome:string;idade:number;ativo:boolean} = {
     idade:18,
     ativo:false
 };
+
+
+//array de objetos
+
+let pessoas:{nome:string,idade:number}[] = [
+    {nome:'bryan',idade:18},
+    {nome:'anderson',idade:22}
+]
+
+//array de objetos
+
+
 
 
 // requisições
@@ -63,3 +76,4 @@ async function name(nome: string, idade: number) {
     console.log(resultadoNumerico[0]); // "Bryan"
     console.log(resultadoNumerico[1]); // "Adrian"
 }
+

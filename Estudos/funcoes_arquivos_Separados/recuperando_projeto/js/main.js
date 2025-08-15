@@ -246,8 +246,7 @@ import { tela_verificar_codigo } from './telas/tela_codigo_verificacao.js';
 import { Tela_editar_perfil } from './telas/tela_editar_perfil_usuario.js';
 import { tela_Login } from './telas/tela_login.js';
 import { menuHamburer } from './telas/tela_menu_hamburguer.js';
-import { telaPerfilusuario } from './telas/tela_perfil_usuario.js';
-import { tela_Validacao_Email } from './telas/tela_valida_email.js';
+import { telaPerfilusuario } from './telas/tela_perfil_usuario.js'; 
 import { alterar_tela } from './telas/alterar_tela.js';
 
 
