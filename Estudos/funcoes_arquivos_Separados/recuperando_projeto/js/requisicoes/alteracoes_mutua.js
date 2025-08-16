@@ -1,6 +1,6 @@
 
 import {tela_Login} from '../telas/tela_login.js'
-import {tela_verificar_codigo} from '../telas/tela_verificar_codigo.js'
+import {tela_verificar_codigo} from '../telas/tela_codigo_verificacao.js'
 
 
 // cadastro
@@ -19,7 +19,9 @@ import {tela_verificar_codigo} from '../telas/tela_verificar_codigo.js'
         if (resultado.sucesso) {
             
             titulo_criar_conta.textContent = resultado.mensagem;
-
+            setTimeout(()=>{
+                tela_verificar_codigo({email:email,senha:senha,telefone:telefone,nome:nome,sobrenome:sobrenome})
+            },3000)
             
             
         } else {
@@ -34,7 +36,7 @@ import {tela_verificar_codigo} from '../telas/tela_verificar_codigo.js'
 
 
 
-    async function verificar_codigo({email,senha,codigo_verificacao,telefone,nome,sobrenome}) {
+  export  async function verificar_codigo({email,senha,codigo_verificacao,telefone,nome,sobrenome}) {
         const data = await fetch('http://localhost:3000/verificar',{
             method:'POST',
             headers:{'Content-type':'application/json'},
@@ -47,6 +49,16 @@ import {tela_verificar_codigo} from '../telas/tela_verificar_codigo.js'
                 codigo_verificacao:codigo_verificacao
             })
         })
+
+        const resultado = await data.json()
+        const mensagem = document.querySelector(".mensagem")
+
+        if(resultado.sucesso){
+            mensagem.textContent = resultado.mensagem
+            setTimeout(()=>{
+                tela_Login()
+            },3000)
+        }
     }
 
 

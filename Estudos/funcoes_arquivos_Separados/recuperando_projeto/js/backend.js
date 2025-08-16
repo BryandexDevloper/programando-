@@ -45,7 +45,7 @@ servidor.post('/login', (req, res) => {
     const agent = pegar_navegador.parse(req.headers['user-agent'])
 
     const { email, senha } = req.body
-    const email_limpo = validator.whitelist(email, 'a-zA-Z0-9@_.-')
+    const email_limpo = validator.whitelist(email,'a-zA-Z0-9@_.-')
     const senha_limpa = validator.escape(senha)
 
     let calendario = new Date
@@ -90,7 +90,7 @@ servidor.post('/cadastro', (req, res) => {
     const { email } = req.body
 
    
-    const email_limpo = validator.whitelist(email, 'a-zA-Z0-9@_.-')
+    const email_limpo = validator.whitelist(email,'a-zA-Z0-9@_.-')
    
 
    
@@ -114,7 +114,7 @@ servidor.post('/cadastro', (req, res) => {
                 return res.status(400).json({ mensagem: 'Desculpe ocorreu um erro', sucesso: false })
             }
 
-            return res.status(200).json({mensagem:'Prosseguindo para validação do cadastro...'})
+            return res.status(200).json({mensagem:'Prosseguindo para validação do cadastro...',sucesso:true})
 
         })
 
@@ -125,7 +125,7 @@ servidor.post('/cadastro', (req, res) => {
 
 
 servidor.post('/verificar', (req, res) => {
-    const { email, nome, sobrenome, senha, codigo_verificacao } = req.body
+    const { email, nome, sobrenome, senha, codigo_verificacao,telefone } = req.body
 
     const sobrenome_limpo = validator.whitelist(sobrenome, 'a-zA-Z0-9@_.-')
     const codigo_verificacao_limpo = validator.whitelist(codigo_verificacao, 'a-zA-Z0-9@_.-')
@@ -141,7 +141,7 @@ servidor.post('/verificar', (req, res) => {
                 }
 
                 const codigo_encontrado = resultado.find(u => u.codigo_verificacao === codigo_verificacao_limpo)
-                if (codigo_encontrado !== codigo_verificacao_limpo) {
+                if (codigo_encontrado.codigo_verificacao !== codigo_verificacao_limpo) {
                     return res.status(400).json({ mensagem: 'Codigo de verificação incorreto ', sucesso: false })
                 }else{
 

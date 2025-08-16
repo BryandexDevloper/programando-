@@ -119,7 +119,7 @@ export function tela_Criar_conta() {
         if (senha.value != confirmarSenha.value) {
             return alert('Senhas não coincidem')
         } else {
-           Criar_conta({nome:nome,sobrenome:sobrenome,email:email,telefone:telefone,senha:senha})
+           Criar_conta({nome:nome.value,sobrenome:sobrenome.value,email:email.value,telefone:telefone.value,senha:senha.value})
         }
     })
 
