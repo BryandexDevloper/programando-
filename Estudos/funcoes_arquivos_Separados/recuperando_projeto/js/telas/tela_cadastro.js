@@ -1,5 +1,5 @@
 import {tela_Login} from './tela_login.js';
-import {tela_verificar_codigo} from './tela_codigo_verificacao.js'
+import { Criar_conta } from '../requisicoes/alteracoes_mutua.js';
 
 export function tela_Criar_conta() {
     const main = document.querySelector('#principal'); // ou 'main' se for tag
@@ -119,13 +119,7 @@ export function tela_Criar_conta() {
         if (senha.value != confirmarSenha.value) {
             return alert('Senhas não coincidem')
         } else {
-           tela_verificar_codigo({
-            nome:nome.value,
-            sobrenome:sobrenome.value,
-            email:email.value,
-            telefone:telefone.value,
-            senha:senha.value
-        })
+           Criar_conta({nome:nome,sobrenome:sobrenome,email:email,telefone:telefone,senha:senha})
         }
     })
 

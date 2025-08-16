@@ -1,3 +1,4 @@
+import {Criar_conta} from '../requisicoes/alteracoes_mutua.js'
 
 export function tela_verificar_codigo({nome,sobrenome,email,telefone,senha,email_user}) {
     const main = document.querySelector("#principal")
@@ -32,10 +33,21 @@ export function tela_verificar_codigo({nome,sobrenome,email,telefone,senha,email
     const btn_cancelar = document.querySelector(".btn_cancelar")
 
     btn_verificar.addEventListener("click",()=>{
-        if(nome){
-            console.log('oi')
+        if(nome && sobrenome && email && telefone && senha){
+            Criar_conta({nome:nome,sobrenome:sobrenome,email:email,telefone:telefone,senha:senha,codigo_verificacao:codigo.value})
+            
+        }else if(telefone){
+            console.log('telefone')
+        }else if(sobrenome){
+            console.log("sobrenome")
+        }else if(email){
+            console.log("email")
+        }else if(senha){
+            console.log("senha")
+        }else if(email_user){
+            console.log("email user")
         }else{
-            console.log('ola')
+            console.log("nada")
         }
     })
 

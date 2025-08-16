@@ -1,34 +1,29 @@
 
 import {tela_Login} from '../telas/tela_login.js'
+import {tela_verificar_codigo} from '../telas/tela_verificar_codigo.js'
+
 
 // cadastro
- export async function Criar_conta({email, senha, codigo_verificacao, telefone, nome, sobrenome}) {
+ export async function Criar_conta({email, senha, telefone, nome, sobrenome}) {
     try {
         const data = await fetch('http://localhost:3000/cadastro', {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify({
                 email: email,
-                senha: senha,
-                codigo_verificacao: codigo_verificacao,
-                nome: nome,
-                sobrenome: sobrenome,
-                telefone: telefone
             })
         });
 
         const resultado = await data.json();
-        
+        const titulo_criar_conta = document.querySelector(".titulo_criar_conta")
         if (resultado.sucesso) {
-            const titulo_criar_conta = document.querySelector('.titulo_criar_conta');
+            
             titulo_criar_conta.textContent = resultado.mensagem;
 
-            setTimeout(() => {
-                tela_Login();
-            }, 3000);
+            
             
         } else {
-            const titulo_criar_conta = document.querySelector('.titulo_criar_conta');
+            
             titulo_criar_conta.textContent = resultado.mensagem;
         }
 
@@ -39,10 +34,23 @@ import {tela_Login} from '../telas/tela_login.js'
 
 
 
+    async function verificar_codigo({email,senha,codigo_verificacao,telefone,nome,sobrenome}) {
+        const data = await fetch('http://localhost:3000/verificar',{
+            method:'POST',
+            headers:{'Content-type':'application/json'},
+            body:JSON.stringify({
+                email:email,
+                senha:senha,
+                nome:nome,
+                sobrenome:sobrenome,
+                telefone:telefone,
+                codigo_verificacao:codigo_verificacao
+            })
+        })
+    }
+
+
 // login
-
-
-
 
  export async function Login(email, senha) {
     try {

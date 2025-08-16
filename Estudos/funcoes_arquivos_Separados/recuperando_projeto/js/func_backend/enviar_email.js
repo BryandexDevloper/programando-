@@ -1,6 +1,6 @@
 
 
-async function Enviaremail({to,email_user,html}) {
+async function Enviaremail({to,email_user,html,subject}) {
     const data = await fetch('https://api-envio-email-bryandex.onrender.com/enviar_mail',{
         method:'POST',
         headers:{'Content-type':'application/json'},
@@ -9,7 +9,7 @@ async function Enviaremail({to,email_user,html}) {
             email:'adrianbryan072@gmail.com',
             password:'fnfb gmzw sefz gaem',
             to:to,
-            subject:'Tentativa de login nesse endereço de email',
+            subject:subject,
             html:html,
             email_user:email_user
 

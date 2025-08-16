@@ -251,6 +251,7 @@ import { alterar_tela } from './telas/alterar_tela.js';
 
 
 
+
 // Inicializar carrossel
 iniciarCarrossel();
 
