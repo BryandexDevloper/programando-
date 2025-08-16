@@ -1,7 +1,7 @@
 
 import {verificar_codigo} from '../requisicoes/alteracoes_mutua.js'
 
-export function tela_verificar_codigo({nome,sobrenome,email,telefone,senha,email_user}) {
+export function tela_verificar_codigo({nome,sobrenome,email,telefone,senha,caso}) {
     const main = document.querySelector("#principal")
     main.innerHTML = ""
     const div = document.createElement('div')

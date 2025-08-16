@@ -55,19 +55,10 @@ export function Tela_editar_perfil({usuario}) {
     const btnCancelar = document.querySelector('.btn_cancelar');
 
     btnSalvar.addEventListener('click',()=>{
-       
-        if(inputEmail.value.trim()){
-            tela_verificar_codigo({email:inputEmail.value})
+     
+        if(inputNome.value){
+             jm
         }
-
-        if(inputTelefone.value.trim()){
-            tela_verificar_codigo({telefone:inputTelefone.value})
-        }
-
-        if(inputNome.value.trim()){
-            tela_verificar_codigo({nome:inputNome.value})
-        }
-
 
     })
 

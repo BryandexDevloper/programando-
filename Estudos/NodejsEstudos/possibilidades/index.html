@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Teste</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        input:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f5e8;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Editar perfil</h2>
+        
+        <div class="input-group">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome"  placeholder="Digite o nome">
+        </div>
+        
+        <div class="input-group">
+            <label for="idade">Idade:</label>
+            <input type="number" id="idade" name="idade"  placeholder="Digite a idade">
+        </div>
+        
+        <div class="input-group">
+            <label for="ano">Ano de Nascimento:</label>
+            <input type="number" id="ano" name="ano"  placeholder="Digite o ano">
+        </div>
+        
+        <div class="input-group">
+            <label for="profissao">Profissão:</label>
+            <input type="text" id="profissao" name="profissao"  placeholder="Digite a profissão">
+        </div>
+        
+        <button class="btn" >Testar Dados</button>
+        
+        <div class="result" id="resultado">
+            <h3>Dados Coletados:</h3>
+            <div id="dados"></div>
+        </div>
+    </div>
+
+    <script>
+       
+       const btn = document.querySelector(".btn")
+       btn.addEventListener('click',()=>{
+            const profissao = document.querySelector("#profissao")
+            teste({profissao:profissao.value,caso:nome})
+       })
+
+       async function teste({nome,idade,profissao,caso}) {
+           if(caso === "nome"){
+            console.log('oi')
+             const data = await fetch('http://localhost:3000/test',{
+                method:'POST',
+                headers:{'Content-type':'application/json'},
+                body:JSON.stringify({
+                    nome:nome,
+                    idade:idade,
+                    profissao:profissao
+                })
+            })
+           }
+       }
+        
+       
+    </script>
+</body>
+</html>

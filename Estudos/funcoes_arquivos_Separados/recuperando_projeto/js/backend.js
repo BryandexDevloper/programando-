@@ -155,7 +155,7 @@ servidor.post('/verificar', (req, res) => {
                             return res.status(400).json({ mensagem: 'Desculpe ocorreu um erro ', sucesso: false })
                         }
 
-                        return res.status(200).json({ mensagem: 'Cadastro realizado com sucesso', sucesso: true })
+                        return res.status(200).json({ mensagem: 'Redirecionando...', sucesso: true })
                     })
 
                 })
@@ -166,6 +166,31 @@ servidor.post('/verificar', (req, res) => {
             })
 
 })
+
+
+servidor.put('/alteraracoes',(req,res)=>{
+
+    const data = req.body
+
+    if(data.nome){
+        // aqui vem a query alteração de nome
+    }
+
+    if(data.endereco){
+        // aqui vem a query alteração de endereco
+    }
+
+    if(data.telefone){
+        // aqui vem  a query alteração de telefone
+    }
+
+    if(data.email){
+        // aqui vem a query alteração de email
+    }
+
+
+})
+
 
 servidor.listen(porta, () => {
     console.log('servidor rodando ')
