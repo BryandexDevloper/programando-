@@ -164,6 +164,7 @@ servidor.post('/verificar', (req, res) => {
                 
 
             })
+            
 
 })
 
@@ -173,7 +174,14 @@ servidor.put('/alteraracoes',(req,res)=>{
     const data = req.body
 
     if(data.nome){
-        // aqui vem a query alteração de nome
+       conexao.query(sql_mudar_nome,[data.nome,data.email],(err,resultado)=>{
+        if(err){
+            return res.status(400).json({mensagem:'Desculpe ocorreu um erro',sucesso:false})
+        }
+
+        return res.status(200).json({mensagem:'Nome alterado com sucesso',sucesso:true})
+
+       })
     }
 
     if(data.endereco){
@@ -181,7 +189,16 @@ servidor.put('/alteraracoes',(req,res)=>{
     }
 
     if(data.telefone){
-        // aqui vem  a query alteração de telefone
+        let codigo = Math.floor(Math.random() * 90000)
+        const html = confirmar_alteracao_telefone_html(codigo)
+        Enviaremail({to:data.email,email_user:data.email,html:html,subject:'Confirmação de codigo para a alteração de telefone'})
+        conexao.query(sql_colocar_codigo,[codigo],(err)=>{
+            if(err){
+                return res.status(400).json({mensagem:'Desulpe ocorreu um erro',sucesso:false})
+            }
+        })
+
+        return res.status(200).json({mensagem:'Codigo de verificação envido',sucesso:true})
     }
 
     if(data.email){
@@ -190,6 +207,9 @@ servidor.put('/alteraracoes',(req,res)=>{
 
 
 })
+
+
+servidor.post('/verificarTelefone',()=>{})
 
 
 servidor.listen(porta, () => {

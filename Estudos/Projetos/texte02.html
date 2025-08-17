@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <img src="" alt="" id="img">
+    <img src="" alt=""><img src="" alt=""><img src="" alt="">
+
+
+    <script>
+        async function name(params) {
+            const data = await fetch('https://api.thecatapi.com/v1/images/search?limit=1')
+            const resultado = await data.json()
+            const img = document.querySelectorAll("img")
+            img.forEach((res)=>{
+                    res.setAttribute("src", resultado[0].url)
+            })
+            
+            console.log(resultado)
+        }
+
+        name()
+
+    </script>
+
+
+</body>
+</html>
