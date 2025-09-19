@@ -272,7 +272,7 @@ async function cadastroUser(email,confirmaremail,senha) {
 
 async function RecuperarUser(email,senha,nova_senha) {
     const resultado = await fetch('http://localhost:3000/recuperarSenha',{
-        method:'PUT',
+        meth    od:'PUT',
         headers:{'Content-Type':'Application/json'},
         body:JSON.stringify({
             email:email,
