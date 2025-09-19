@@ -2,7 +2,7 @@
 
 
 const express = require("express");
-// const cors = require("cors");
+const cors = require("cors");
 const transponder = require("nodemailer");
 const port = process.env.PORT || 3000;
 
