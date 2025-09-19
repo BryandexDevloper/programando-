@@ -1,0 +1,308 @@
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header{
+    width: 100%;
+    height: 100px;
+    border-bottom: 2px solid rgba(128, 128, 128, 0.384);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+   
+}
+
+
+
+.container_cima{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+    padding: 0px 10px;
+}
+
+.container_img{
+    width: auto;
+    height: 100%;
+   
+}
+
+.container_img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.container_menu{
+    width: 100px;
+    height: 90%;
+    display: flex;
+    align-items: center;
+   justify-content: center;
+   gap: 10px;
+}
+
+.lupa,.container_hamburguer{
+    width: 40%;
+    height: 90%;
+    background-color: rgba(128, 128, 128, 0.418);
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navegacao{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+    width: 100%;
+    height: 50%; 
+}
+
+.navegacao ul {
+    display: flex;
+    list-style-type: none;
+    font-size: 12px;
+    gap: 10px;
+}
+
+.navegacao li{
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.amigos_icon{
+    position: relative;
+  
+}
+
+.icon2{
+    position: absolute;
+    left: 21px;
+    top:6px;
+}
+
+
+.home,.notifi{
+    position: relative;
+    
+}
+
+.notificacao{
+    width: 21px;
+    height: 15px;
+    background-color: red;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 25px;
+    right:4px;
+    border: 0.5px solid white;
+    font-size: 8px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.container_acoes{
+    width: 100%;
+    height: 50px;
+    border-bottom:2px solid rgba(128, 128, 128, 0.384);
+    padding: 30px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container_foto{
+    width: 40px;
+    height: 40px;
+    background-color: red;
+    border-radius: 100px;
+    position: relative;
+    display: flex;
+}
+
+.container_post{
+    width: 220px;
+    height: 40px;
+    border-radius: 20px;
+    background-color:  rgba(128, 128, 128, 0.384);
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;
+}
+
+.container_post p {
+    font-size: 12px;
+}
+
+.container_postar_foto{
+    width: auto;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 12px;
+    cursor: pointer;
+   
+}
+
+.foto{
+    width: 100%;
+    height: 100%;
+}
+
+.foto img{
+    width: 100%;
+    object-fit: cover;
+    border-radius: 100%;
+    height: 100%;
+}
+
+.icon_online{
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: green;
+    bottom: 0;
+    right: 0;
+    border-radius: 100%;
+    border: 1px solid white;
+}
+
+.container_storys{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    padding:10px 20px;
+    justify-content: flex-start;
+    overflow-x: auto;
+    gap: 10px;
+    border-bottom: 2px solid rgba(128, 128, 128, 0.384);
+}
+
+.container_criar_story{
+    flex: 0 0 120px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid black;
+    position: relative;
+}
+
+.foto_perfil{
+    width: 100%;
+    height: 60%;
+    background-color: black;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.icon_mais{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: rgb(0, 110, 255);
+    border-radius: 100px;
+    border: 2px solid white;
+    top: 60%;
+    left: 50%;
+    transform: translate(-60%,-50%);
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
+
+.container_amigos{
+    padding: 10px 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+
+}
+
+.container_amigos ul {
+    display: flex;
+    list-style-type: none;
+    justify-content: space-between;
+}
+
+.container_amigos li {
+    display: flex;
+    gap: 10px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.container_amigos .lupa{
+width: 35px;
+height: 35px;
+cursor: pointer;
+}
+
+.container_amigos button {
+    width: 100px;
+    height: 35px;
+    border-radius: 20px;
+    border: none;
+    font-weight: bold;
+    background-color: rgba(128, 128, 128, 0.308);
+    cursor: pointer;
+
+    
+}
+
+.container_btns{
+    display: flex;
+    gap: 10px;
+}
+
+.container_pedidos_de_amizade,.container_pessoas_talvez_conheca{
+    width: 100%;
+    height: 200px;
+    border: 1px solid black;
+    padding: 10px 20px;
+    
+}
+
+.text_navegacao{
+    display: flex;
+    list-style-type:none;
+    justify-content: space-between;
+}
+
+.text_navegacao p{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.text_navegacao a{
+    text-decoration: none;
+    font-size: 12px;
+}
+
+hr{
+   margin: 20px 0px 20px;
+}

@@ -1,0 +1,17 @@
+.container_imagens{
+    width: 100%;
+    height: auto;
+    border: 3px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px 20px;
+    
+   
+}
+
+.container_imagens img{
+    width: 100px;
+    height: 100px;
+}
