@@ -42,7 +42,7 @@ let contador = 0; // controle do play/pause
 // Carregar metadados e setar max do range
 audio.addEventListener("loadedmetadata", () => {
     musica.max = audio.duration;
-});
+}); 
 
 setInterval(() => {
     musica.value = audio.currentTime;
