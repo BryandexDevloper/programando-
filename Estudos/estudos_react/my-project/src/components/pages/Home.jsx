@@ -1,8 +1,9 @@
+
 const Home=()=>{
     return(
-        <div>
-            oiiii
-        </div>
+        <h1>
+            home
+        </h1>
     )
 }
 
