@@ -8,7 +8,7 @@ import { FaWhatsapp } from "react-icons/fa";
 
 const Hero = () => {
   return (
-    <section className="relative flex flex-col items-center gap-5 h-[700px] sm:h-[600px] md:h-[650px] lg:h-[700px]" id='inicio'>
+    <section className="relative flex flex-col items-center gap-5 h-[700px] sm:h-[600px] md:h-[650px] lg:h-[700px]" id='incio'>
       {/* Fundo com blur */}
       <div className="h-[700px] sm:h-[600px] md:h-[650px] lg:h-[700px] absolute inset-0 bg-[url('https://i.pinimg.com/1200x/2d/c1/f2/2dc1f2f0b6e52f0c0a3b63ce13f88f7d.jpg')] bg-no-repeat bg-cover bg-center blur-[4px] z-0"></div>
        
