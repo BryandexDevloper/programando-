@@ -1,12 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
+    <div
+      class="container"
+      style="
+        display: flex;
+        justify-content: space-around;
+        width: 700px;
+        height: 300px;
+        background-color: rgba(0, 0, 0, 0.493);
+        border: 1px solid black;
+        font-size: 20px;
+        align-items: center;
+      "
+    >
+      <div
+        class="div"
+        style="border: 1px solid; flex: 1; text-align: center"
+      ></div>
+      <div
+        class="div"
+        style="border: 1px solid; flex: 1; text-align: center"
+      ></div>
+      <div
+        class="div"
+        style="border: 1px solid; flex: 1; text-align: center"
+      ></div>
+    </div>
+    <button class="botao">Girar roleta</button>
+
+    <script>
+      const apostas1 = [
+        { texto: "🎡 Roleta Vermelha", valor: 50 },
+        { texto: "⚫ Roleta Preta", valor: 30 },
+        { texto: "🎰 Slot Machine", valor: 10 },
+        { texto: "🃏 Blackjack", valor: 100 },
+        { texto: "♠️ Poker Texas Holdem", valor: 200 },
+        { texto: "♦️ Baccarat", valor: 150 },
+        { texto: "🎲 Craps", valor: 75 },
+        { texto: "🎯 Keno", valor: 25 },
+        { texto: "🎲 Sic Bo", valor: 60 },
+        { texto: "🔢 Bingo", valor: 40 },
+        { texto: "🖥️ Video Poker", valor: 120 },
+        { texto: "🎱 Double Ball Roulette", valor: 80 },
+        { texto: "🃏 Three Card Poker", valor: 130 },
+        { texto: "🌴 Caribbean Stud", valor: 90 },
+        { texto: "⚔️ Casino War", valor: 55 },
+        { texto: "🀄 Pai Gow Poker", valor: 110 },
+        { texto: "🚀 Let It Ride", valor: 70 },
+        { texto: "🔄 Spin a Win", valor: 20 },
+        { texto: "♣️ Texas Bonus", valor: 95 },
+        { texto: "🎡 Mega Wheel", valor: 45 },
+        { texto: "🐉 Dragon Tiger", valor: 65 },
+        { texto: "7️⃣ Lucky 7", valor: 35 },
+        { texto: "💭 Dream Catcher", valor: 85 },
+        { texto: "💰 Money Wheel", valor: 15 },
+      ];
+
+      let perdeu = 0;
+      let premio_medio = 0;
+      let Premio_maximo = 0;
+      const botao = document.querySelector(".botao");
+      botao.addEventListener("click", () => {
+
+          
+          
+          let numero1 = Math.floor(Math.random() * apostas1.length);
+          let numero2 = Math.floor(Math.random() * apostas1.length);
+          let numero3 = Math.floor(Math.random() * apostas1.length);
+          if(perdeu > 5){
+              numero1 = 20
+              numero2 = 20
+              numero3 = 20
+              console.log('opoooooooooooooooooooooooooo')
+              perdeu = 0
+          }
+          const div = document.querySelectorAll(".div");
+          
+        div[0].textContent = apostas1[numero1].texto;
+        div[1].textContent = apostas1[numero2].texto;
+        div[2].textContent = apostas1[numero3].texto;
+
+        console.log(div[0].textContent);
+        console.log(div[1].textContent);
+        console.log(div[2].textContent);
+
+        if (numero1 === numero2 && numero2 === numero3) {
+          Premio_maximo++
+        } else if (numero1 === numero2) {
+          premio_medio++
+        } else if (numero1 === numero3) {
+          premio_medio++
+        } else if (numero2 === numero3) {
+          premio_medio++
+        } else {
+          console.log("perdeu");
+          perdeu++;
+        }
+
+        console.log();
+        console.log(numero1);
+        console.log(numero2);
+        console.log(numero3);
+        console.log();
+        console.log("Perdeu " + "  x" + perdeu);
+        console.log("Premio medio " + "  x" + premio_medio);
+        console.log("premio maximo " + "  x" + Premio_maximo);
+
+        
+        
+    });
     
-    <script src="ex01.js"></script>
-</body>
+          
+    </script>
+  </body>
 </html>
