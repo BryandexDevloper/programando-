@@ -66,7 +66,7 @@ O servidor estará rodando na porta `3080`.
 ### Exemplo de Uso
 
 ```
-GET https://api-comentarios-realistas-bryandex.onrender.com/comentarios/celular/empresaX
+GET https://api-comentarios-realistas-bryandex.onrender.com/comentarios
 ```
 
 ### Resposta de Sucesso (200)
