@@ -49,7 +49,7 @@ servidor.get("/comentarios", (req, res) => {
 
 let desenho = figlet.textSync(
   "BRYANDEX DEVLOPER API  DE COMENTARIOS ", {
-    font: "big",
+    font: "Standard",
     horizontalLayout: "default",
     verticalLayout: "default",
     width: 80,
