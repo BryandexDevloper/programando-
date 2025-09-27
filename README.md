@@ -16,6 +16,165 @@
 
 
 
+
+# API de Comentários 📝
+
+Uma API simples para gerar comentários fictícios de produtos de diferentes categorias, personalizados com o nome da empresa desejada.
+
+## 🚀 Sobre
+
+Esta API permite obter comentários de clientes simulados para diversos tipos de produtos, sendo útil para testes, demonstrações ou prototipagem de sistemas de e-commerce.
+
+## 🛠️ Tecnologias Utilizadas
+
+- Node.js
+- Express.js
+- CORS
+- Validator (para sanitização de dados)
+
+## 📦 Instalação
+
+1. Clone o repositório:
+```bash
+git clone <url-do-repositorio>
+cd api-comentarios
+```
+
+2. Instale as dependências:
+```bash
+npm install express cors validator
+```
+
+3. Execute o servidor:
+```bash
+node server.js
+```
+
+O servidor estará rodando na porta `3080`.
+
+## 🔗 Uso da API
+
+### Endpoint Principal
+
+**GET** `/comentarios`
+
+### Parâmetros Obrigatórios (Query String)
+
+- `produto`: Categoria do produto
+- `empresa`: Nome da empresa/loja
+
+### Exemplo de Uso
+
+```
+GET http://localhost:3080/comentarios?produto=celular&empresa=TechStore
+```
+
+### Resposta de Sucesso (200)
+
+```json
+{
+  "comentarios": [
+    {
+      "id": 1,
+      "nome": "Ana Souza",
+      "email": "ana.souza@email.com",
+      "comentario": "Comprei na TechStore e chegou tudo certo! Produto excelente.",
+      "estrelas": 5
+    },
+    {
+      "id": 2,
+      "nome": "Bruno Lima",
+      "email": "bruno.lima@email.com",
+      "comentario": "A experiência com TechStore foi boa, mas a entrega demorou um pouco.",
+      "estrelas": 3
+    }
+    // ... mais comentários
+  ]
+}
+```
+
+## 📋 Categorias de Produtos Disponíveis
+
+| Categoria | Parâmetro |
+|-----------|-----------|
+| 📱 Celulares | `celular` |
+| 💻 Tecnologia | `tecnologia` |
+| 🏠 Eletrodomésticos | `eletrodomesticos` |
+| 👕 Moda | `moda` |
+| 🍎 Alimentação | `alimentacao` |
+| 📚 Livros | `livros` |
+| 💄 Saúde e Beleza | `saude_beleza` |
+| 🎮 Games | `games` |
+| 🏡 Casa e Jardim | `casa_jardim` |
+| 🐕 Pet Shop | `pet_shop` |
+| ⚽ Esportes | `esportes` |
+| 🚗 Automotivo | `automotivo` |
+| 🎵 Instrumentos Musicais | `instrumentos_musicais` |
+| 👶 Bebês e Crianças | `bebes_criancas` |
+| ✏️ Papelaria | `papelaria` |
+| 🖼️ Decoração | `decoracao` |
+
+## ⚠️ Tratamento de Erros
+
+### Erro 400 - Parâmetro "empresa" ausente
+
+```json
+{
+  "menssagem": "Para usar a api voce deve descrever o nome da empresa ou loja"
+}
+```
+
+### Erro 400 - Parâmetro "produto" ausente
+
+```json
+{
+  "menssagem": "Para usar essa api voce deve colocar algum produto na url por ex: carro,celular,domestico etc..."
+}
+```
+
+## 🔒 Segurança
+
+A API utiliza a biblioteca `validator` para sanitizar os parâmetros de entrada, prevenindo ataques de injeção.
+
+## 📝 Estrutura dos Comentários
+
+Cada comentário possui:
+
+- **id**: Identificador único
+- **nome**: Nome fictício do cliente
+- **email**: Email fictício do cliente
+- **comentario**: Texto do comentário (personalizado com o nome da empresa)
+- **estrelas**: Avaliação de 1 a 5 estrelas
+
+## 🎯 Casos de Uso
+
+- Testes de sistemas de e-commerce
+- Demonstrações de produtos
+- Prototipagem de interfaces
+- Desenvolvimento de dashboards
+- Simulação de dados para treinamento
+
+## 🤝 Contribuição
+
+Sinta-se à vontade para contribuir com melhorias, correções ou novas categorias de produtos!
+
+## 📄 Licença
+
+Este projeto é de uso livre para fins educacionais e de desenvolvimento.
+
+---
+
+**Nota**: Esta API gera dados fictícios para fins de demonstração. Não utilize em ambiente de produção com dados reais.
+
+
+
+
+
+
+
+
+
+
 # 📧 API de Envio de E-mails BryanDex
 
 Uma API REST simples e eficiente para envio de e-mails usando diferentes provedores SMTP. **Pronta para uso!**
