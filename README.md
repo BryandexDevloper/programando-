@@ -66,7 +66,7 @@ O servidor estará rodando na porta `3080`.
 ### Exemplo de Uso
 
 ```
-GET http://localhost:3080/comentarios?produto=celular&empresa=TechStore
+GET https://api-comentarios-realistas-bryandex.onrender.com/comentarios
 ```
 
 ### Resposta de Sucesso (200)
