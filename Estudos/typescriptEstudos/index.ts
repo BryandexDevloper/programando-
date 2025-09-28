@@ -14,6 +14,8 @@ let array_strings : string[] = ['a','b','c']
 console.log(array[3])
 console.log(array_strings[2])
 
+
+
 //funções
 function soma_numeros(a:number,b:number):number{
     return a + b ;
@@ -42,8 +44,12 @@ let pessoa: {nome:string;idade:number;ativo:boolean} = {
 
 
 //array de objetos
+type Person = {
+    nome:string,
+    idade:number
+}
 
-let pessoas:{nome:string,idade:number}[] = [
+let pessoas:Person[] = [
     {nome:'bryan',idade:18},
     {nome:'anderson',idade:22}
 ]

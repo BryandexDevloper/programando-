@@ -47,12 +47,12 @@ let contas =  [
     new Contabancaria("Joao",3500,"https://th.bing.com/th?q=Joao+Caetano+E+13+Ou+22&w=120&h=120&c=1&rs=1&qlt=70&o=7&cb=1&pid=InlineBlock&rm=3&mkt=pt-BR&cc=BR&setlang=pt-br&adlt=strict&t=1&mw=247",123_456_789_10),
     new Contabancaria("Maria",5000,"https://th.bing.com/th/id/OIP.7dOTJ2GsBKAsCEak7t3ABgHaEK?w=276&h=180&c=7&r=0&o=7&pid=1.7&rm=3",192_198_946_70)
 ]
-
-
-
-
-
 contas[1].Transferencia(500,contas[0])
+
+
+
+
+
 console.log(contas[0])
 console.log(contas[1])
 
