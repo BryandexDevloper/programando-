@@ -59,6 +59,6 @@ let desenho = figlet.textSync(
 
 
 servidor.listen(porta, () => {
-  console.log(`${chalk.green.bold(desenho)}`);
+  console.log(`${Chalk.green.bold(desenho)}`);
   console.log(`Rodando na porta:  ${porta}`)
 });
