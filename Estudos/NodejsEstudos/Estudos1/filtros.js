@@ -703,6 +703,59 @@ const comentarios = {
     },
   ],
 
+
+  saas: [
+    {
+      id: 1,
+      nome: "André Oliveira",
+      email: "andre.oliveira@email.com",
+      comentario: `Plataforma da ${empresa} é muito intuitiva, facilitou nossos processos!`,
+      estrelas: 5,
+    },
+    {
+      id: 2,
+      nome: "Beatriz Melo",
+      email: "beatriz.melo@email.com",
+      comentario: `Sistema da ${empresa} é bom, mas o suporte técnico demora a responder.`,
+      estrelas: 3,
+    },
+    {
+      id: 3,
+      nome: "Carlos Eduardo",
+      email: "carlos.eduardo@email.com",
+      comentario: `Software da ${empresa} aumentou nossa produtividade em 40%!`,
+      estrelas: 5,
+    },
+    {
+      id: 4,
+      nome: "Daniela Fonseca",
+      email: "daniela.fonseca@email.com",
+      comentario: `Interface da ${empresa} é confusa, mas as funcionalidades são úteis.`,
+      estrelas: 3,
+    },
+    {
+      id: 5,
+      nome: "Eduardo Martins",
+      email: "eduardo.martins@email.com",
+      comentario: `Integração da ${empresa} com outras ferramentas funciona perfeitamente.`,
+      estrelas: 4,
+    },
+    {
+      id: 6,
+      nome: "Fernanda Pires",
+      email: "fernanda.pires@email.com",
+      comentario: `Sistema da ${empresa} apresenta muitos bugs, experiência frustrante.`,
+      estrelas: 1,
+    },
+    {
+      id: 7,
+      nome: "Gabriel Azevedo",
+      email: "gabriel.azevedo@email.com",
+      comentario: `Relatórios da ${empresa} são completos e ajudam na tomada de decisão.`,
+      estrelas: 5,
+    },
+  ],
+
   decoracao: [
     {
       id: 1,
