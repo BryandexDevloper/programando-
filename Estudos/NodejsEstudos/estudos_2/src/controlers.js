@@ -5,14 +5,30 @@ const bcrypt = require("bcrypt"); // CORRIGIDO
 const notificacao_login_html = require("./telas_html_email/notificacao_login_html");
 const requestip = require('request-ip')
 const localizacao = require('geoip-lite')
-
-
+const UAParser  = require('ua-parser-js')
+const enviarEmail = require('./EnviarEmail')
+const notificacao_cadastro = require('./telas_html_email/notificacao_cadastro')
 
 const Login = async (req, res) => {
   const data = req.body;
-  const userAgent = req.headers['user-agent']
+  const parser = new UAParser (req.headers['user-agent'])
+  const agent = parser.getResult()
   const ip = requestip.getClientIp(req)
   const loc =  localizacao.lookup(ip)
+  const html = notificacao_login_html({
+     cidade: loc ? loc.city : null,
+    estado: loc ? loc.region : null,
+    pais: loc ? loc.country : null,
+    ip: ip,
+    hora: new Date(),
+     dispositivo: agent.device.type || 'desconhecido',
+    Navegador: `${agent.browser.name} ${agent.browser.version}`,
+    sistema: `${agent.os.name} ${agent.os.version}`,
+    logo:'https://i.pinimg.com/736x/37/30/04/37300417bfeb0f3a091312749737f5d7.jpg'
+
+  })
+
+  console.log(parser.getBrowser().name)
   try {
     if (!data.email || !data.senha) {
       return res
@@ -34,7 +50,7 @@ const Login = async (req, res) => {
     if (!senhaValida) {
       return res.status(400).json({ mensagem: "Senha invalida" });
     }else{
-     
+     enviarEmail({email:data.email,html:html,subject:'Login detectado',text:'Login'})
       return res.status(200).json({
       mensagem: "Login autorizado",
       user: {
@@ -43,11 +59,6 @@ const Login = async (req, res) => {
         email: usuario.email,
         tipo: usuario.role,
         dataCriacao: usuario.createdAt,
-        pc:userAgent,
-        ip:ip,
-        cidade:loc?loc.city:null,
-        pais:loc?loc.country:null,
-        regiao:loc?loc.region:null
         
       },
     }); 
@@ -62,6 +73,7 @@ const Login = async (req, res) => {
 const Cadastro = async (req, res) => {
   try {
     const data = req.body;
+    const html = notificacao_cadastro({dataCadastro:new Date(),email:data.email,nome:data.nome,logo:'https://i.pinimg.com/1200x/ee/e3/4d/eee34d5c97348b6e3d6ed4744fc88119.jpg'})
 
     if (!data.email || !data.senha) {
       return res
@@ -91,7 +103,7 @@ const Cadastro = async (req, res) => {
       senhaHash,
       "cliente",
     ]);
-
+    enviarEmail({email:data.email,html:html,subject:'Cadastro na CodePonto',text:'Seja bem vindo a CodePonto'})
     return res.status(201).json({ mensagem: "Cadastrado com sucesso!" });
   } catch (err) {
     return res.status(500).json({ mensagem: err.message });

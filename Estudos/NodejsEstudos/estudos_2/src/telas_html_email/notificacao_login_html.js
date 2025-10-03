@@ -1,7 +1,6 @@
-function notificacao_login_html({hora,ip,dispositivo,cidade,estado,pais,Navegador,sistema}){
+function notificacao_login_html({hora, ip, dispositivo, cidade, estado, pais, Navegador, sistema, logo}) {
     return `
-    
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -16,60 +15,66 @@ function notificacao_login_html({hora,ip,dispositivo,cidade,estado,pais,Navegado
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background-color: #f5f7fa;
+            background-color: #001227;
             line-height: 1.6;
-            color: #2c3e50;
+            color: #ffffff;
             padding: 20px 0;
         }
         
         .email-container {
             max-width: 600px;
             margin: 0 auto;
-            background-color: #ffffff;
-            border-radius: 12px;
+            background-color: #01070F;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border: 1px solid #e1e8ed;
+            box-shadow: 0 8px 32px rgba(61, 213, 250, 0.1);
+            border: 1px solid #054D8A;
         }
         
         .header {
-            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            background: linear-gradient(135deg, #01315B 0%, #054D8A 100%);
             padding: 40px 30px;
             text-align: center;
             color: white;
             position: relative;
+            border-bottom: 2px solid #3DD5FA;
         }
         
-        .header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #e74c3c, #f39c12, #27ae60, #3498db);
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-image {
+            width: 120px;
+            height: 60px;
+            object-fit: cover;
         }
         
         .logo {
             font-size: 32px;
             font-weight: 700;
-            margin-bottom: 12px;
             letter-spacing: -0.5px;
+            color: #3DD5FA;
         }
         
         .header-text {
             font-size: 16px;
-            opacity: 0.95;
+            opacity: 0.9;
             font-weight: 400;
+            color: #ffffff;
         }
         
         .content {
             padding: 45px 35px;
+            background-color: #01070F;
         }
         
         .alert-title {
             font-size: 28px;
-            color: #e74c3c;
+            color: #3DD5FA;
             margin-bottom: 20px;
             font-weight: 700;
             text-align: center;
@@ -78,26 +83,27 @@ function notificacao_login_html({hora,ip,dispositivo,cidade,estado,pais,Navegado
         
         .alert-text {
             font-size: 16px;
-            color: #5a6c7d;
+            color: #ffffff;
             margin-bottom: 35px;
             line-height: 1.7;
             text-align: center;
             max-width: 500px;
             margin-left: auto;
             margin-right: auto;
+            opacity: 0.9;
         }
         
         .login-details {
-            background-color: #f8fafe;
-            border: 2px solid #3498db;
-            border-radius: 12px;
+            background-color: #01315B;
+            border: 2px solid #054D8A;
+            border-radius: 20px;
             padding: 25px;
             margin: 35px 0;
         }
         
         .details-title {
             font-size: 18px;
-            color: #2c3e50;
+            color: #3DD5FA;
             margin-bottom: 25px;
             text-align: center;
             font-weight: 700;
@@ -109,7 +115,7 @@ function notificacao_login_html({hora,ip,dispositivo,cidade,estado,pais,Navegado
         }
         
         .details-table tr {
-            border-bottom: 1px solid #e8f0fe;
+            border-bottom: 1px solid #054D8A;
         }
         
         .details-table tr:last-child {
@@ -123,29 +129,29 @@ function notificacao_login_html({hora,ip,dispositivo,cidade,estado,pais,Navegado
         
         .detail-label {
             font-weight: 600;
-            color: #34495e;
+            color: #3DD5FA;
             font-size: 15px;
             width: 40%;
             padding-right: 15px;
         }
         
         .detail-value {
-            color: #2c3e50;
+            color: #ffffff;
             font-size: 15px;
             width: 60%;
             word-wrap: break-word;
         }
         
         .security-actions {
-            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
-            border: 2px solid #ffa726;
-            border-radius: 12px;
+            background: linear-gradient(135deg, #01315B 0%, #054D8A 100%);
+            border: 2px solid #3DD5FA;
+            border-radius: 20px;
             padding: 30px;
             margin: 30px 0;
         }
         
         .security-actions h3 {
-            color: #f57c00;
+            color: #3DD5FA;
             margin-bottom: 20px;
             font-size: 18px;
             font-weight: 700;
@@ -157,18 +163,18 @@ function notificacao_login_html({hora,ip,dispositivo,cidade,estado,pais,Navegado
         }
         
         .action-list li {
-            color: #e65100;
+            color: #ffffff;
             font-size: 15px;
             line-height: 1.6;
             margin-bottom: 12px;
             padding-left: 25px;
             position: relative;
-            font-weight: 500;
+            font-weight: 400;
         }
         
         .action-list li::before {
             content: "•";
-            color: #f57c00;
+            color: #3DD5FA;
             font-weight: bold;
             position: absolute;
             left: 0;
@@ -182,62 +188,76 @@ function notificacao_login_html({hora,ip,dispositivo,cidade,estado,pais,Navegado
         
         .cta-button {
             display: inline-block;
-            color: white !important;
+            color: #01070F !important;
             padding: 16px 32px;
             text-decoration: none !important;
-            border-radius: 50px;
+            border-radius: 30px;
             font-weight: 600;
             font-size: 16px;
             min-width: 160px;
             text-align: center;
             letter-spacing: 0.5px;
             margin: 0 10px 10px 0;
+            transition: all 0.3s ease;
         }
         
         .btn-primary {
-            background-color: #27ae60 !important;
-            box-shadow: 0 6px 20px rgba(46, 204, 113, 0.3);
+            background-color: #3DD5FA !important;
+            border: 1px solid #3DD5FA;
+            box-shadow: 0 6px 20px rgba(61, 213, 250, 0.3);
+        }
+        
+        .btn-primary:hover {
+            box-shadow: 5px 10px 20px 1px rgba(61, 213, 250, 0.4);
         }
         
         .btn-danger {
-            background-color: #e74c3c !important;
-            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.3);
+            background-color: transparent !important;
+            border: 1px solid #3DD5FA;
+            color: #3DD5FA !important;
+            box-shadow: 0 6px 20px rgba(61, 213, 250, 0.2);
+        }
+        
+        .btn-danger:hover {
+            box-shadow: 5px 10px 20px 1px rgba(61, 213, 250, 0.3);
         }
         
         .security-note {
-            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-            border-left: 6px solid #2196f3;
-            border-radius: 0 12px 12px 0;
+            background: linear-gradient(135deg, #01315B 0%, #054D8A 100%);
+            border-left: 6px solid #3DD5FA;
+            border-radius: 0 20px 20px 0;
             padding: 25px;
             margin: 30px 0;
         }
         
         .security-note h4 {
-            color: #1565c0;
+            color: #3DD5FA;
             margin-bottom: 12px;
             font-size: 16px;
             font-weight: 700;
         }
         
         .security-note p {
-            color: #1976d2;
+            color: #ffffff;
             font-size: 14px;
             line-height: 1.6;
-            font-weight: 500;
+            font-weight: 400;
+            opacity: 0.9;
         }
         
         .footer {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            background: linear-gradient(135deg, #01070F 0%, #001227 100%);
             padding: 35px 30px;
             text-align: center;
-            border-top: 1px solid #dee2e6;
+            border-top: 1px solid #054D8A;
         }
         
         .footer p {
             font-size: 13px;
-            color: #6c757d;
+            color: #ffffff;
             margin-bottom: 12px;
             line-height: 1.5;
+            opacity: 0.7;
         }
         
         .social-links {
@@ -247,7 +267,7 @@ function notificacao_login_html({hora,ip,dispositivo,cidade,estado,pais,Navegado
         .social-links a {
             display: inline-block;
             margin: 0 15px;
-            color: #3498db;
+            color: #3DD5FA;
             text-decoration: none;
             font-size: 13px;
             font-weight: 600;
@@ -255,30 +275,29 @@ function notificacao_login_html({hora,ip,dispositivo,cidade,estado,pais,Navegado
         }
         
         .social-links a:hover {
-            color: #2980b9;
+            color: #054D8A;
         }
         
         .divider {
             height: 2px;
-            background: linear-gradient(90deg, transparent 0%, #bdc3c7 50%, transparent 100%);
+            background: linear-gradient(90deg, transparent 0%, #054D8A 50%, transparent 100%);
             margin: 35px 0;
             border-radius: 1px;
         }
         
         .status-badge {
             display: inline-block;
-            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
-            color: white;
+            background: linear-gradient(135deg, #3DD5FA 0%, #054D8A 100%);
+            color: #01070F;
             padding: 8px 16px;
-            border-radius: 25px;
+            border-radius: 30px;
             font-size: 13px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
+            box-shadow: 0 2px 8px rgba(61, 213, 250, 0.3);
         }
         
-        /* Responsividade melhorada */
         @media (max-width: 640px) {
             body {
                 padding: 10px;
@@ -286,8 +305,7 @@ function notificacao_login_html({hora,ip,dispositivo,cidade,estado,pais,Navegado
             
             .email-container {
                 margin: 0;
-                border-radius: 8px;
-                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+                border-radius: 15px;
             }
             
             .header {
@@ -381,6 +399,11 @@ function notificacao_login_html({hora,ip,dispositivo,cidade,estado,pais,Navegado
                 padding: 25px 15px;
             }
             
+            .logo-image {
+                width: 50px;
+                height: 50px;
+            }
+            
             .logo {
                 font-size: 22px;
             }
@@ -409,14 +432,17 @@ function notificacao_login_html({hora,ip,dispositivo,cidade,estado,pais,Navegado
 <body>
     <div class="email-container">
         <div class="header">
-            <div class="logo">Bryandex Developer</div>
-            <div class="header-text">Comércio Online - Sua plataforma de vendas digital</div>
+            <div class="logo-container">
+                <img src="${logo}" alt="CodePonto Logo" class="logo-image" />
+                <div class="logo">CodePonto</div>
+            </div>
+            <div class="header-text">Soluções em APIs e Desenvolvimento Web</div>
         </div>
         
         <div class="content">
             <h1 class="alert-title">🔐 Novo acesso detectado</h1>
             <p class="alert-text">
-                Detectamos um novo acesso à sua conta na Bryandex Developer. 
+                Detectamos um novo acesso à sua conta no CodePonto. 
                 Se foi você que fez login, pode ignorar este email. Caso contrário, 
                 tome as medidas de segurança imediatamente.
             </p>
@@ -472,30 +498,10 @@ function notificacao_login_html({hora,ip,dispositivo,cidade,estado,pais,Navegado
             
             <div class="security-note">
                 <h4>🛡️ Dicas de Segurança</h4>
-                <p>Mantenha sua conta segura: use senhas fortes e únicas, ative a verificação em duas etapas e sempre faça logout em dispositivos compartilhados. Nunca compartilhe suas credenciais com terceiros.</p>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <p>Este email foi enviado automaticamente pelo sistema de segurança da Bryandex Developer.</p>
-            <p>Se você não reconhece esta atividade, aja imediatamente para proteger sua conta.</p>
-            
-            <div class="social-links">
-                <a href="#">Central de Ajuda</a> |
-                <a href="#">Política de Privacidade</a> |
-                <a href="#">Termos de Uso</a>
-            </div>
-            
-            <p style="margin-top: 20px; font-size: 11px; color: #bbb;">
-                © 2025 Bryandex Developer. Todos os direitos reservados.<br>
-                Este é um email automático, não responda a esta mensagem.
-            </p>
-        </div>
-    </div>
-</body>
-</html>
+                <p>Mantenha sua conta segura: use senhas fortes e únicas,
+             </div>`   
 
-    `
 }
+
 
 module.exports = notificacao_login_html
