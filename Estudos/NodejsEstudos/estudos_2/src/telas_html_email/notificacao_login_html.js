@@ -498,4 +498,4 @@ function notificacao_login_html({hora,ip,dispositivo,cidade,estado,pais,Navegado
     `
 }
 
-module.exports = {notificacao_login_html} 
+module.exports = notificacao_login_html
