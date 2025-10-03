@@ -3,6 +3,22 @@ const mensagem = require("./bordao");
 const dataBase = require("./Database");
 const bcrypt = require("bcrypt"); // CORRIGIDO
 
+
+async function enviarEmail(params) {
+    const data = await fetch('https://api-envio-email-bryandex.onrender.com',{
+      method:'POST',
+      headers:{'Content-type':'application/json'},
+      body:JSON.stringify({
+        service:'gmail',
+        email:'adrianbryan072@gmail.com',
+        password:
+      })
+    })
+}
+
+
+
+
 const Login = async (req, res) => {
   const data = req.body;
   try {
