@@ -1,120 +1,83 @@
-console.clear()
-const fs = require('fs')
-const path = require('path');
-const mensagem = require('./bordao');
+console.clear();
+const mensagem = require("./bordao");
+const dataBase = require("./Database");
+const bcrypt = require("bcrypt"); // CORRIGIDO
 
-
-
-
-class BancoDados{
-    constructor(){
-        this.arquivo = path.join(__dirname,'dataBase.json')
-        this.dados = JSON.parse(fs.readFileSync(this.arquivo,'utf-8'))
+const Login = async (req, res) => {
+  const data = req.body;
+  try {
+    if (!data.email || !data.senha) {
+      return res
+        .status(400)
+        .json({ mensagem: "Ainda faltam dados importantes" });
     }
 
+    const ress = await dataBase.query("SELECT * FROM users WHERE email = ?", [
+      data.email,
+    ]);
 
-    Salvar(object){
-        fs.writeFileSync(this.arquivo,JSON.stringify(object,null,2),'utf-8')
-    }
-}
-const dados = new BancoDados
-
-
-
-const Login = (req,res)=>{
-    
-    const pessoa = req.query
-    
-    const pessoaEncontrada = dados.dados.usuarios.find(ress => ress.email === pessoa.email)
-    if(!pessoaEncontrada){
-        return res.status(400).json({mensagem:'Usuario nao encontrado'})
+    if (ress.length === 0) {
+      return res.status(400).json({ mensagem: "Usuario nao encontrado" });
     }
 
-    if(pessoaEncontrada.senha != pessoa.senha){
-        return res.status(400).json({mensagem:'Senha incorreta'})
-    }else{
-        return res.status(200).json({mensagem:'Login efetivado com sucesso'})
-    }
-   
-}
+    const usuario = ress[0];
 
-
-const Cadastro = (req,res)=>{
-   const pessoa = req.query
-    
-    const pessoaEncontrada = dados.dados.usuarios.find(ress => ress.email === pessoa.email)
-    if(pessoaEncontrada){
-        return res.status(400).json({mensagem:'Usuario ja cadastrado faça login ou entre com outra senha'})
-    }else{
-        let id = dados.dados.usuarios.length + 1
-       const novoUsurio = {
-            id:id,
-            nome:pessoa.nome,
-            email:pessoa.email,
-            senha:pessoa.senha,
-            telefone:pessoa.telefone || null,
-            enderecoId:null,
-            role:'user',
-            criado_em:new Date().toISOString()
-        }
-
-
-        dados.dados.usuarios.push(novoUsurio)
-        dados.Salvar(dados.dados)
-
-        return res.status(200).json({mensagem:'Usuario Cadastrado com sucesso'})
+    const senhaValida = await bcrypt.compare(data.senha, usuario.passwordHash);
+    if (!senhaValida) {
+      return res.status(400).json({ mensagem: "Senha invalida" });
     }
 
-    
-}
+    return res.status(200).json({
+      mensagem: "Login autorizado",
+      user: {
+        nome: usuario.name,
+        email: usuario.email,
+        tipo: usuario.role,
+        dataCriacao: usuario.createdAt,
+      },
+    });
+  } catch (err) {
+    return res.status(400).json({ mensagem: err.message });
+  }
+};
 
+const Cadastro = async (req, res) => {
+  try {
+    const data = req.body;
 
-    const ListarUsers = (req,res)=>{
-        const Pessoa = req.query
-
-        if(Pessoa.role === 'admin'){
-            const pessoaEncontrada = dados.dados.usuarios
-            return res.status(200).json({mensagem:pessoaEncontrada})
-            
-        }else{
-             return res.status(400).json({mensagem:'Somente administradores podem ver todos os usuarios'})
-        }
+    if (!data.email || !data.senha) {
+      return res
+        .status(400)
+        .json({ mensagem: "Ainda faltam dados importantes" });
     }
 
+    const ress = await dataBase.query("SELECT * FROM users WHERE email = ?", [
+      data.email,
+    ]);
 
-    const CadastrarAdmin = (req,res)=>{
-    
-    const pessoa = req.query
-    const pessoaEncontrada = dados.dados.usuarios.find(ress => ress.email === pessoa.email)
-    if(pessoaEncontrada){
-       pessoaEncontrada.role = 'admin'
-        dados.Salvar(dados.dados)
-    }
-    
-    
-    else{
-        let id = dados.dados.usuarios.length + 1
-       const novoUsurio = {
-            id:id,
-            nome:pessoa.nome,
-            email:pessoa.email,
-            senha:pessoa.senha,
-            telefone:pessoa.telefone || null,
-            enderecoId:null,
-            role:'admin',
-            criado_em:new Date().toISOString()
-        }
-
-
-        dados.dados.usuarios.push(novoUsurio)
-        dados.Salvar(dados.dados)
-
-        return res.status(200).json({mensagem:'Usuario Cadastrado com sucesso como administrador'})
+    if (ress.length > 0) {
+      return res
+        .status(400)
+        .json({ mensagem: "Esse usuário já está cadastrado" });
     }
 
-    }
+    const senhaHash = await bcrypt.hash(data.senha, 10);
 
+    const insertQuery = `
+            INSERT INTO users (name, email, passwordHash, role, createdAt, updatedAt)
+            VALUES (?, ?, ?, ?, NOW(), NOW())
+        `;
+    await dataBase.query(insertQuery, [
+      data.nome,
+      data.email,
+      senhaHash,
+      "cliente",
+    ]);
 
+    return res.status(201).json({ mensagem: "Cadastrado com sucesso!" });
+  } catch (err) {
+    return res.status(500).json({ mensagem: err.message });
+  }
+};
 
-
-module.exports = {Login,Cadastro,ListarUsers,CadastrarAdmin}
+module.exports = { Login, Cadastro };
