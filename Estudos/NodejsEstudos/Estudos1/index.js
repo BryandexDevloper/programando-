@@ -6,7 +6,7 @@ const validator = require("validator");
 const Chalk = require('chalk');
 const figlet = require('figlet')
 const { default: chalk } = require("chalk");
-const porta =  3000
+const porta =  process.env.PORT || 3000
 const bodyParser = require('body-parser');
 
 
