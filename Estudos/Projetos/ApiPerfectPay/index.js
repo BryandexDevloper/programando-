@@ -33,20 +33,17 @@ servidor.use(cors());
 // Webhook PerfectPay
 servidor.post('/webhook/perfectpay', (req, res) => {
     const data = req.body;
+    vendaAprovada = data
+    return res.stat(200).json({mensagem:data})
 
-    if (data.public_token !== PERFECTPAY_TOKEN) {
-        vendaAprovada = true;
-        vendaAprovada = false
-        return res.status(200).send('Token inválido');
-    }
+    // if (data.sale_status_enum === 2) { // aprovado
+    //     vendaAprovada = true;
+    //     dadosVenda = data;
+    //     console.log(chalk.blue('Venda aprovada:', data.customer.email, data.code));
+    // }
 
-    if (data.sale_status_enum === 2) { // aprovado
-        vendaAprovada = true;
-        dadosVenda = data;
-        console.log(chalk.blue('Venda aprovada:', data.customer.email, data.code));
-    }
-
-    res.status(200).send('OK');
+    // res.status(200).send('OK');
+    
 });
 
 // Status da venda com validação de API Key
