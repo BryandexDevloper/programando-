@@ -1,5 +1,5 @@
 {
-    "name": "Estudos1",
+    "name": "estudos1",
     "version": "1.0.0",
     "main": "index.js",
     "license": "MIT",
@@ -8,6 +8,7 @@
         "dev": "nodemon index.js"
     },
     "dependencies": {
+        "body-parser": "^2.2.0",
         "chalk": "^4.1.2",
         "cors": "^2.8.5",
         "express": "^5.1.0",
@@ -16,5 +17,8 @@
     },
     "devDependencies": {
         "nodemon": "^3.1.10"
-    }
+    },
+    "keywords": [],
+    "author": "",
+    "description": ""
 }
