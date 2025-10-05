@@ -32,14 +32,17 @@ servidor.use(cors());
 
 // Webhook PerfectPay
 
- setTimeout(()=>{
+ function limpar(){
+    setTimeout(()=>{
     vendaAprovada = false
-    },40000)
+    },30000)
+ }  
 servidor.post('/webhook/perfectpay', (req, res) => {
     const data = req.body;
 
     if (data.public_token !== PERFECTPAY_TOKEN) {
         vendaAprovada = true;
+        limpar()
         return res.status(200).send('Token inválido');
     }
 
