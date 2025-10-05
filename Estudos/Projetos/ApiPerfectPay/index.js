@@ -35,7 +35,7 @@ servidor.use(cors());
  function limpar(){
     setTimeout(()=>{
     vendaAprovada = false
-    },30000)
+    },10000)
  }  
 servidor.post('/webhook/perfectpay', (req, res) => {
     const data = req.body;
