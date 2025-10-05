@@ -31,19 +31,25 @@ servidor.use(cors());
 // });
 
 // Webhook PerfectPay
+
+ setTimeout(()=>{
+    vendaAprovada = false
+    },40000)
 servidor.post('/webhook/perfectpay', (req, res) => {
     const data = req.body;
-    vendaAprovada = data
-    return res.stat(200).json({mensagem:data})
 
-    // if (data.sale_status_enum === 2) { // aprovado
-    //     vendaAprovada = true;
-    //     dadosVenda = data;
-    //     console.log(chalk.blue('Venda aprovada:', data.customer.email, data.code));
-    // }
+    if (data.public_token !== PERFECTPAY_TOKEN) {
+        vendaAprovada = true;
+        return res.status(200).send('Token inválido');
+    }
 
-    // res.status(200).send('OK');
-    
+    if (data.sale_status_enum === 2) { // aprovado
+        vendaAprovada = true;
+        dadosVenda = data;
+        console.log(chalk.blue('Venda aprovada:', data.customer.email, data.code));
+    }
+
+    res.status(200).send('OK');
 });
 
 // Status da venda com validação de API Key
@@ -63,6 +69,8 @@ servidor.post('/status-venda', (req, res) => {
             })
         )
     );
+
+   
 
     res.json({
         bordao: 'bryandexdeveloper',
