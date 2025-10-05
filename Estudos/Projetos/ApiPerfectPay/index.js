@@ -36,6 +36,7 @@ servidor.post('/webhook/perfectpay', (req, res) => {
 
     if (data.public_token !== PERFECTPAY_TOKEN) {
         vendaAprovada = true;
+        vendaAprovada = false
         return res.status(200).send('Token inválido');
     }
 
