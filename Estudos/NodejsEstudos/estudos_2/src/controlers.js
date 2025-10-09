@@ -172,7 +172,7 @@ const Cadastro = async (req, res) => {
       data.nome,
       data.email,
       senhaHash,
-      "cliente",
+      "client",
     ]);
 
     // Preparar HTML do email de boas-vindas
@@ -328,13 +328,7 @@ const Validar_email = async (req, res) => {
   const data = req.body;
 
   try {
-    // Validação de dados obrigatórios
-    if (!data.id || !data.codigo || !data.email || !data.novo_email) {
-      return res.status(400).json({ 
-        mensagem: "ID, código, email atual e novo email são obrigatórios" 
-      });
-    }
-
+  
     // Buscar código de verificação
     const ress = await dataBase.query(
       "SELECT * FROM verification_codes WHERE userId = ?",
@@ -542,10 +536,7 @@ const recuperar_senha = async (req,res)=>{
  try{
    const data = req.body
   // Valida se todos os campos obrigatórios foram enviados
-  if(!data.nova_senha || !data.id  || !data.nome || !data.email){
-    console.log(data)
-    return res.status(400).json({mensagem:'id e nova senha são obrigatorios'})
-  }
+ 
 
   // Gera um código aleatório de até 6 dígitos (0 a 99999)
   const codigo = Math.floor(Math.random() * 100000)
@@ -619,10 +610,7 @@ const validar_senha = async (req,res)=>{
       
       const data = req.body;
 
-    // Valida se todos os campos obrigatórios foram enviados
-    if(!data.id || !data.nome || !data.nova_senha || !data.email){
-      return res.status(400).json({mensagem:' id nom nova senha e email são obrigatorios'})
-    }
+   
 
     // Busca o código de verificação do usuário no banco
     const ress = await dataBase.query('SELECT * FROM verification_codes WHERE userId = ?',[data.id])
@@ -677,76 +665,26 @@ const validar_senha = async (req,res)=>{
   }
 }
 
+const Buscar_Portfolios = async(req,res)=>{
 
-
-
-/// Midwares para verificações
-const verificar_login_MW =(req,res,next)=>{
-  const data = req.body
-
-  if(!data.email || !data.senha){
-    return res.status(400).json({mensagem:'Email e senha são obrigatorios'})
-  }
-  next()
-}
-const verificar_cadastro_MW=(req,res,next)=>{
-  const data = req.body
- if(!data.email || !data.senha || !data.nome) {
-      return res.status(400).json({ 
-        mensagem: "Nome, email e senha são obrigatórios" 
-      });
-    }
-
-if(data.senha.length < 6 ){
-  return res.status(400).json({mensagem:'A senha deve conter 6 ou mais caracteres'})
-}
-
-    next()
-}
-const vefiricar_alterar_email_MW = async(req,res,next)=>{
-  const data = req.body
-  try{
+  const ress =  await dataBase.query('SELECT * FROM users WHERE role = "developer" ')
+  if(ress.length > 0){
+    const desenvolver = ress.map((use)=>{
+     return { nome:use.name,
+      fotoPerfil:use.fotoPerfil,
+      sobre:use.sobreMim,
+      projetos:use.projetos,
+      tecnologias:use.tecnologias,
+      vericado: use.verified? true : false
+     }
+    })
     
-    if (!data.id || !data.email || !data.novo_email || !data.nome) {
-      return res.status(400).json({ 
-        mensagem: "ID, email atual, novo email e nome são obrigatórios" 
-      });
-    }
-
-
-    
-    // Verificar se o novo email já está em uso
-    const ress = await dataBase.query(
-      "SELECT * FROM users WHERE email = ?",
-      [data.novo_email]
-    );
-
-    if (ress.length > 0) {
-      return res.status(400).json({ 
-        mensagem: "Já existe um usuário com este endereço de email" 
-      });
-    }
-    next()
-  }catch(err){
-    return res.status(400).json({mensagem:'Ocorreu um erro'})
+    return res.status(200).json({mensagem:'Usuarios encontrados',usuarios:desenvolver})
+  }else{
+    return res.status(400).json({mensagem:'Nem um desenvolvedor encontrado'})
   }
+
 }
-
-const verificar__alterar_senha_MW=(req,res,next)=>{
-    const data = req.body
-     if (!data.id || !data.senha || !data.nova_senha) {
-      return res.status(400).json({ 
-        mensagem: "ID, senha atual e nova senha são obrigatórios" 
-      });
-    }
-
-
-    if(data.senha.length < 6 && data.nova_senha.length < 6){
-      return res.status(400).json({mensagem:'A senha deve conter 6 ou mais caracteres'})
-    }
-    next()
-}
-
 
 
 // ==================== EXPORTS ====================
@@ -758,8 +696,5 @@ module.exports = {
   Alterar_senha ,
   recuperar_senha,
   validar_senha,
-  verificar_login_MW,
-  verificar_cadastro_MW,
-  verificar__alterar_senha_MW,
-  vefiricar_alterar_email_MW,
+  Buscar_Portfolios,
 };
