@@ -1,6 +1,7 @@
 const validator = require('validator')
 const mensagem = require('./bordao')
-
+const jwt = require('jsonwebtoken')
+const { promisify } = require('util');
 // midwares para verificação de body
 const verificar_login_MW =(req,res,next)=>{
   const data = req.body
@@ -128,6 +129,28 @@ const verificar_novoemail_campo_MW = (req,res,next)=>{
 }
 
 
+//valiador de token
+const veficar_tokem_MW = async (req,res,next)=>{
+  const headers = req.headers.authorization
+  console.log(headers)
+  if(!headers){
+    return res.status(401).json({erro:'Token de acesso não encontrado'})
+  }
+
+  const token =  headers.split(" ")[1]
+  console.log(token)
+  try{
+    const verificando = await promisify(jwt.verify)(token,'6df92c5e98b2ce822b28f9796b744af2')
+    console.log({verificando:verificando})
+      return next()
+  }catch(err){
+    return res.status(401).json({err:'token invalido'})
+  }
+
+
+}
+
+
 
 
 
@@ -142,5 +165,6 @@ module.exports = {
     verificar_senha_MW,
     verificar_campos_MW,
     verificar_email_campo_MW,
-    verificar_novoemail_campo_MW
+    verificar_novoemail_campo_MW,
+    veficar_tokem_MW
 }

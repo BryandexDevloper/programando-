@@ -12,6 +12,7 @@ const enviarEmail = require("./EnviarEmail");
 const requestip = require("request-ip");
 const localizacao = require("geoip-lite");
 const UAParser = require("ua-parser-js");
+const jwt = require ('jsonwebtoken')
 
 // ==================== ROTAS DE AUTENTICAÇÃO ====================
 
@@ -106,7 +107,11 @@ const Login = async (req, res) => {
         email: usuario.email,
         tipo: usuario.role,
         dataCriacao: usuario.createdAt,
+        token:jwt.sign({id:usuario.id},"6df92c5e98b2ce822b28f9796b744af2",{
+          expiresIn:'7d'
+        })
       },
+      
     });
 
   } catch (err) {
@@ -697,4 +702,5 @@ module.exports = {
   recuperar_senha,
   validar_senha,
   Buscar_Portfolios,
+  
 };
