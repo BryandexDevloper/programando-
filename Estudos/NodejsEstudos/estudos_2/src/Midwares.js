@@ -1,7 +1,11 @@
 const validator = require('validator')
 const mensagem = require('./bordao')
 const jwt = require('jsonwebtoken')
-const { promisify } = require('util');
+const { promisify } = require('util')
+const multer = require('multer')
+const path = require('path')
+
+
 // midwares para verificação de body
 const verificar_login_MW =(req,res,next)=>{
   const data = req.body
@@ -149,6 +153,29 @@ const veficar_tokem_MW = async (req,res,next)=>{
 
 
 }
+const uploadPath = path.join(__dirname, '../uploads/products');
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, uploadPath); // salva aqui
+  },
+  filename: (req, file, cb) => {
+    const nomeArquivo = `${Date.now()}-${file.originalname}`;
+    cb(null, nomeArquivo);
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  const allowedTypes = ['image/webp', 'video/wav'];
+  if (allowedTypes.includes(file.mimetype)) cb(null, true);
+  else cb(new Error('Tipo de arquivo não permitido'), false);
+};
+
+const upload = multer({
+  storage,
+  limits: { fileSize: 50 * 1024 * 1024 }, // 50 MB
+  fileFilter
+});
+
 
 
 
@@ -166,5 +193,6 @@ module.exports = {
     verificar_campos_MW,
     verificar_email_campo_MW,
     verificar_novoemail_campo_MW,
-    veficar_tokem_MW
+    veficar_tokem_MW,
+    upload
 }
