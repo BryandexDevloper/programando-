@@ -830,6 +830,67 @@ const enviarImagens = async (req, res) => {
 };
 
 
+const Buscar_projetos_user = async (req,res)=>{
+  const data = req.query
+  const ress = await dataBase.query('SELECT * FROM produtos WHERE user_id = ?',[data.id])
+  if(!data.id){
+    return res.status(400).json({mensagem:'Id do usuario obrigatorio'})
+  }
+
+  if(ress.length > 0){
+    const projetos = ress.map((use)=>{
+      return{
+        userid: use.user_id,
+        id:use.id,
+        nome:use.nome,
+        descricao:use.descricao,
+        tecnologias:use.tecnologias,
+        pros:use.pros,
+        contras:use.contras,
+        recursos_ad:use.recursos_adicionais
+      }
+    })
+    return res.status(200).json({mensagem:'Produtos do usuario',projetos:projetos})
+  }else{
+    return res.status(400).json({mensagem:'Nem um projeto encontrado'})
+  }
+
+  
+}
+const buscar_produto_id = async (req, res) => {
+  try {
+    const data = req.query
+
+    if (!data.id) {
+      return res.status(400).json({ mensagem: 'ID do produto obrigatório' })
+    }
+
+    const ress = await dataBase.query('SELECT * FROM produtos WHERE id = ?', [data.id])
+
+    if (ress.length > 0) {
+      const produto = ress.map((use) => ({
+        userid: use.user_id,
+        id:use.id,
+        nome:use.nome,
+        descricao:use.descricao,
+        tecnologias:use.tecnologias,
+        pros:use.pros,
+        contras:use.contras,
+        recursos_ad: !!use.recursos_adicionais
+      }))
+
+      return res.status(200).json({ mensagem: 'Produto encontrado', produto })
+    } else {
+      return res.status(404).json({ mensagem: 'Produto não encontrado' })
+    }
+
+  } catch (err) {
+    console.error('Erro ao buscar produto:', err)
+    return res.status(500).json({ mensagem: 'Erro interno do servidor' })
+  }
+}
+
+
 
 // ==================== EXPORTS ====================
 module.exports = {
@@ -843,5 +904,7 @@ module.exports = {
   Buscar_Portfolios,
   Buscar_tecnologia,
   buscarId,
-  enviarImagens
+  enviarImagens,
+  Buscar_projetos_user,
+  buscar_produto_id
 };
