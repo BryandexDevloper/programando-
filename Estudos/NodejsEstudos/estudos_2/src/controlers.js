@@ -847,7 +847,8 @@ const Buscar_projetos_user = async (req,res)=>{
         tecnologias:use.tecnologias,
         pros:use.pros,
         contras:use.contras,
-        recursos_ad:use.recursos_adicionais
+        recursos_ad:use.recursos_adicionais,
+        valor:use.valor
       }
     })
     return res.status(200).json({mensagem:'Produtos do usuario',projetos:projetos})
@@ -876,7 +877,8 @@ const buscar_produto_id = async (req, res) => {
         tecnologias:use.tecnologias,
         pros:use.pros,
         contras:use.contras,
-        recursos_ad: !!use.recursos_adicionais
+        recursos_ad: !!use.recursos_adicionais,
+        valor:use.valor
       }))
 
       return res.status(200).json({ mensagem: 'Produto encontrado', produto })
@@ -889,6 +891,72 @@ const buscar_produto_id = async (req, res) => {
     return res.status(500).json({ mensagem: 'Erro interno do servidor' })
   }
 }
+
+const Buscar_recursos_ad = async(req,res)=>{
+const data = req.query
+const ress = await dataBase.query('SELECT * FROM recursos_produto WHERE produto_id = ? AND ativo = 1',[data.produto_id])
+if(!data.produto_id){
+  return res.status(400).json({mensagem:'PRODUTO_ID E obrigatorio para a requisição'})
+}
+if(ress.length > 0){
+  const recursos = ress.map((use)=>{
+    return{
+      nome:use.nome,
+      descricao:use.descricao,
+      valor:use.valor
+
+    }
+  })
+  return res.status(200).json({mensagem:'Recusos Encontrados',recursos:recursos})
+}else{
+  return res.status(400).json({mensagem:'Nem um recurso adicional encontrado nesse produto'})
+}
+}
+
+const buscar_produtos_dinamico = async (req, res) => {
+  try {
+    // Pega o nome enviado na URL (exemplo: /buscar?nome=mouse)
+    const { nome } = req.query;
+
+    // Começa a query básica (busca todos os produtos ativos)
+    let query = 'SELECT * FROM produtos WHERE ativo = 1';
+    let params = [];
+
+    // Se o usuário mandou o nome, adiciona um filtro na query
+    if (nome) {
+      query += ' AND nome LIKE ?';
+      params.push(`%${nome}%`);
+    }
+
+    // Executa a query no banco
+    const ress = await dataBase.query(query, params);
+
+    // Se não encontrar nenhum resultado
+    if (ress.length === 0) {
+      return res.status(404).json({ mensagem: 'Nenhum produto encontrado' });
+    }
+
+    // Organiza os resultados
+    const resultado = ress.map((use) => ({
+      id: use.id,
+      userid: use.user_id,
+      nome: use.nome,
+      descricao: use.descricao,
+      tecnologias: use.tecnologias,
+      valor: use.valor,
+    }));
+
+    // Retorna os dados
+    return res.status(200).json({ 
+      mensagem: nome ? 'Produtos filtrados encontrados' : 'Todos os produtos encontrados', 
+      projetos: resultado 
+    });
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ mensagem: 'Erro ao buscar produtos' });
+  }
+};
 
 
 
@@ -906,5 +974,7 @@ module.exports = {
   buscarId,
   enviarImagens,
   Buscar_projetos_user,
-  buscar_produto_id
+  buscar_produto_id,
+  Buscar_recursos_ad,
+  buscar_produtos_dinamico
 };
