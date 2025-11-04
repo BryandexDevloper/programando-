@@ -12,7 +12,8 @@ const enviarEmail = require("./EnviarEmail");
 const requestip = require("request-ip");
 const localizacao = require("geoip-lite");
 const UAParser = require("ua-parser-js");
-const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");  
+
 
 // ==================== ROTAS DE AUTENTICAÇÃO ====================
 
@@ -72,7 +73,7 @@ const Login = async (req, res) => {
 
     if (!senhaValida) {
       return res.status(400).json({
-        mensagem: "Senha inválida",
+        mensagem: "Senha inválida",   
       });
     }
 
@@ -848,7 +849,8 @@ const Buscar_projetos_user = async (req,res)=>{
         pros:use.pros,
         contras:use.contras,
         recursos_ad:use.recursos_adicionais,
-        valor:use.valor
+        valor:use.valor,
+        ativo:use.ativo?true:false
       }
     })
     return res.status(200).json({mensagem:'Produtos do usuario',projetos:projetos})
@@ -938,12 +940,15 @@ const buscar_produtos_dinamico = async (req, res) => {
 
     // Organiza os resultados
     const resultado = ress.map((use) => ({
-      id: use.id,
-      userid: use.user_id,
-      nome: use.nome,
-      descricao: use.descricao,
-      tecnologias: use.tecnologias,
-      valor: use.valor,
+       userid: use.user_id,
+        id:use.id,
+        nome:use.nome,
+        descricao:use.descricao,
+        tecnologias:use.tecnologias,
+        pros:use.pros,
+        contras:use.contras,
+        recursos_ad:use.recursos_adicionais,
+        valor:use.valor
     }));
 
     // Retorna os dados
@@ -957,6 +962,74 @@ const buscar_produtos_dinamico = async (req, res) => {
     return res.status(500).json({ mensagem: 'Erro ao buscar produtos' });
   }
 };
+
+const Buscar_comentarios = async (req,res)=>{
+  
+  const data = req.query
+  try {
+   if(!data.tipo){
+    return res.status(400).json({mensagem:'O tipo de busca deve estar incluso na requisão',sucesso:false})
+   }
+
+   if(data.tipo === 'produto'){
+     if(!data.produto_id){
+    return res.status(400).json({mensagem:'O id do produto e obrigatorio',secesso:false})
+  }
+
+  const ress = await dataBase.query('SELECT * FROM avaliacoes WHERE produto_id = ?',[data.produto_id])
+  if(ress.length === 0){
+    return res.status(400).json({mensagem:'Nem um comentario encontrado nesse produto',sucesso:false})
+  }
+
+  const comentarios_por_estrelas = {}
+  for(let estrelas = 1; estrelas <= 5; estrelas++){
+    const resultado = await dataBase.query('SELECT * FROM avaliacoes WHERE produto_id = ? AND estrelas = ?',[data.produto_id,estrelas])
+    comentarios_por_estrelas[estrelas] = resultado.length 
+  }
+
+  return res.status(200).json({
+    mensagem:'Comentarios encontrados com sucesso',
+    sucesso:true,
+    comentarios:ress,
+    total:ress.length,
+    porEstrelas:comentarios_por_estrelas
+  })
+
+   }
+
+   if(data.tipo === 'perfil'){
+     if(!data.usuario_id){
+    return res.status(400).json({mensagem:'O id do usuario e obrigatorio',secesso:false})
+  }
+
+  const ress = await dataBase.query('SELECT * FROM avaliacoes_perfil WHERE usuario_id = ?',[data.usuario_id])
+  if(ress.length === 0){
+    return res.status(400).json({mensagem:'Nem um comentario encontrado nesse desenvolvedor',sucesso:false})
+  }
+
+  const comentarios_por_estrelas = {}
+  for(let estrelas = 1; estrelas <= 5; estrelas++){
+    const resultado = await dataBase.query('SELECT * FROM avaliacoes_perfil WHERE usuario_id = ? AND estrelas = ?',[data.usuario_id,estrelas])
+    comentarios_por_estrelas[estrelas] = resultado.length 
+  }
+
+  return res.status(200).json({
+    mensagem:'Comentarios encontrados com sucesso',
+    sucesso:true,
+    comentarios:ress,
+    total:ress.length,
+    porEstrelas:comentarios_por_estrelas
+  })
+   }
+
+  } catch (error) {
+        console.error(error)
+        return res.status(500).json({mensagem:'Erro interno',erro:error,sucesso:false})
+           
+  }
+
+  
+}
 
 
 
@@ -976,5 +1049,6 @@ module.exports = {
   Buscar_projetos_user,
   buscar_produto_id,
   Buscar_recursos_ad,
-  buscar_produtos_dinamico
+  buscar_produtos_dinamico,
+  Buscar_comentarios,
 };
