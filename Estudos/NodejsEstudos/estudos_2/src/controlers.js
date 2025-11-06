@@ -198,7 +198,7 @@ const Cadastro = async (req, res) => {
     });
 
 
-    // 🌟 5️⃣ VERIFICAR OU CRIAR CONVERSA AUTOMÁTICA COM ADMIN (ID 16)
+  
     const ADMIN_ID = 16;
 
     const rows = await dataBase.query(
