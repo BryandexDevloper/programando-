@@ -11,11 +11,11 @@ const PERFECTPAY_TOKEN = 'eb15cef59ebdf9bdc243881c23b56bf4';
 
 // Array fixo de API Keys
 let apiKeys = [
-    "yhlwo3eb4qkdv31bfzvha",
-    "relpt92nvqdu2qlq8nhb4",
-    "ozdb8x3l20lu8a4diq459",
-    "wbm7zsqd63p4islry4me38",
-    "nsldsjcyrkkmvnpjiszsj"
+    // "yhlwo3eb4qkdv31bfzvha",
+    // "relpt92nvqdu2qlq8nhb4",
+    // "ozdb8x3l20lu8a4diq459",
+    // "wbm7zsqd63p4islry4me38",
+    // "nsldsjcyrkkmvnpjiszsj"
 ];
 
 let vendaAprovada = false;
