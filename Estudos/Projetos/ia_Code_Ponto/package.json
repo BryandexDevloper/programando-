@@ -1,0 +1,23 @@
+{
+  "name": "ia_code_ponto",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "ia_code_ponto.js",
+  "scripts": {
+    "start": "node ia_code_ponto.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@azure-rest/ai-inference": "latest",
+    "@azure/core-auth": "latest",
+    "@azure/core-sse": "latest",
+    "chalk": "^5.6.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10"
+  }
+}

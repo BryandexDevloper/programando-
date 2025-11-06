@@ -1185,6 +1185,25 @@ const buscar_conversas_ativas = async (req, res) => {
   }
 };
 
+const enviar_mensagem = async (req,res)=>{
+  const data = req.body
+
+ try {
+   if(!data.conversa_id || !data.user_id || !data.texto){
+    return res.status(400).json({mensagem:'CONVERSA ID , USER ID E TEXTO SÃO OBRIGATORIOS',sucesso:false})
+  }
+
+  const ress = await dataBase.query('SELECT * FROM conversas WHERE id = ?',[data.conversa_id])
+  if(!ress.length > 0){
+    return res.status(400).json({mensagem:'Essa conversa não existe',sucesso:false})
+  }
+ await dataBase.query('INSERT INTO mensagens  (conversa_id,user_id,texto) VALUES (?,?,?)',[data.conversa_id,data.user_id,data.texto])
+ return res.status(200).json({mensagem:'Mensagem inviada com sucesso',sucesso:true})
+ } catch (error) {
+    return res.status(500).json({mensagem:'Erro interno',erro:error})
+ }
+}
+
 
 
 
@@ -1208,5 +1227,6 @@ module.exports = {
   Buscar_comentarios,
   criar_conversa,
   buscar_conversas,
-  buscar_conversas_ativas
+  buscar_conversas_ativas,
+  enviar_mensagem
 };

@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "@azure-rest/ai-inference": "^1.0.0-beta.6",
+    "@azure/core-auth": "^1.10.1",
+    "@azure/core-sse": "^2.3.0",
     "@tailwindcss/vite": "^4.1.13",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
