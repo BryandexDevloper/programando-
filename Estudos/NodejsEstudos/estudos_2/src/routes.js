@@ -1,7 +1,7 @@
 const express = require('express'); 
 const router = express.Router();    
 const mensagem = require('./bordao'); 
-const {Login,Cadastro,alterar_email,Validar_email,Alterar_senha,recuperar_senha,validar_senha,Buscar_Portfolios,Buscar_tecnologia,buscarId, enviarImagens,Buscar_projetos_user,buscar_produto_id,Buscar_recursos_ad,buscar_produtos_dinamico,Buscar_comentarios,} = require('./controlers')
+const {Login,Cadastro,alterar_email,Validar_email,Alterar_senha,recuperar_senha,validar_senha,Buscar_Portfolios,Buscar_tecnologia,buscarId, enviarImagens,Buscar_projetos_user,buscar_produto_id,Buscar_recursos_ad,buscar_produtos_dinamico,Buscar_comentarios,criar_conversa,buscar_conversas,buscar_conversas_ativas} = require('./controlers')
 const {verificar_login_MW,verificar_cadastro_MW,verificar__alterar_senha_MW,vefiricar_alterar_email_MW,varificar_email_MW,verificar_recuperar_senha_MW,verificar_senha_MW,verificar_campos_MW,verificar_email_campo_MW,verificar_novoemail_campo_MW,veficar_tokem_MW,upload} = require('./Midwares')
 
 router.post("/Login",verificar_email_campo_MW,verificar_campos_MW,verificar_login_MW,Login)
@@ -10,10 +10,14 @@ router.get('/buscar_desenvolvedor',Buscar_Portfolios)
 router.get('/Buscar_tecnologia',Buscar_tecnologia)
 router.get('/buscarId',buscarId)
 router.get('/Buscar_projetos_user',Buscar_projetos_user)
+router.get('/criar_conversa',criar_conversa)
+router.get('/buscar_conversas',buscar_conversas)
 router.get('/buscar_produto_id',buscar_produto_id)
 router.get('/Buscar_recursos_ad',Buscar_recursos_ad)
 router.get('/buscar_produtos_dinamico',buscar_produtos_dinamico)
 router.get('/Buscar_comentarios',Buscar_comentarios)
+router.get('/buscar_conversas_ativas',buscar_conversas_ativas)
+
 router.post('/upload',upload.array('imagem',5),enviarImagens)
 router.use((req,res)=>{
     res.status(400).json({mensagem:'Essa rota não existe'})

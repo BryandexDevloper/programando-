@@ -153,7 +153,7 @@ const Cadastro = async (req, res) => {
   try {
     const data = req.body;
 
-    // Verificar se usuário já existe
+    // 1️⃣ Verificar se usuário já existe
     const ress = await dataBase.query("SELECT * FROM users WHERE email = ?", [
       data.email,
     ]);
@@ -164,23 +164,25 @@ const Cadastro = async (req, res) => {
       });
     }
 
-    // Criptografar senha
+    // 2️⃣ Criptografar senha
     const senhaHash = await bcrypt.hash(data.senha, 10);
 
-    // Inserir novo usuário no banco de dados
+    // 3️⃣ Inserir novo usuário
     const insertQuery = `
       INSERT INTO users (name, email, passwordHash, role, createdAt, updatedAt)
       VALUES (?, ?, ?, ?, NOW(), NOW())
     `;
 
-    await dataBase.query(insertQuery, [
+    const novoUsuario = await dataBase.query(insertQuery, [
       data.nome,
       data.email,
       senhaHash,
       "client",
     ]);
 
-    // Preparar HTML do email de boas-vindas
+    const novoUserId = novoUsuario.insertId; // PEGA O ID DO NOVO USUÁRIO
+
+    // 4️⃣ Enviar email de boas-vindas
     const html = notificacao_cadastro({
       dataCadastro: new Date(),
       email: data.email,
@@ -188,7 +190,6 @@ const Cadastro = async (req, res) => {
       logo: "https://i.pinimg.com/1200x/ee/e3/4d/eee34d5c97348b6e3d6ed4744fc88119.jpg",
     });
 
-    // Enviar email de boas-vindas
     enviarEmail({
       email: data.email,
       html: html,
@@ -196,9 +197,57 @@ const Cadastro = async (req, res) => {
       text: "Seu cadastro foi realizado com sucesso",
     });
 
+
+    // 🌟 5️⃣ VERIFICAR OU CRIAR CONVERSA AUTOMÁTICA COM ADMIN (ID 16)
+    const ADMIN_ID = 16;
+
+    const rows = await dataBase.query(
+      `SELECT conversa_id 
+       FROM participantes_conversa 
+       WHERE user_id = ? 
+       AND conversa_id IN (
+            SELECT conversa_id 
+            FROM participantes_conversa 
+            WHERE user_id = ?
+       )
+       LIMIT 1`,
+      [ADMIN_ID, novoUserId]
+    );
+
+    let conversa_id;
+
+    if (rows.length > 0) {
+      // Conversa já existe
+      conversa_id = rows[0].conversa_id;
+    } else {
+      // Criar nova conversa
+      const novaConversa = await dataBase.query(
+        `INSERT INTO conversas (criado_em) VALUES (NOW())`
+      );
+
+      conversa_id = novaConversa.insertId;
+
+      // Inserir participantes
+      await dataBase.query(
+        `INSERT INTO participantes_conversa (conversa_id, user_id) VALUES (?, ?), (?, ?)`,
+        [conversa_id, ADMIN_ID, conversa_id, novoUserId]
+      );
+    }
+
+    // 6️⃣ ENVIAR MENSAGEM AUTOMÁTICA NA CONVERSA
+    const mensagem_boas_vindas = `Olá ${data.nome}! Seja bem-vindo(a) à CodePonto. Qualquer dúvida estou aqui para ajudar! 😊`;
+
+    await dataBase.query(
+      `INSERT INTO mensagens (conversa_id, user_id, texto, criado_em) VALUES (?, ?, ?, NOW())`,
+      [conversa_id, ADMIN_ID, mensagem_boas_vindas]
+    );
+
+    // ✅ FINALIZA RESPOSTA
     return res.status(201).json({
       mensagem: "Cadastrado com sucesso!",
+      conversa_id,
     });
+
   } catch (err) {
     console.error("Erro no cadastro:", err);
     return res.status(500).json({
@@ -787,6 +836,7 @@ const buscarId= async (req,res)=>{
   }
 }
 const path = require('path');
+const { text } = require("stream/consumers");
 const enviarImagens = async (req, res) => {
   const arquivos = req.files; // req.files para array
   let { produtoId } = req.query; // extrai o produtoId do query
@@ -1031,6 +1081,111 @@ const Buscar_comentarios = async (req,res)=>{
   
 }
 
+const criar_conversa = async (req, res) => {
+  const data = req.query;
+
+  if (!data.userA || !data.userB) {
+    return res.status(400).json({ sucesso: false, mensagem: 'O id dos usuários é obrigatório' });
+  }
+
+  if(data.userA === data.userB){
+    return res.status(400).json({mensagem:'Voce não pode conversar com voce mesmo',sucesso:false})
+  }
+
+  // 1️⃣ Verificar se já existe conversa entre os dois usuários
+  const rows = await dataBase.query(
+    `SELECT conversa_id 
+     FROM participantes_conversa 
+     WHERE user_id = ? 
+     AND conversa_id IN (
+          SELECT conversa_id 
+          FROM participantes_conversa 
+          WHERE user_id = ?
+     )
+     LIMIT 1`,
+    [data.userA, data.userB]
+  );
+
+  if (rows.length > 0) {
+    return res.status(200).json({
+      sucesso: true,
+      conversa_id: rows[0].conversa_id,
+      mensagem: "Conversa já existia"
+    });
+  }
+
+  // 2️⃣ Criar nova conversa
+  const novaConversa = await dataBase.query(`
+    INSERT INTO conversas (criado_em) VALUES (NOW());
+  `);
+
+  const conversa_id = novaConversa.insertId;
+
+  // 3️⃣ Inserir participantes
+  await dataBase.query(
+    `INSERT INTO participantes_conversa (conversa_id, user_id) VALUES (?, ?), (?, ?)`,
+    [conversa_id, data.userA, conversa_id, data.userB]
+  );
+
+  return res.json({
+    sucesso: true,
+    conversa_id,
+    mensagem: "Conversa criada com sucesso"
+  });
+};
+
+
+const buscar_conversas = async (req,res)=>{
+  const data = req.query
+  const resss = await dataBase.query(`
+  SELECT * FROM participantes_conversa 
+  WHERE conversa_id IN (SELECT conversa_id FROM participantes_conversa WHERE user_id = ?)
+`,[data.userID])
+
+    
+  if(resss.length > 0){
+    const todos_menos_eu = resss.filter((res)=>res.user_id != data.userID)
+   const pessoas = todos_menos_eu.map(res => res.user_id)
+   const users = await dataBase.query(
+    `SELECT id, name, fotoPerfil FROM users WHERE id IN (${pessoas.map(() => '?').join(',')})`,
+    pessoas
+  );
+    return res.status(200).json({mensagem:`conversas encontradas no user id ${data.userID}`,conversas:todos_menos_eu,quantidade:todos_menos_eu.length,sucesso:true,pessoas:users})
+  }else{
+    return res.status(400).json({mensagem:`Nem uma conversa encontrada no userID ${data.userID}`,sucesso:false})
+  }
+}
+const buscar_conversas_ativas = async (req, res) => {
+  const data = req.query;
+
+  if (!data.conversa_id) {
+    return res.status(400).json({
+      mensagem: "conversa_id é obrigatório",
+      sucesso: false
+    });
+  }
+
+  const ress = await dataBase.query(
+    "SELECT * FROM mensagens WHERE conversa_id = ? ORDER BY criado_em ASC",
+    [data.conversa_id]
+  );
+
+  if (ress.length > 0) {
+    return res.status(200).json({
+      mensagem: "Mensagens encontradas com sucesso",
+      sucesso: true,
+      mensagens: ress
+    });
+  } else {
+    return res.status(200).json({
+      mensagem: "Nenhuma mensagem encontrada",
+      sucesso: true,
+      mensagens: []
+    });
+  }
+};
+
+
 
 
 // ==================== EXPORTS ====================
@@ -1051,4 +1206,7 @@ module.exports = {
   Buscar_recursos_ad,
   buscar_produtos_dinamico,
   Buscar_comentarios,
+  criar_conversa,
+  buscar_conversas,
+  buscar_conversas_ativas
 };
