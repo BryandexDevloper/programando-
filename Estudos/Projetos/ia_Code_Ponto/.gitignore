@@ -1,0 +1,13 @@
+# Ignorar arquivo de variáveis de ambiente
+.env
+
+# Node modules
+node_modules/
+
+# Logs
+npm-debug.log
+yarn-error.log
+
+# Build / dist
+dist/
+build/
