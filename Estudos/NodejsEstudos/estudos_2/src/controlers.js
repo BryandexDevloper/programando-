@@ -13,6 +13,7 @@ const requestip = require("request-ip");
 const localizacao = require("geoip-lite");
 const UAParser = require("ua-parser-js");
 const jwt = require("jsonwebtoken");  
+const {filtrar_usuarios,getIO} = require('./WebSocketManeger')
 
 
 // ==================== ROTAS DE AUTENTICAÇÃO ====================
@@ -1150,7 +1151,7 @@ const buscar_conversas = async (req,res)=>{
     `SELECT id, name, fotoPerfil FROM users WHERE id IN (${pessoas.map(() => '?').join(',')})`,
     pessoas
   );
-    return res.status(200).json({mensagem:`conversas encontradas no user id ${data.userID}`,conversas:todos_menos_eu,quantidade:todos_menos_eu.length,sucesso:true,pessoas:users})
+    return res.status(200).json({mensagem:`conversas encontradas no user id ${data.userID}`,conversas:todos_menos_eu,quantidade:todos_menos_eu.length,sucesso:true,pessoas:filtrar_usuarios(users)})
   }else{
     return res.status(400).json({mensagem:`Nem uma conversa encontrada no userID ${data.userID}`,sucesso:false})
   }
@@ -1185,24 +1186,47 @@ const buscar_conversas_ativas = async (req, res) => {
   }
 };
 
-const enviar_mensagem = async (req,res)=>{
-  const data = req.body
 
- try {
-   if(!data.conversa_id || !data.user_id || !data.texto){
-    return res.status(400).json({mensagem:'CONVERSA ID , USER ID E TEXTO SÃO OBRIGATORIOS',sucesso:false})
-  }
+const enviar_mensagem = async (req, res) => {
+  const data = req.body;
+  
+  try {
+    if (!data.conversa_id || !data.user_id || !data.texto) {
+      return res.status(400).json({
+        mensagem: "CONVERSA ID, USER ID E TEXTO SÃO OBRIGATÓRIOS",
+        sucesso: false
+      });
+    }
 
-  const ress = await dataBase.query('SELECT * FROM conversas WHERE id = ?',[data.conversa_id])
-  if(!ress.length > 0){
-    return res.status(400).json({mensagem:'Essa conversa não existe',sucesso:false})
+    const ress = await dataBase.query("SELECT * FROM conversas WHERE id = ?", [data.conversa_id]);
+    if (!ress.length) {
+      return res.status(400).json({ mensagem: "Essa conversa não existe", sucesso: false });
+    }
+
+    const insert = await dataBase.query(
+      "INSERT INTO mensagens (conversa_id, user_id, texto) VALUES (?, ?, ?)",
+      [data.conversa_id, data.user_id, data.texto]
+    );
+
+    // Mensagem criada:
+    const novaMensagem = {
+      id: insert.insertId,
+      conversa_id: data.conversa_id,
+      user_id: data.user_id,
+      texto: data.texto,
+      horario: new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })
+    };
+
+    // Enviar para todos os conectados na conversa
+    const io = getIO();
+    io.to(`conversa_${data.conversa_id}`).emit("nova_mensagem", novaMensagem);
+
+    return res.status(200).json({ mensagem: "Mensagem enviada com sucesso", sucesso: true });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ mensagem: "Erro interno", erro: error });
   }
- await dataBase.query('INSERT INTO mensagens  (conversa_id,user_id,texto) VALUES (?,?,?)',[data.conversa_id,data.user_id,data.texto])
- return res.status(200).json({mensagem:'Mensagem inviada com sucesso',sucesso:true})
- } catch (error) {
-    return res.status(500).json({mensagem:'Erro interno',erro:error})
- }
-}
+};
 
 
 
