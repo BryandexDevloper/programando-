@@ -1,8 +1,9 @@
 const express = require('express'); 
 const router = express.Router();    
 const mensagem = require('./bordao'); 
-const {Login,Cadastro,alterar_email,Validar_email,Alterar_senha,recuperar_senha,validar_senha,Buscar_Portfolios,Buscar_tecnologia,buscarId, enviarImagens,Buscar_projetos_user,buscar_produto_id,Buscar_recursos_ad,buscar_produtos_dinamico,Buscar_comentarios,criar_conversa,buscar_conversas,buscar_conversas_ativas,enviar_mensagem} = require('./controlers')
-const {verificar_login_MW,verificar_cadastro_MW,verificar__alterar_senha_MW,vefiricar_alterar_email_MW,varificar_email_MW,verificar_recuperar_senha_MW,verificar_senha_MW,verificar_campos_MW,verificar_email_campo_MW,verificar_novoemail_campo_MW,veficar_tokem_MW,upload,censurarContatos} = require('./Midwares')
+const {Login,Cadastro,alterar_email,Validar_email,Alterar_senha,recuperar_senha,validar_senha,Buscar_Portfolios,Buscar_tecnologia,buscarId, enviarImagens,Buscar_projetos_user,buscar_produto_id,Buscar_recursos_ad,buscar_produtos_dinamico,Buscar_comentarios,criar_conversa,buscar_conversas,buscar_conversas_ativas,enviar_mensagem,marcar_mensagens_lidas,marcar_mensagem_especifica_lida,apagar_produto,ativar_ou_desativar_produto} = require('./controlers')
+const {verificar_login_MW,verificar_cadastro_MW,verificar__alterar_senha_MW,vefiricar_alterar_email_MW,varificar_email_MW,verificar_recuperar_senha_MW,verificar_senha_MW,verificar_campos_MW,verificar_email_campo_MW,verificar_novoemail_campo_MW,veficar_tokem_MW,upload,censurarContatos} = require('./Midwares');
+const { route } = require('./app');
 
 router.post("/Login",verificar_email_campo_MW,verificar_campos_MW,verificar_login_MW,Login)
 router.post('/Cadastro',verificar_email_campo_MW,verificar_campos_MW,verificar_cadastro_MW,Cadastro)
@@ -13,7 +14,11 @@ router.get('/Buscar_projetos_user',Buscar_projetos_user)
 router.get('/criar_conversa',criar_conversa)
 router.get('/buscar_conversas',buscar_conversas)
 router.post('/enviar_mensagem',censurarContatos,enviar_mensagem)
+router.post('/marcar_mensagens_lidas',marcar_mensagens_lidas)
+router.post('/marcar_mensagem_especifica_lida', marcar_mensagem_especifica_lida);
 router.get('/buscar_produto_id',buscar_produto_id)
+router.delete('/apagar_produto',apagar_produto)
+router.put('/ativar_ou_desativar_produto',ativar_ou_desativar_produto)
 router.get('/Buscar_recursos_ad',Buscar_recursos_ad)
 router.get('/buscar_produtos_dinamico',buscar_produtos_dinamico)
 router.get('/Buscar_comentarios',Buscar_comentarios)

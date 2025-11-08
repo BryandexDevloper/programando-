@@ -1014,6 +1014,55 @@ const buscar_produtos_dinamico = async (req, res) => {
   }
 };
 
+const apagar_produto = async (req,res)=>{
+  const data = req.query
+
+  if(!data.produto_id || !data.user_id){
+    return res.status(400).json({mensagem:'Produto id e obrigatorio',sucesso:false})
+  }
+
+  const procurar_produto = await dataBase.query('SELECT * FROM produtos WHERE id = ? AND user_id = ?',[data.produto_id,data.user_id])
+  if(!procurar_produto.length > 0){
+    return res.status(400).json({mensagem:'Esse produto não existe',secesso:false})
+  }
+
+  const procurar_recursos = await dataBase.query('SELECT * FROM recursos_produto WHERE produto_id = ?',[data.produto_id])
+  const procurar_comentarios = await dataBase.query('SELECT * FROM avaliacoes WHERE produto_id = ? ',[data.produto_id])
+  const procurar_fotos = await dataBase.query('SELECT * FROM imagens_produto WHERE produto_id =?',[data.produto_id])
+
+  if(procurar_recursos.length > 0 || procurar_comentarios.length > 0 || procurar_fotos.length > 0){
+    await dataBase.query('DELET FROM recursos_produto WHERE produto_id = ? ',[data.produto_id])
+    await dataBase.query('DELET FROM avaliacoes WHERE produto_id = ? ',[data.produto_id])
+    await dataBase.query('DELET FROM imagens_produto WHERE produto_id = ? ',[data.produto_id])
+  }
+
+  await dataBase.query('DELETE FROM produtos WHERE id = ?',[data.produto_id])
+  return res.status(200).json({mensagem:'Produto apagado com sucesso',sucesso:true})
+}
+
+const ativar_ou_desativar_produto = async (req,res)=>{
+  const data = req.query
+  if(!data.user_id || !data.produto_id || !data.acao){
+    return res.status(400).json({mensagem:'userId , produto_id e acao são obrigatorios',sucesso:false})
+  }
+
+  const procurar_produto = await dataBase.query('SELECT * FROM produtos WHERE id = ? AND user_id = ?',[data.produto_id,data.user_id])
+  if(!procurar_produto.length > 0){
+    return res.status(400).json({mensagem:'Esse produto não existe',secesso:false})
+  }
+
+
+  if(data.acao === 1){
+    await dataBase.query('UPDATE produtos SET ativo = ? , WHERE id = ? AND user_id = ? ',[1,data.user_id,data.user_id])
+    return res.status(200).json({mensagem:'Produto ativo',sucesso:true})
+  }
+
+  if(data.acao === 0){
+   await dataBase.query('UPDATE produtos SET ativo = ? , WHERE id = ? AND user_id = ? ',[0,data.user_id,data.user_id])
+    return res.status(200).json({mensagem:'Produto inativo',sucesso:true})
+  }
+}
+
 const Buscar_comentarios = async (req,res)=>{
   
   const data = req.query
@@ -1135,27 +1184,94 @@ const criar_conversa = async (req, res) => {
   });
 };
 
+const buscar_conversas = async (req, res) => {
+  const data = req.query;
+  
+  try {
+    // Busca conversas do usuário com a última mensagem e horário
+    const conversasComMensagens = await dataBase.query(`
+      SELECT 
+        pc.conversa_id,
+        pc.user_id,
+        u.name,
+        u.fotoPerfil,
+        m.texto AS ultima_mensagem,
+        m.criado_em AS ultima_mensagem_data,
+        (SELECT COUNT(*) 
+         FROM mensagens 
+         WHERE conversa_id = pc.conversa_id 
+         AND user_id != ? 
+         AND lido = 0
+        ) AS nao_lidas
+      FROM participantes_conversa pc
+      INNER JOIN users u ON u.id = pc.user_id
+      LEFT JOIN (
+        SELECT conversa_id, texto, criado_em, user_id
+        FROM mensagens m1
+        WHERE criado_em = (
+          SELECT MAX(criado_em) 
+          FROM mensagens m2 
+          WHERE m2.conversa_id = m1.conversa_id
+        )
+      ) m ON m.conversa_id = pc.conversa_id
+      WHERE pc.conversa_id IN (
+        SELECT conversa_id 
+        FROM participantes_conversa 
+        WHERE user_id = ?
+      )
+      AND pc.user_id != ?
+      ORDER BY m.criado_em DESC, pc.conversa_id DESC
+    `, [data.userID, data.userID, data.userID]);
 
-const buscar_conversas = async (req,res)=>{
-  const data = req.query
-  const resss = await dataBase.query(`
-  SELECT * FROM participantes_conversa 
-  WHERE conversa_id IN (SELECT conversa_id FROM participantes_conversa WHERE user_id = ?)
-`,[data.userID])
+    if (conversasComMensagens.length > 0) {
+      // Formata as conversas e pessoas
+      const conversas = conversasComMensagens.map(conv => ({
+        conversa_id: conv.conversa_id,
+        user_id: conv.user_id,
+        ultima_mensagem: conv.ultima_mensagem || "Sem mensagens",
+        ultima_mensagem_data: conv.ultima_mensagem_data,
+        horario_formatado: conv.ultima_mensagem_data 
+          ? new Date(conv.ultima_mensagem_data).toLocaleTimeString("pt-BR", {
+              hour: "2-digit",
+              minute: "2-digit"
+            })
+          : "",
+        nao_lidas: conv.nao_lidas || 0
+      }));
 
-    
-  if(resss.length > 0){
-    const todos_menos_eu = resss.filter((res)=>res.user_id != data.userID)
-   const pessoas = todos_menos_eu.map(res => res.user_id)
-   const users = await dataBase.query(
-    `SELECT id, name, fotoPerfil FROM users WHERE id IN (${pessoas.map(() => '?').join(',')})`,
-    pessoas
-  );
-    return res.status(200).json({mensagem:`conversas encontradas no user id ${data.userID}`,conversas:todos_menos_eu,quantidade:todos_menos_eu.length,sucesso:true,pessoas:filtrar_usuarios(users)})
-  }else{
-    return res.status(400).json({mensagem:`Nem uma conversa encontrada no userID ${data.userID}`,sucesso:false})
+      const pessoas = conversasComMensagens.map(conv => ({
+        id: conv.user_id,
+        name: conv.name,
+        fotoPerfil: conv.fotoPerfil,
+        online: filtrar_usuarios([{ id: conv.user_id }])[0]?.online || false
+      }));
+
+      return res.status(200).json({
+        mensagem: `Conversas encontradas no user id ${data.userID}`,
+        conversas: conversas,
+        quantidade: conversas.length,
+        sucesso: true,
+        pessoas: pessoas
+      });
+    } else {
+      return res.status(200).json({
+        mensagem: `Nenhuma conversa encontrada no userID ${data.userID}`,
+        sucesso: true,
+        conversas: [],
+        pessoas: [],
+        quantidade: 0
+      });
+    }
+  } catch (error) {
+    console.error("Erro ao buscar conversas:", error);
+    return res.status(500).json({
+      mensagem: "Erro ao buscar conversas",
+      sucesso: false,
+      erro: error.message
+    });
   }
-}
+};
+
 const buscar_conversas_ativas = async (req, res) => {
   const data = req.query;
 
@@ -1185,7 +1301,6 @@ const buscar_conversas_ativas = async (req, res) => {
     });
   }
 };
-
 
 const enviar_mensagem = async (req, res) => {
   const data = req.body;
@@ -1221,13 +1336,106 @@ const enviar_mensagem = async (req, res) => {
     const io = getIO();
     io.to(`conversa_${data.conversa_id}`).emit("nova_mensagem", novaMensagem);
 
+    // Emitir atualização da lista de conversas para os participantes
+    const participantes = await dataBase.query(
+      "SELECT user_id FROM participantes_conversa WHERE conversa_id = ?",
+      [data.conversa_id]
+    );
+
+    participantes.forEach(p => {
+      io.to(`user_${p.user_id}`).emit("conversa_atualizada", {
+        conversa_id: data.conversa_id,
+        ultima_mensagem: data.texto,
+        horario: novaMensagem.horario
+      });
+    });
+
     return res.status(200).json({ mensagem: "Mensagem enviada com sucesso", sucesso: true });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ mensagem: "Erro interno", erro: error });
   }
 };
+const marcar_mensagens_lidas = async (req, res) => {
+  const { conversa_id, user_id } = req.body;
+  
+  try {
+    if (!conversa_id || !user_id) {
+      return res.status(400).json({
+        mensagem: "conversa_id e user_id são obrigatórios",
+        sucesso: false
+      });
+    }
 
+    // Marca como lida todas as mensagens que NÃO são do usuário atual
+    const result = await dataBase.query(
+      "UPDATE mensagens SET lido = 1 WHERE conversa_id = ? AND user_id != ? AND lido = 0",
+      [conversa_id, user_id]
+    );
+
+    console.log(`✅ ${result.affectedRows} mensagens marcadas como lidas na conversa ${conversa_id}`);
+
+    // ✅ Emite evento para TODOS os participantes da conversa atualizarem contador
+    const io = getIO();
+    const participantes = await dataBase.query(
+      "SELECT user_id FROM participantes_conversa WHERE conversa_id = ?",
+      [conversa_id]
+    );
+
+    participantes.forEach(p => {
+      io.to(`user_${p.user_id}`).emit("mensagens_lidas_atualizar", {
+        conversa_id
+      });
+    });
+
+    return res.status(200).json({ 
+      mensagem: "Mensagens marcadas como lidas", 
+      sucesso: true,
+      quantidade: result.affectedRows
+    });
+  } catch (error) {
+    console.error("Erro ao marcar mensagens como lidas:", error);
+    return res.status(500).json({ 
+      mensagem: "Erro ao marcar mensagens como lidas", 
+      sucesso: false,
+      erro: error.message 
+    });
+  }
+};
+
+
+const marcar_mensagem_especifica_lida = async (req, res) => {
+  const { mensagem_id, user_id } = req.body;
+  
+  try {
+    if (!mensagem_id || !user_id) {
+      return res.status(400).json({
+        mensagem: "mensagem_id e user_id são obrigatórios",
+        sucesso: false
+      });
+    }
+
+    // Marca como lida apenas se a mensagem não é do usuário atual
+    await dataBase.query(
+      "UPDATE mensagens SET lido = 1 WHERE id = ? AND user_id != ?",
+      [mensagem_id, user_id]
+    );
+
+    return res.status(200).json({ 
+      mensagem: "Mensagem marcada como lida", 
+      sucesso: true
+    });
+  } catch (error) {
+    console.error("Erro ao marcar mensagem como lida:", error);
+    return res.status(500).json({ 
+      mensagem: "Erro ao marcar mensagem como lida", 
+      sucesso: false,
+      erro: error.message 
+    });
+  }
+};
+
+// terminar as rotas de ativo e desativado do produto e apagar  tudo relacionado a a ele literalmente
 
 
 
@@ -1252,5 +1460,10 @@ module.exports = {
   criar_conversa,
   buscar_conversas,
   buscar_conversas_ativas,
-  enviar_mensagem
+  enviar_mensagem,
+  marcar_mensagens_lidas,
+  marcar_mensagem_especifica_lida,
+  apagar_produto,
+  ativar_ou_desativar_produto
+
 };
