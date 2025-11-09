@@ -108,6 +108,8 @@ const Login = async (req, res) => {
         email: usuario.email,
         tipo: usuario.role,
         dataCriacao: usuario.createdAt,
+        sobreMim:usuario.descricaoPerfil,
+        fotoPerfil:usuario.fotoPerfil,
         token: jwt.sign(
           { id: usuario.id },
           "6df92c5e98b2ce822b28f9796b744af2",
@@ -1356,7 +1358,7 @@ const enviar_mensagem = async (req, res) => {
     return res.status(500).json({ mensagem: "Erro interno", erro: error });
   }
 };
-const marcar_mensagens_lidas = async (req, res) => {
+const marcar_mensagens_lidas = async (req, res) => {  
   const { conversa_id, user_id } = req.body;
   
   try {
