@@ -110,6 +110,9 @@ const Login = async (req, res) => {
         dataCriacao: usuario.createdAt,
         sobreMim:usuario.descricaoPerfil,
         fotoPerfil:usuario.fotoPerfil,
+
+
+        
         token: jwt.sign(
           { id: usuario.id },
           "6df92c5e98b2ce822b28f9796b744af2",
