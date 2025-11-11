@@ -93,6 +93,8 @@ const inicializarSocketIO = (ioInstance) => {
     socket.on("disconnect", () => {
       console.log("❌ Cliente desconectado:", socket.id);
       
+
+      
       const usuario = removerUsuario(socket.id);
       if (usuario) {
         io.emit("usuario_status_mudou", { userId: usuario.userId, online: false });

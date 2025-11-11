@@ -28,6 +28,8 @@ router.post('/upload',upload.array('imagem',5),enviarImagens)
 router.use((req,res)=>{
     res.status(400).json({mensagem:'Essa rota não existe'})
 })
+
+
 router.use(veficar_tokem_MW)
 router.post('/alterar_email',verificar_email_campo_MW,verificar_novoemail_campo_MW,verificar_campos_MW,vefiricar_alterar_email_MW,alterar_email)
 router.put('/Validar_email',verificar_campos_MW,varificar_email_MW,Validar_email)

@@ -15,6 +15,9 @@ const io = socket(server, {
 // ✅ Passa toda lógica para o WebSocketManager
 inicializarSocketIO(io);
 
+
+
+
 server.listen(PORTA, () => {
   console.log(mensagem);
   console.log(`Servidor rodando na porta ${PORTA}`);
